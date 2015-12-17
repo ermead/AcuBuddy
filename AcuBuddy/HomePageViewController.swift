@@ -456,25 +456,25 @@ class HomePageViewController: UIViewController {
         hamburgerButton.addTarget(self, action: "hamburgerButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(hamburgerButton)
         
-        self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: (self.view.bounds.width/3), height: self.view.bounds.height/2)
+        self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: 0, height: 0)
         popUpFromHamburger.alpha = 0
+        popUpFromHamburger.layer.cornerRadius = 10
         popUpFromHamburger.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(popUpFromHamburger)
     }
     
     @IBAction func hamburgerButtonTapped(){
-        
-        print("hamburger tapped")
+    
         if popUpFromHamburger.hidden == true {
             popUpFromHamburger.hidden = false
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
-                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width/3) * 2, y: 70, width: (self.view.bounds.width/3), height: self.view.bounds.height/2)
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width/3), y: 70, width: (self.view.bounds.width/3) * 2, height: self.view.bounds.height - 90)
                 self.popUpFromHamburger.alpha = 1
                 }, completion: nil)
             self.makeButtonsTransparent()
         } else {
             UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
-                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: (self.view.bounds.width/3), height: self.view.bounds.height/2)
+                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: 0, height: 0)
                 self.popUpFromHamburger.alpha = 1
                 }, completion: nil)
             self.makeButtonsOpaque()
