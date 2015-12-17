@@ -28,6 +28,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var button_blue: UIButton!
     @IBOutlet weak var button_green: UIButton!
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet var cloud1: UIImageView!
     @IBOutlet var cloud2: UIImageView!
     @IBOutlet var cloud3: UIImageView!
@@ -40,11 +41,12 @@ class HomePageViewController: UIViewController {
     let label = UILabel()
     let messages = ["Connecting ...", "Getting Info...", "Here it is..."]
     
-    let tableView = UITableView()
+    
     let collectionView = UICollectionView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100), collectionViewLayout: UICollectionViewFlowLayout.init())
     let dismissButton = UIButton()
     let hamburgerButton = UIButton()
     let popUpFromHamburger = UIView()
+
     
     // MARK: view controller methods
     
@@ -395,17 +397,20 @@ class HomePageViewController: UIViewController {
         tableView.hidden = true
         tableView.alpha = 0
         tableView.frame.size = CGSize(width: self.view.bounds.width - 40, height: self.view.bounds.height - 40)
-        tableView.center = self.view.center
+        tableView.center.x = self.view.center.x
+        tableView.center.y = self.view.center.y + 40
         tableView.backgroundColor = UIColor.whiteColor()
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        tableView.tableHeaderView?.backgroundColor = UIColor.blueColor()
         view.addSubview(tableView)
 
     }
     
     func presentTableView(){
         sendButtonsAway()
+        tableView.reloadData()
         
         UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .CurveEaseInOut, animations: { () -> Void in
-            self.tableView.center = self.view.center
             self.tableView.hidden = false
             self.tableView.alpha = 1
             self.setUpDismissButton(self.tableView)
@@ -461,12 +466,14 @@ class HomePageViewController: UIViewController {
         popUpFromHamburger.layer.cornerRadius = 10
         popUpFromHamburger.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(popUpFromHamburger)
+        
     }
     
     @IBAction func hamburgerButtonTapped(){
     
         if popUpFromHamburger.hidden == true {
             popUpFromHamburger.hidden = false
+            self.view.bringSubviewToFront(popUpFromHamburger)
             UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
                 self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width/3), y: 70, width: (self.view.bounds.width/3) * 2, height: self.view.bounds.height - 90)
                 self.popUpFromHamburger.alpha = 1

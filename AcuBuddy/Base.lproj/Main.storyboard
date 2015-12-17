@@ -90,6 +90,26 @@
                                     <action selector="yellowButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="cCM-An-AYj"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="28" sectionFooterHeight="28" id="nBy-ff-ZS3">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="61" id="734-BR-EPv" customClass="CustomTableViewCell" customModule="AcuBuddy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="61"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="734-BR-EPv" id="9RJ-Nv-LUi">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zJr-Em-E4g" id="ayQ-nh-0Oa"/>
+                                    <outlet property="delegate" destination="zJr-Em-E4g" id="DAp-Pv-RyB"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -100,11 +120,13 @@
                         <outlet property="button_grey" destination="org-WK-GbG" id="CSH-FB-puL"/>
                         <outlet property="button_red" destination="bcX-Mz-5rV" id="EVA-vB-ZUc"/>
                         <outlet property="button_yellow" destination="nJt-Lq-igb" id="p2T-l9-Ifg"/>
+                        <outlet property="tableView" destination="nBy-ff-ZS3" id="gSy-LT-wkm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VU7-wL-HN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="zJr-Em-E4g" customClass="TableViewDataSource" customModule="AcuBuddy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="731.73333333333335" y="-239.50666666666666"/>
+            <point key="canvasLocation" x="731" y="-240"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="R1s-lO-2by">
