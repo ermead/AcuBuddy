@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, HolderViewDelegate {
+class IntroViewController: UIViewController, HolderViewDelegate {
 
      var holderView = HolderView(frame: CGRectZero)
     
@@ -54,24 +54,16 @@ class ViewController: UIViewController, HolderViewDelegate {
             animations: ({
                 label.transform = CGAffineTransformScale(label.transform, 4.0, 4.0)
             }), completion: { finished in
-                self.addButton()
+            
+                self.view.backgroundColor = Colors.white
+                self.view.subviews.map({ $0.removeFromSuperview() })
+                
+               self.performSegueWithIdentifier("GoToHomePage", sender: self)
+                
         })
-        
     }
     
-    func addButton() {
-        let button = UIButton()
-        button.frame = CGRectMake(0.0, 0.0, view.bounds.width, view.bounds.height)
-        button.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
-        view.addSubview(button)
-    }
-    
-    func buttonPressed(sender: UIButton!) {
-        view.backgroundColor = Colors.white
-        view.subviews.map({ $0.removeFromSuperview() })
-        holderView = HolderView(frame: CGRectZero)
-        addHolderView()
-    }
+
 
 
 }

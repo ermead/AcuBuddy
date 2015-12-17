@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D71850DA1C2239CC00184931 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71850D91C2239CC00184931 /* AppDelegate.swift */; };
-		D71850DC1C2239CC00184931 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71850DB1C2239CC00184931 /* ViewController.swift */; };
+		D71850DC1C2239CC00184931 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71850DB1C2239CC00184931 /* IntroViewController.swift */; };
 		D71850DF1C2239CC00184931 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71850DD1C2239CC00184931 /* Main.storyboard */; };
 		D71850E11C2239CC00184931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71850E01C2239CC00184931 /* Assets.xcassets */; };
 		D71850E41C2239CC00184931 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71850E21C2239CC00184931 /* LaunchScreen.storyboard */; };
@@ -18,12 +18,13 @@
 		D7D6E04F1C2243AB00400374 /* ArcLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E04E1C2243AB00400374 /* ArcLayer.swift */; };
 		D7D6E0511C2243BC00400374 /* HolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E0501C2243BC00400374 /* HolderView.swift */; };
 		D7D6E0531C22443A00400374 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E0521C22443A00400374 /* Colors.swift */; };
+		D7D6E0561C224B5C00400374 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E0551C224B5C00400374 /* HomePageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D71850D61C2239CC00184931 /* AcuBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcuBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D71850D91C2239CC00184931 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D71850DB1C2239CC00184931 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D71850DB1C2239CC00184931 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		D71850DE1C2239CC00184931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D71850E01C2239CC00184931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D71850E31C2239CC00184931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -34,6 +35,7 @@
 		D7D6E04E1C2243AB00400374 /* ArcLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcLayer.swift; sourceTree = "<group>"; };
 		D7D6E0501C2243BC00400374 /* HolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolderView.swift; sourceTree = "<group>"; };
 		D7D6E0521C22443A00400374 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D7D6E0551C224B5C00400374 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +68,14 @@
 		D71850D81C2239CC00184931 /* AcuBuddy */ = {
 			isa = PBXGroup;
 			children = (
-				D71850D91C2239CC00184931 /* AppDelegate.swift */,
-				D71850DB1C2239CC00184931 /* ViewController.swift */,
+				D71850DD1C2239CC00184931 /* Main.storyboard */,
+				D71850DB1C2239CC00184931 /* IntroViewController.swift */,
+				D7D6E0551C224B5C00400374 /* HomePageViewController.swift */,
 				D7D6E0541C2244C100400374 /* Layers */,
 				D7D6E0521C22443A00400374 /* Colors.swift */,
 				D7D6E0501C2243BC00400374 /* HolderView.swift */,
-				D71850DD1C2239CC00184931 /* Main.storyboard */,
 				D71850E01C2239CC00184931 /* Assets.xcassets */,
+				D71850D91C2239CC00184931 /* AppDelegate.swift */,
 				D71850E21C2239CC00184931 /* LaunchScreen.storyboard */,
 				D71850E51C2239CC00184931 /* Info.plist */,
 			);
@@ -163,8 +166,9 @@
 			files = (
 				D7D6E0511C2243BC00400374 /* HolderView.swift in Sources */,
 				D7D6E0531C22443A00400374 /* Colors.swift in Sources */,
+				D7D6E0561C224B5C00400374 /* HomePageViewController.swift in Sources */,
 				D7D6E04F1C2243AB00400374 /* ArcLayer.swift in Sources */,
-				D71850DC1C2239CC00184931 /* ViewController.swift in Sources */,
+				D71850DC1C2239CC00184931 /* IntroViewController.swift in Sources */,
 				D7D6E04B1C22438B00400374 /* TriangleLayer.swift in Sources */,
 				D71850DA1C2239CC00184931 /* AppDelegate.swift in Sources */,
 				D7D6E04D1C22439F00400374 /* RectangleLayer.swift in Sources */,
