@@ -43,6 +43,8 @@ class HomePageViewController: UIViewController {
     let tableView = UITableView()
     let collectionView = UICollectionView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100), collectionViewLayout: UICollectionViewFlowLayout.init())
     let dismissButton = UIButton()
+    let hamburgerButton = UIButton()
+    let popUpFromHamburger = UIView()
     
     // MARK: view controller methods
     
@@ -61,6 +63,9 @@ class HomePageViewController: UIViewController {
         label.textColor = UIColor(red: 0.89, green: 0.38, blue: 0.0, alpha: 1.0)
         label.textAlignment = .Center
         status.addSubview(label)
+        
+        setUpHamburgerButton()
+        popUpFromHamburger.hidden = true
         
         setUpTableView()
         setUpCollectionView()
@@ -341,6 +346,18 @@ class HomePageViewController: UIViewController {
         
     }
     
+    func makeButtonsOpaque(){
+        let buttons = [self.button_red, self.button_green, self.button_yellow, self.button_grey, self.button_blue]
+        
+        for button in buttons {
+            
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                button.alpha = 1
+            })
+        }
+        
+    }
+    
     func showMessages(index: Int) {
         
         UIView.animateWithDuration(0.33, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseOut, animations: { () -> Void in
@@ -431,6 +448,39 @@ class HomePageViewController: UIViewController {
             superView!!.alpha = 0
         }
         bringInButtons()
+    }
+    
+    func setUpHamburgerButton(){
+        hamburgerButton.frame = CGRect(x: self.view.bounds.width - 60, y: 20, width: 50, height: 50)
+        hamburgerButton.setImage((UIImage(named: "Hamburger")), forState: .Normal)
+        hamburgerButton.addTarget(self, action: "hamburgerButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(hamburgerButton)
+        
+        self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: (self.view.bounds.width/3), height: self.view.bounds.height/2)
+        popUpFromHamburger.alpha = 0
+        popUpFromHamburger.backgroundColor = UIColor.lightGrayColor()
+        view.addSubview(popUpFromHamburger)
+    }
+    
+    @IBAction func hamburgerButtonTapped(){
+        
+        print("hamburger tapped")
+        if popUpFromHamburger.hidden == true {
+            popUpFromHamburger.hidden = false
+            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width/3) * 2, y: 70, width: (self.view.bounds.width/3), height: self.view.bounds.height/2)
+                self.popUpFromHamburger.alpha = 1
+                }, completion: nil)
+            self.makeButtonsTransparent()
+        } else {
+            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: (self.view.bounds.width/3), height: self.view.bounds.height/2)
+                self.popUpFromHamburger.alpha = 1
+                }, completion: nil)
+            self.makeButtonsOpaque()
+            popUpFromHamburger.hidden = true
+        }
+      
     }
     
     
