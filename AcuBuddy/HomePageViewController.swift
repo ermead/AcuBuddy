@@ -41,6 +41,8 @@ class HomePageViewController: UIViewController {
     let messages = ["Connecting ...", "Authorizing ...", "Sending credentials ...", "Failed"]
     
     let tableView = UITableView()
+    let collectionView = UICollectionView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100), collectionViewLayout: UICollectionViewFlowLayout.init())
+    let dismissButton = UIButton()
     
     // MARK: view controller methods
     
@@ -50,7 +52,8 @@ class HomePageViewController: UIViewController {
         //set up the UI
         
         status.hidden = true
-        status.center = self.view.center
+        status.center.x = self.view.center.x
+        status.center.y = 50
         view.addSubview(status)
 
         label.frame = CGRect(x: 0.0, y: 0.0, width: status.frame.size.width, height: status.frame.size.height)
@@ -60,8 +63,7 @@ class HomePageViewController: UIViewController {
         status.addSubview(label)
         
         setUpTableView()
-        view.addSubview(tableView)
-        
+        setUpCollectionView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -89,74 +91,8 @@ class HomePageViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let w: CGFloat = self.view.bounds.width / 8
-        let h: CGFloat = self.view.bounds.height / 8
-        
-        UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: { () -> Void in
-            self.button_red.center = CGPoint(x: w * 4, y: h * 1.5)
-            self.button_red.layer.cornerRadius = 15
-            self.button_red.alpha = 0.5
-            }, completion: {_ in
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    self.button_red.alpha = 1
-                })
-                
-            })
-        
-        
-        
-        UIView.animateWithDuration(1.5, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: {
-            self.button_yellow.center = CGPoint(x: w * 6, y: h * 3.5)
-            self.button_yellow.layer.cornerRadius = 15
-            self.button_yellow.alpha = 0.5
-            
-            }, completion: {_ in
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    self.button_yellow.alpha = 1
-                })
-                
-        })
-        
-        UIView.animateWithDuration(1.5, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
-            options: [.CurveEaseOut], animations: {
-            self.button_green.center = CGPoint(x: w * 2, y: h * 3.5)
-            self.button_green.layer.cornerRadius = 15
-            self.button_green.alpha = 0.5
-            }, completion: {_ in
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    self.button_green.alpha = 1
-                })
-                
-        })
-        
-        UIView.animateWithDuration(1.5, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
-            options: [.CurveEaseOut], animations: {
-            self.button_grey.center = CGPoint(x: w * 6, y: h * 7)
-            self.button_grey.layer.cornerRadius = 15
-            self.button_grey.alpha = 0.5
-            }, completion: {_ in
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    self.button_grey.alpha = 1
-                })
-                
-        })
-        
-        UIView.animateWithDuration(1.5, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
-            options: [.CurveEaseOut], animations: {
-            self.button_blue.center = CGPoint(x: w * 2, y: h * 7)
-            self.button_blue.layer.cornerRadius = 15
-            self.button_blue.alpha = 0.5
-                
-            }, completion: {_ in
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    self.button_blue.alpha = 1
-                })
-                
-        })
-        
+        bringInButtons()
     
-
     }
     
     // MARK: further methods
@@ -164,6 +100,10 @@ class HomePageViewController: UIViewController {
     @IBAction func redButtonTapped(sender: AnyObject) {
         showMessages(0)
         VariousFunctions().expandAndDisappear(sender as! UIButton, view: self.view)
+        delay(seconds: 3, completion: { _ in
+            
+            self.bringInButtons()
+        })
     }
     
     @IBAction func greenButtonTapped(sender: AnyObject) {
@@ -175,13 +115,132 @@ class HomePageViewController: UIViewController {
     }
  
     @IBAction func greyButtonTapped(sender: AnyObject) {
-        
+        presentCollectionView()
     }
     
     @IBAction func blueButtonTapped(sender: AnyObject) {
+        bringButtonsToCenter()
+        delay(seconds: 1, completion: { _ in
+            self.expandAsStack()
+        })
         
     }
     
+    func bringInButtons() {
+        let w: CGFloat = self.view.bounds.width / 8
+        let h: CGFloat = self.view.bounds.height / 8
+        
+        UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: { () -> Void in
+            self.button_red.frame.size = CGSize(width: w * 2, height: w * 2)
+            self.button_red.center = CGPoint(x: w * 4, y: h * 1.5)
+            self.button_red.layer.cornerRadius = 15
+            self.button_red.alpha = 1
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_red.alpha = 1
+                })
+                
+        })
+        
+        
+        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: {
+            self.button_yellow.frame.size = CGSize(width: w * 2, height: w * 2)
+            self.button_yellow.center = CGPoint(x: w * 6, y: h * 3.5)
+            self.button_yellow.layer.cornerRadius = 15
+            self.button_yellow.alpha = 1
+            
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_yellow.alpha = 1
+                })
+                
+        })
+        
+        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
+            options: [.CurveEaseOut], animations: {
+                self.button_green.frame.size = CGSize(width: w * 2, height: w * 2)
+                self.button_green.center = CGPoint(x: w * 2, y: h * 3.5)
+                self.button_green.layer.cornerRadius = 15
+                self.button_green.alpha = 1
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_green.alpha = 1
+                })
+                
+        })
+        
+        UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
+            options: [.CurveEaseOut], animations: {
+                self.button_grey.frame.size = CGSize(width: w * 2, height: w * 2)
+                self.button_grey.center = CGPoint(x: w * 6, y: h * 7)
+                self.button_grey.layer.cornerRadius = 15
+                self.button_grey.alpha = 1
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_grey.alpha = 1
+                })
+                
+        })
+        
+        UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
+            options: [.CurveEaseOut], animations: {
+                self.button_blue.frame.size = CGSize(width: w * 2, height: w * 2)
+                self.button_blue.center = CGPoint(x: w * 2, y: h * 7)
+                self.button_blue.layer.cornerRadius = 15
+                self.button_blue.alpha = 1
+                
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_blue.alpha = 1
+                })
+                
+        })
+        
+    }
+    
+    func sendButtonsAway(){
+        
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseIn, animations: { () -> Void in
+            self.button_red.center = CGPoint(x: self.view.bounds.width / 2, y: -self.view.bounds.height)
+            self.button_yellow.center = CGPoint(x: self.view.bounds.width * 2, y: -self.view.bounds.height)
+            self.button_grey.center = CGPoint(x: self.view.bounds.width * 2, y: self.view.bounds.height * 2)
+            self.button_blue.center = CGPoint(x: -self.view.bounds.width, y: self.view.bounds.height * 2)
+            self.button_green.center = CGPoint(x: -self.view.bounds.width, y: -self.view.bounds.height)
+            
+            }, completion: nil )
+    }
+    
+    func bringButtonsToCenter(){
+        let buttons = [self.button_red, self.button_yellow, self.button_blue, self.button_green, self.button_grey]
+        var delay = 0.1
+        for button in buttons{
+            UIView.animateWithDuration(0.5, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
+                button.center = self.view.center
+                delay += 0.1
+                }, completion: nil )
+        }
+        
+    }
+    
+    func expandAsStack(){
+        let buttons = [self.button_red, self.button_yellow, self.button_blue, self.button_green, self.button_grey]
+        var delay = 0.1
+        var offSetY = CGFloat(5)
+        for button in buttons{
+            UIView.animateWithDuration(0.5, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
+                button.center.x = self.view.center.x
+                button.center.y = button.frame.size.height + 20 + offSetY
+                delay += 0.1
+                offSetY += button.frame.size.height + CGFloat(5)
+                }, completion: {_ in
+                  UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+                        button.frame.size.width = button.frame.size.width * 3
+                        button.center.x = self.view.center.x
+                    }, completion: nil)
+            })
+        }
+        
+    }
     
     func showMessages(index: Int) {
         
@@ -207,6 +266,8 @@ class HomePageViewController: UIViewController {
                                 
                             }
                         })
+                        
+                        
                 })
         })
     }
@@ -216,7 +277,9 @@ class HomePageViewController: UIViewController {
         tableView.alpha = 0
         tableView.frame.size = CGSize(width: self.view.bounds.width - 40, height: self.view.bounds.height - 40)
         tableView.center = self.view.center
-        tableView.backgroundColor = UIColor.blueColor()
+        tableView.backgroundColor = UIColor.whiteColor()
+        view.addSubview(tableView)
+
     }
     
     func presentTableView(){
@@ -226,22 +289,48 @@ class HomePageViewController: UIViewController {
             self.tableView.center = self.view.center
             self.tableView.hidden = false
             self.tableView.alpha = 1
+            self.setUpDismissButton(self.tableView)
             }, completion: nil )
     }
     
-    func sendButtonsAway(){
+    
+    
+    func setUpCollectionView(){
         
-        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseIn, animations: { () -> Void in
-            self.button_red.center = CGPoint(x: self.view.bounds.width / 2, y: -self.view.bounds.height)
-            self.button_yellow.center = CGPoint(x: self.view.bounds.width * 2, y: -self.view.bounds.height)
-            self.button_grey.center = CGPoint(x: self.view.bounds.width * 2, y: self.view.bounds.height * 2)
-            self.button_blue.center = CGPoint(x: -self.view.bounds.width, y: self.view.bounds.height * 2)
-            self.button_green.center = CGPoint(x: -self.view.bounds.width, y: -self.view.bounds.height)
-          
+        collectionView.hidden = true
+        collectionView.alpha = 0
+        collectionView.frame.size = CGSize(width: self.view.bounds.width - 40, height: self.view.bounds.height - 40)
+        collectionView.center.x = self.view.center.x
+        collectionView.center.y = self.view.center.y
+        collectionView.backgroundColor = UIColor.blueColor()
+    
+    }
+    
+    func presentCollectionView(){
+        sendButtonsAway()
+        
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .CurveEaseInOut, animations: { () -> Void in
+            self.collectionView.hidden = false
+            self.collectionView.alpha = 1
             }, completion: nil )
+    }
+    
+    func setUpDismissButton(view: UIView){
         
-        
-        
+        dismissButton.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
+        dismissButton.setTitle("X", forState: .Normal)
+        dismissButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        dismissButton.backgroundColor = UIColor.lightGrayColor()
+        dismissButton.addTarget(self, action: "dismissButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(dismissButton)
+    }
+    
+    @IBAction func dismissButtonTapped(sender: AnyObject){
+        let superView = sender.superview
+        UIView.animateWithDuration(0.3) { () -> Void in
+            superView!!.alpha = 0
+        }
+        bringInButtons()
     }
     
     
