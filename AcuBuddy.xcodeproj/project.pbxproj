@@ -19,6 +19,7 @@
 		D7D6E0511C2243BC00400374 /* HolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E0501C2243BC00400374 /* HolderView.swift */; };
 		D7D6E0531C22443A00400374 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E0521C22443A00400374 /* Colors.swift */; };
 		D7D6E0561C224B5C00400374 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E0551C224B5C00400374 /* HomePageViewController.swift */; };
+		D7D6E0581C22842F00400374 /* VariousFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E0571C22842F00400374 /* VariousFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D7D6E0501C2243BC00400374 /* HolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolderView.swift; sourceTree = "<group>"; };
 		D7D6E0521C22443A00400374 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D7D6E0551C224B5C00400374 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		D7D6E0571C22842F00400374 /* VariousFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariousFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				D71850DD1C2239CC00184931 /* Main.storyboard */,
 				D71850DB1C2239CC00184931 /* IntroViewController.swift */,
 				D7D6E0551C224B5C00400374 /* HomePageViewController.swift */,
+				D7D6E0571C22842F00400374 /* VariousFunctions.swift */,
 				D7D6E0541C2244C100400374 /* Layers */,
 				D7D6E0521C22443A00400374 /* Colors.swift */,
 				D7D6E0501C2243BC00400374 /* HolderView.swift */,
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7D6E0511C2243BC00400374 /* HolderView.swift in Sources */,
+				D7D6E0581C22842F00400374 /* VariousFunctions.swift in Sources */,
 				D7D6E0531C22443A00400374 /* Colors.swift in Sources */,
 				D7D6E0561C224B5C00400374 /* HomePageViewController.swift in Sources */,
 				D7D6E04F1C2243AB00400374 /* ArcLayer.swift in Sources */,

@@ -38,6 +38,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="redButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="3b4-WN-wWq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4QZ-fP-qj7">
                                 <rect key="frame" x="20" y="194" width="80" height="80"/>
@@ -47,6 +50,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="greenButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="sMZ-7p-yh9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="org-WK-GbG">
                                 <rect key="frame" x="220" y="468" width="80" height="80"/>
@@ -56,6 +62,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="greyButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="Kg9-ll-L3m"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9g0-kw-eUA">
                                 <rect key="frame" x="20" y="468" width="80" height="80"/>
@@ -65,6 +74,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="blueButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="oH2-WV-2TR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nJt-Lq-igb">
                                 <rect key="frame" x="220" y="194" width="80" height="80"/>
@@ -74,6 +86,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="yellowButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="cCM-An-AYj"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
