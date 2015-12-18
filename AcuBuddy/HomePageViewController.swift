@@ -520,8 +520,16 @@ class HomePageViewController: UIViewController {
       
     }
     
-    
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetail" {
+            
+            if let dvc: DetailViewController = segue.destinationViewController as? DetailViewController {
+                    print("good")
+                    dvc.dismissButtonFrame = self.dismissButton.frame
+            }
+        }
+    }
+
     
 }
 

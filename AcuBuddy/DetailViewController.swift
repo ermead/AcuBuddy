@@ -25,6 +25,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     let dismissButton = UIButton()
     
+    var dismissButtonFrame: CGRect?
+    
     /*
     label1
     label2
@@ -55,21 +57,20 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-    
-        self.view.alpha = 1
+        if let dismissButtonFrame = dismissButtonFrame {
+            self.dismissButton.frame = dismissButtonFrame
+        }
         
-                label1.text = "Name1"
-                label2.text = "Name2"
-                label3.text = "Name3"
-                label4.text = "Name4"
-                label5.text = "Name5"
-                label6.text = "Name6"
-                label7.text = text2
-                label8.text = text3
-                label9.text = "End"
+        label1.text = "Name1"
+        label2.text = "Name2"
+        label3.text = text
+        label4.text = "Name4"
+        label5.text = "Name5"
+        label6.text = "Name6"
+        label7.text = text2
+        label8.text = text3
+        label9.text = "End"
         
-        
-        let labels = [self.label1, self.label2, self.label3, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
         
        
         label1.translatesAutoresizingMaskIntoConstraints = true
@@ -168,49 +169,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             }, completion: { _ in
                
         } )
-        
-       
-        
-        
-        
+
     }
     
 
-    func bringInLabels(){
-       
-        UIView.animateWithDuration(1) { () -> Void in
-            self.view.alpha = 1
-        }
-        
-        let labels = [self.label1, self.label2, self.label3, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
-    
-        let strings = ["Name", text2, "Header2", text3, "Header 3", text, text2, text3, "End"]
-
-        
-        var delay = 0.1
-        var i = 0
-        for label in labels {
-            
-            UIView.animateWithDuration(1, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
-                    label.text = strings[i]
-                    label.translatesAutoresizingMaskIntoConstraints = true
-                    label.center.x += self.view.bounds.width
-                    label.frame.size.height = label.requiredHeight()
-                    label.alpha = 1
-                    delay += 0.2
-                    i++
-                }, completion: { _ in
-                    for label in labels{
-                    label.translatesAutoresizingMaskIntoConstraints = false
-                    }
-            })
-            
-        }
-    }
-    
     func setUpDismissButton(view: UIView){
         
-        dismissButton.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
+        dismissButton.frame = CGRect(x: 5, y: 15, width: 40, height: 40)
         dismissButton.setTitle("X", forState: .Normal)
         dismissButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         dismissButton.backgroundColor = UIColor.lightGrayColor()
@@ -219,8 +184,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func dismissButtonTapped(sender: AnyObject){
-        let superView = sender.superview
-        print("tapped")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
