@@ -21,6 +21,7 @@ func delay(seconds seconds: Double, completion:()->()) {
 class HomePageViewController: UIViewController {
     
     var pastValues: [AnyObject] = []
+    var i = 0
     
     var screenWidth: CGFloat?
     var screenHeight: CGFloat?
@@ -39,6 +40,8 @@ class HomePageViewController: UIViewController {
     let button_green = UIButton()
     
     let undoButton = UIButton()
+    
+    let actionButton = UIButton()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -89,8 +92,11 @@ class HomePageViewController: UIViewController {
         popUpFromHamburger.hidden = true
         
         setUpUndoButton()
+        setUpActionButton()
         
         setUpTableView()
+        
+        
         setUpCollectionView()
     }
     
@@ -134,6 +140,9 @@ class HomePageViewController: UIViewController {
             
         } else {
             bringInButtons()
+            delay(seconds: 0.5, completion: { () -> () in
+                self.setButtonsLikeStar()
+            })
         }
     
     }
@@ -164,11 +173,7 @@ class HomePageViewController: UIViewController {
         VariousFunctions().expandAndDisappear(sender as! UIButton, view: self.view)
         delay(seconds: 3, completion: { _ in
             
-            //self.bringInButtons()
             self.setButtonsLikeStar()
-            delay(seconds: 2, completion: { () -> () in
-                self.controllingCycle()
-            })
             
         })
     }
@@ -189,10 +194,7 @@ class HomePageViewController: UIViewController {
     @IBAction func yellowButtonTapped(sender: AnyObject) {
         storeBackFunctions()
         //presentTableView()
-        controllingCycle()
-        delay(seconds: 2) { () -> () in
-            self.generatingCycle()
-        }
+     
     }
  
     @IBAction func greyButtonTapped(sender: AnyObject) {
@@ -208,8 +210,9 @@ class HomePageViewController: UIViewController {
     
     @IBAction func blueButtonTapped(sender: AnyObject) {
         storeBackFunctions()
-        //removeButtonConstraints()
+        
         bringButtonsToCenter()
+        
         delay(seconds: 1, completion: { _ in
             self.expandAsStack()
         })
@@ -405,12 +408,6 @@ class HomePageViewController: UIViewController {
     
     func generatingCycle(){
         
-        self.setButtonsLikeStar()
-        
-        delay(seconds: 1) { () -> () in
-            
-        
-        
         _ = [self.button_red, self.button_grey, self.button_green, self.button_yellow, self.button_blue]
         
         let newRedFrame = self.button_yellow.frame
@@ -438,11 +435,8 @@ class HomePageViewController: UIViewController {
         UIView.animateWithDuration(1, delay: 1.3, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
             self.button_green.frame = newGreenFrame
             }, completion: nil)
-        }
+        
     }
-    
-
-
     
     func setButtonTitles(femww_ArrayofTitles: [String]){
         
@@ -808,6 +802,30 @@ class HomePageViewController: UIViewController {
     
     @IBAction func undoButtonTapped(){
             restoreToPastValues()
+    }
+    
+    func setUpActionButton(){
+        
+        actionButton.frame = CGRect(x: self.view.center.x, y: 10, width: 80, height: 20)
+        actionButton.backgroundColor = UIColor.lightGrayColor()
+        actionButton.addTarget(self, action: "actionButtonTapped", forControlEvents: .TouchUpInside)
+        view.addSubview(actionButton)
+    }
+    
+    @IBAction func actionButtonTapped(){
+        
+        let arrayOfactions = [self.generatingCycle, self.controllingCycle]
+        
+        let action = arrayOfactions[i]
+        
+        self.i++
+        
+        if i == arrayOfactions.count {
+            self.i = 0
+        }
+        
+        action()
+    
     }
     
     func setUpHamburgerButton(){
