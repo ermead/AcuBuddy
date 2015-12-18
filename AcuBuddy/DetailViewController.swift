@@ -13,15 +13,15 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
-    @IBOutlet weak var label1: UILabel!
-    @IBOutlet weak var label2: UILabel!
-    @IBOutlet weak var label3: UILabel!
-    @IBOutlet weak var label4: UILabel!
-    @IBOutlet weak var label5: UILabel!
-    @IBOutlet weak var label6: UILabel!
-    @IBOutlet weak var label7: UILabel!
-    @IBOutlet weak var label8: UILabel!
-    @IBOutlet weak var label9: UILabel!
+    var label1 = UILabel()
+    var label2 = UILabel()
+    var label3 = UILabel()
+    var label4 = UILabel()
+    var label5 = UILabel()
+    var label6 = UILabel()
+    var label7 = UILabel()
+    var label8 = UILabel()
+    var label9 = UILabel()
     
     let dismissButton = UIButton()
     
@@ -66,105 +66,119 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         label8.text = text3
         label9.text = "End"
         
+        setUpLabels()
         
-       
-//        label1.translatesAutoresizingMaskIntoConstraints = true
-//        //label1.center.y -= 100
-//        label1.center.x += self.view.bounds.width
-//        label1.frame.size.height = label1.requiredHeight()
-//        label1.alpha = 0
-//        
-//        label2.translatesAutoresizingMaskIntoConstraints = true
-//        label2.center.x += self.view.bounds.width
-//        label2.frame.size.height = label2.requiredHeight()
-//        label2.alpha = 0
-//        
-//        label3.translatesAutoresizingMaskIntoConstraints = true
-//        label3.center.x += self.view.bounds.width
-//        label3.frame.size.height = label3.requiredHeight()
-//        label3.alpha = 0
-//        
-//        label4.translatesAutoresizingMaskIntoConstraints = true
-//        label4.frame.size.height = label4.requiredHeight()
-//        label4.alpha = 0
-//        
-//        label5.translatesAutoresizingMaskIntoConstraints = true
-//        label5.frame.size.height = label5.requiredHeight()
-//        label5.alpha = 0
-//
-//        label6.translatesAutoresizingMaskIntoConstraints = true
-//        label6.frame.size.height = label6.requiredHeight()
-//        label6.alpha = 0
-//        
-//        label7.translatesAutoresizingMaskIntoConstraints = true
-//        label7.frame.size.height = label7.requiredHeight()
-//        label7.alpha = 0
-//        
-//        label8.translatesAutoresizingMaskIntoConstraints = true
-//        label8.frame.size.height = label8.requiredHeight()
-//        label8.alpha = 0
-//        
-//        label9.translatesAutoresizingMaskIntoConstraints = true
-//        label9.frame.size.height = label9.requiredHeight()
-//        label9.alpha = 0
-//      
-    
+  
     }
     
     override func viewDidAppear(animated: Bool) {
         
-        //bringLabels()
+        bringLabels()
+        
+        setUpLabelConstraints()
+    }
+    
+    func setUpLabelConstraints(){
+        let labels = [self.label1, self.label2, self.label3, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
+        
+        var constraints: [NSLayoutConstraint] = []
+        
+        for label in labels {
+            
+            let leading = NSLayoutConstraint(item: label, attribute: .Leading, relatedBy: .Equal, toItem: contentView, attribute: .Leading, multiplier: 1, constant: 10)
+            
+            let trailing = NSLayoutConstraint(item: label, attribute: .Trailing, relatedBy: .Equal, toItem: contentView, attribute: .Trailing, multiplier: 1, constant: -10)
+            
+            constraints.append(leading)
+            constraints.append(trailing)
+            
+        }
+        
+        
+        let topLabel = NSLayoutConstraint(item: label1, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Top, multiplier: 1, constant: 60)
+        
+        let topLabel2 = NSLayoutConstraint(item: label2, attribute: .Top, relatedBy: .Equal, toItem: label1, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        let topLabel3 = NSLayoutConstraint(item: label3, attribute: .Top, relatedBy: .Equal, toItem: label2, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        let topLabel4 = NSLayoutConstraint(item: label4, attribute: .Top, relatedBy: .Equal, toItem: label3, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        let topLabel5 = NSLayoutConstraint(item: label5, attribute: .Top, relatedBy: .Equal, toItem: label4, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        let topLabel6 = NSLayoutConstraint(item: label6, attribute: .Top, relatedBy: .Equal, toItem: label5, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        let topLabel7 = NSLayoutConstraint(item: label7, attribute: .Top, relatedBy: .Equal, toItem: label6, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        let topLabel8 = NSLayoutConstraint(item: label8, attribute: .Top, relatedBy: .Equal, toItem: label7, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        let topLabel9 = NSLayoutConstraint(item: label9, attribute: .Top, relatedBy: .Equal, toItem: label8, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        let bottomLabel9 = NSLayoutConstraint(item: label9, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        constraints.append(topLabel)
+        constraints.append(topLabel2)
+        constraints.append(topLabel3)
+        constraints.append(topLabel4)
+        constraints.append(topLabel5)
+        constraints.append(topLabel6)
+        constraints.append(topLabel7)
+        constraints.append(topLabel8)
+        constraints.append(topLabel9)
+        constraints.append(bottomLabel9)
+        
+        self.view.addConstraints(constraints)
+        
+    }
+    
+    func setUpLabels(){
+        
+        let labels = [self.label1, self.label2, self.label3, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
+      
+        for label in labels {
+        
+            label.frame.size.height = label.requiredHeight()
+            label.frame.size.width = self.contentView.frame.width
+            
+        }
+        
+        contentView.addSubview(label1)
+        contentView.addSubview(label2)
+        contentView.addSubview(label3)
+        contentView.addSubview(label4)
+        contentView.addSubview(label5)
+        contentView.addSubview(label6)
+        contentView.addSubview(label7)
+        contentView.addSubview(label8)
+        contentView.addSubview(label9)
+        
+        for label in labels {
+            
+            label.center.x += self.view.bounds.width
+            label.alpha = 0
+            
+        }
+        
+      
     }
     
     func bringLabels(){
         
-        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
-            self.label1.alpha = 1
-            self.label1.translatesAutoresizingMaskIntoConstraints = true
-            //self.label1.center.y += 100
-            self.label1.center.x -= self.view.bounds.width
+        let labels = [self.label1, self.label2, self.label3, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
+        
+        for label in labels {
             
-            }, completion: { _ in
-                self.label1.translatesAutoresizingMaskIntoConstraints = false
-        } )
-        
-        UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
-            self.label2.alpha = 1
-            self.label2.translatesAutoresizingMaskIntoConstraints = true
-            self.label2.center.x -= self.view.bounds.width
+            var delay = 0.1
             
-            }, completion: { _ in
-                self.label2.translatesAutoresizingMaskIntoConstraints = false
-        } )
+            UIView.animateWithDuration(1, delay: delay, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseInOut], animations: { () -> Void in
+                
+                label.center.x -= self.view.bounds.width
+                label.alpha = 1
+                delay += 0.1
+                
+                }, completion: nil )
+          
+        }
         
-       
-        UIView.animateWithDuration(1, delay: 0.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
-            self.label3.alpha = 1
-            self.label3.translatesAutoresizingMaskIntoConstraints = true
-            self.label3.center.x -= self.view.bounds.width
-            
-            }, completion: { _ in
-                self.label3.translatesAutoresizingMaskIntoConstraints = false
-        } )
-        
-        self.label4.translatesAutoresizingMaskIntoConstraints = false
-        self.label5.translatesAutoresizingMaskIntoConstraints = false
-        self.label6.translatesAutoresizingMaskIntoConstraints = false
-        self.label7.translatesAutoresizingMaskIntoConstraints = false
-        self.label8.translatesAutoresizingMaskIntoConstraints = false
-        self.label9.translatesAutoresizingMaskIntoConstraints = false
-        
-        UIView.animateWithDuration(3, delay: 0.4, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
-            self.label4.alpha = 1
-            self.label5.alpha = 1
-            self.label6.alpha = 1
-            self.label7.alpha = 1
-            self.label8.alpha = 1
-            self.label9.alpha = 1
-            }, completion: { _ in
-               
-        } )
-
     }
     
 
