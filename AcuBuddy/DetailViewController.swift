@@ -58,55 +58,57 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
         self.view.alpha = 1
         
+                label1.text = "Name1"
+                label2.text = "Name2"
+                label3.text = "Name3"
+                label4.text = "Name4"
+                label5.text = "Name5"
+                label6.text = "Name6"
+                label7.text = text2
+                label8.text = text3
+                label9.text = "End"
+        
+        
         let labels = [self.label1, self.label2, self.label3, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
         
        
         label1.translatesAutoresizingMaskIntoConstraints = true
-        label1.center.x -= self.view.bounds.width
+        //label1.center.y -= 100
+        label1.center.x += self.view.bounds.width
         label1.frame.size.height = label1.requiredHeight()
         label1.alpha = 0
         
         label2.translatesAutoresizingMaskIntoConstraints = true
-        label2.center.x -= self.view.bounds.width
+        label2.center.x += self.view.bounds.width
         label2.frame.size.height = label2.requiredHeight()
         label2.alpha = 0
         
         label3.translatesAutoresizingMaskIntoConstraints = true
-        label3.center.x -= self.view.bounds.width
+        label3.center.x += self.view.bounds.width
         label3.frame.size.height = label3.requiredHeight()
         label3.alpha = 0
         
         label4.translatesAutoresizingMaskIntoConstraints = true
-        label4.center.x -= self.view.bounds.width
-        
         label4.frame.size.height = label4.requiredHeight()
         label4.alpha = 0
         
         label5.translatesAutoresizingMaskIntoConstraints = true
-        label5.center.x -= self.view.bounds.width
         label5.frame.size.height = label5.requiredHeight()
         label5.alpha = 0
-        
+
         label6.translatesAutoresizingMaskIntoConstraints = true
-        label6.center.x -= self.view.bounds.width
-        
         label6.frame.size.height = label6.requiredHeight()
         label6.alpha = 0
         
         label7.translatesAutoresizingMaskIntoConstraints = true
-        label7.center.x -= self.view.bounds.width
-        
         label7.frame.size.height = label7.requiredHeight()
         label7.alpha = 0
         
         label8.translatesAutoresizingMaskIntoConstraints = true
-        label8.center.x -= self.view.bounds.width
-        
         label8.frame.size.height = label8.requiredHeight()
         label8.alpha = 0
         
         label9.translatesAutoresizingMaskIntoConstraints = true
-        label9.center.x -= self.view.bounds.width
         label9.frame.size.height = label9.requiredHeight()
         label9.alpha = 0
       
@@ -115,8 +117,64 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         
-        bringInLabels()
+        bringLabels()
     }
+    
+    func bringLabels(){
+        
+        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+            self.label1.alpha = 1
+            self.label1.translatesAutoresizingMaskIntoConstraints = true
+            //self.label1.center.y += 100
+            self.label1.center.x -= self.view.bounds.width
+            
+            }, completion: { _ in
+                self.label1.translatesAutoresizingMaskIntoConstraints = false
+        } )
+        
+        UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+            self.label2.alpha = 1
+            self.label2.translatesAutoresizingMaskIntoConstraints = true
+            self.label2.center.x -= self.view.bounds.width
+            
+            }, completion: { _ in
+                self.label2.translatesAutoresizingMaskIntoConstraints = false
+        } )
+        
+       
+        UIView.animateWithDuration(1, delay: 0.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+            self.label3.alpha = 1
+            self.label3.translatesAutoresizingMaskIntoConstraints = true
+            self.label3.center.x -= self.view.bounds.width
+            
+            }, completion: { _ in
+                self.label3.translatesAutoresizingMaskIntoConstraints = false
+        } )
+        
+        self.label4.translatesAutoresizingMaskIntoConstraints = false
+        self.label5.translatesAutoresizingMaskIntoConstraints = false
+        self.label6.translatesAutoresizingMaskIntoConstraints = false
+        self.label7.translatesAutoresizingMaskIntoConstraints = false
+        self.label8.translatesAutoresizingMaskIntoConstraints = false
+        self.label9.translatesAutoresizingMaskIntoConstraints = false
+        
+        UIView.animateWithDuration(3, delay: 0.4, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+            self.label4.alpha = 1
+            self.label5.alpha = 1
+            self.label6.alpha = 1
+            self.label7.alpha = 1
+            self.label8.alpha = 1
+            self.label9.alpha = 1
+            }, completion: { _ in
+               
+        } )
+        
+       
+        
+        
+        
+    }
+    
 
     func bringInLabels(){
        
@@ -127,15 +185,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         let labels = [self.label1, self.label2, self.label3, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
     
         let strings = ["Name", text2, "Header2", text3, "Header 3", text, text2, text3, "End"]
-//        label1.text = "Name"
-//        label2.text = text2
-//        label3.text = "Header2"
-//        label4.text = text3
-//        label5.text = "Header 3"
-//        label6.text = text
-//        label7.text = text2
-//        label8.text = text3
-//        label9.text = "End"
+
         
         var delay = 0.1
         var i = 0
@@ -170,6 +220,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func dismissButtonTapped(sender: AnyObject){
         let superView = sender.superview
+        print("tapped")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
