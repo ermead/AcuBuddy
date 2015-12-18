@@ -61,71 +61,11 @@
                                     <outlet property="delegate" destination="zJr-Em-E4g" id="DAp-Pv-RyB"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcX-Mz-5rV">
-                                <rect key="frame" x="120" y="72" width="80" height="80"/>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.0" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="redButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="3b4-WN-wWq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QZ-fP-qj7">
-                                <rect key="frame" x="20" y="194" width="80" height="80"/>
-                                <color key="backgroundColor" red="0.0" green="0.44407894739999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="greenButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="sMZ-7p-yh9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="org-WK-GbG">
-                                <rect key="frame" x="220" y="468" width="80" height="80"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="greyButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="Kg9-ll-L3m"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9g0-kw-eUA">
-                                <rect key="frame" x="20" y="468" width="80" height="80"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="blueButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="oH2-WV-2TR"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJt-Lq-igb">
-                                <rect key="frame" x="220" y="194" width="80" height="80"/>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.93725490199999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.066666670139999995" green="0.15294118230000001" blue="0.2078431547" alpha="0.32000000000000001" colorSpace="deviceRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="yellowButtonTapped:" destination="New-Dd-CdF" eventType="touchUpInside" id="cCM-An-AYj"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="NvS-gN-Rhh"/>
                     <connections>
-                        <outlet property="button_blue" destination="9g0-kw-eUA" id="zDq-98-Ypb"/>
-                        <outlet property="button_green" destination="4QZ-fP-qj7" id="XMs-8F-5Y3"/>
-                        <outlet property="button_grey" destination="org-WK-GbG" id="CSH-FB-puL"/>
-                        <outlet property="button_red" destination="bcX-Mz-5rV" id="EVA-vB-ZUc"/>
-                        <outlet property="button_yellow" destination="nJt-Lq-igb" id="p2T-l9-Ifg"/>
                         <outlet property="tableView" destination="nBy-ff-ZS3" id="gSy-LT-wkm"/>
                     </connections>
                 </viewController>

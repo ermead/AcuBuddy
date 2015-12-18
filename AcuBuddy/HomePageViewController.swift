@@ -27,13 +27,14 @@ class HomePageViewController: UIViewController {
     
     // MARK: IB outlets
     
-    @IBOutlet weak var button_red: UIButton!
-    @IBOutlet weak var button_yellow: UIButton!
-    @IBOutlet weak var button_grey: UIButton!
-    @IBOutlet weak var button_blue: UIButton!
-    @IBOutlet weak var button_green: UIButton!
+    var button_red = UIButton()
+    var button_yellow = UIButton()
+    var button_grey = UIButton()
+    var button_blue = UIButton()
+    var button_green = UIButton()
     
     @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet var cloud1: UIImageView!
     @IBOutlet var cloud2: UIImageView!
     @IBOutlet var cloud3: UIImageView!
@@ -59,6 +60,7 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
         
         //set up the UI
+        //setUpButtons()
         
         screenHeight = self.view.bounds.height / 8
         screenWidth = self.view.bounds.width / 8
@@ -93,19 +95,20 @@ class HomePageViewController: UIViewController {
         button_green
         */
         
+        screenHeight = self.view.bounds.height / 8
+        screenWidth = self.view.bounds.width / 8
+        buttonOriginalHeight = screenWidth! * 2
+        buttonOriginalWidth = screenWidth! * 2
+        
+        setUpButtons()
+        
         self.navigationController?.navigationBarHidden = true
         
-        button_red.translatesAutoresizingMaskIntoConstraints = true
-        button_yellow.translatesAutoresizingMaskIntoConstraints = true
-        button_grey.translatesAutoresizingMaskIntoConstraints = true
-        button_blue.translatesAutoresizingMaskIntoConstraints = true
-        button_green.translatesAutoresizingMaskIntoConstraints = true
         button_red.center = CGPoint(x: self.view.bounds.width / 2, y: -view.bounds.height)
         button_yellow.center = CGPoint(x: self.view.bounds.width * 2, y: -view.bounds.height)
         button_grey.center = CGPoint(x: self.view.bounds.width * 2, y: view.bounds.height * 2)
         button_blue.center = CGPoint(x: -view.bounds.width, y: view.bounds.height * 2)
         button_green.center = CGPoint(x: -view.bounds.width, y: -view.bounds.height)
-        
         
         button_red.alpha = 0
         button_yellow.alpha = 0
@@ -200,7 +203,7 @@ class HomePageViewController: UIViewController {
         let h: CGFloat = self.view.bounds.height / 8
         
         UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: { () -> Void in
-            self.button_red.translatesAutoresizingMaskIntoConstraints = true
+
             self.button_red.frame.size = CGSize(width: w * 2, height: w * 2)
             self.button_red.center = CGPoint(x: w * 4, y: h * 1.5)
             self.button_red.layer.cornerRadius = 15
@@ -214,7 +217,7 @@ class HomePageViewController: UIViewController {
         
         
         UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: {
-            self.button_yellow.translatesAutoresizingMaskIntoConstraints = true
+         
             self.button_yellow.frame.size = CGSize(width: w * 2, height: w * 2)
             self.button_yellow.center = CGPoint(x: w * 6, y: h * 3.5)
             self.button_yellow.layer.cornerRadius = 15
@@ -229,7 +232,7 @@ class HomePageViewController: UIViewController {
         
         UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
             options: [.CurveEaseOut], animations: {
-                self.button_green.translatesAutoresizingMaskIntoConstraints = true
+                
                 self.button_green.frame.size = CGSize(width: w * 2, height: w * 2)
                 self.button_green.center = CGPoint(x: w * 2, y: h * 3.5)
                 self.button_green.layer.cornerRadius = 15
@@ -243,7 +246,7 @@ class HomePageViewController: UIViewController {
         
         UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
             options: [.CurveEaseOut], animations: {
-                self.button_grey.translatesAutoresizingMaskIntoConstraints = true
+               
                 self.button_grey.frame.size = CGSize(width: w * 2, height: w * 2)
                 self.button_grey.center = CGPoint(x: w * 6, y: h * 7)
                 self.button_grey.layer.cornerRadius = 15
@@ -257,7 +260,7 @@ class HomePageViewController: UIViewController {
         
         UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
             options: [.CurveEaseOut], animations: {
-                self.button_blue.translatesAutoresizingMaskIntoConstraints = true
+                
                 self.button_blue.frame.size = CGSize(width: w * 2, height: w * 2)
                 self.button_blue.center = CGPoint(x: w * 2, y: h * 7)
                 self.button_blue.layer.cornerRadius = 15
@@ -270,6 +273,54 @@ class HomePageViewController: UIViewController {
                 
         })
         
+    }
+    
+    func setUpButtons(){
+        
+        /*
+        button_red
+        button_yellow
+        button_grey
+        button_blue
+        button_green
+        */
+        
+        button_red.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        button_yellow.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        button_grey.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        button_blue.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        button_green.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        
+        button_red.backgroundColor = Colors.red
+        button_yellow.backgroundColor = Colors.yellow
+        button_grey.backgroundColor = Colors.grey
+        button_blue.backgroundColor = Colors.blue1
+        button_green.backgroundColor = Colors.green
+        
+        button_red.layer.borderColor = UIColor.blackColor().CGColor
+        button_yellow.layer.borderColor = UIColor.blackColor().CGColor
+        button_grey.layer.borderColor = UIColor.blackColor().CGColor
+        button_blue.layer.borderColor = UIColor.blackColor().CGColor
+        button_green.layer.borderColor = UIColor.blackColor().CGColor
+        
+        button_red.layer.borderWidth = 1
+        button_yellow.layer.borderWidth = 1
+        button_grey.layer.borderWidth = 1
+        button_blue.layer.borderWidth = 1
+        button_green.layer.borderWidth = 1
+        
+        
+        button_red.addTarget(self, action: "redButtonTapped:", forControlEvents: .TouchUpInside)
+        button_yellow.addTarget(self, action: "yellowButtonTapped:", forControlEvents: .TouchUpInside)
+        button_grey.addTarget(self, action: "greyButtonTapped:", forControlEvents: .TouchUpInside)
+        button_blue.addTarget(self, action: "blueButtonTapped:", forControlEvents: .TouchUpInside)
+        button_green.addTarget(self, action: "greenButtonTapped:", forControlEvents: .TouchUpInside)
+        
+        view.addSubview(button_red)
+        view.addSubview(button_yellow)
+        view.addSubview(button_green)
+        view.addSubview(button_grey)
+        view.addSubview(button_blue)
     }
     
     func sendButtonsAway(){
@@ -410,6 +461,8 @@ class HomePageViewController: UIViewController {
         
     }
     
+    //MARK: Show Messages
+    
     func showMessages(index: Int) {
         
         UIView.animateWithDuration(0.33, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseOut, animations: { () -> Void in
@@ -424,6 +477,7 @@ class HomePageViewController: UIViewController {
                 
                 UIView.transitionWithView(self.status, duration: 0.3, options: [.CurveEaseOut, .TransitionCurlDown] , animations: { () -> Void in
                     self.status.hidden = false
+                    self.view.bringSubviewToFront(self.status)
                     
                     }, completion: { _ in
                         
@@ -443,10 +497,11 @@ class HomePageViewController: UIViewController {
         })
     }
     
+    //MARK: TableView
     func setUpTableView() {
         tableView.hidden = true
         tableView.alpha = 0
-        self.tableView.translatesAutoresizingMaskIntoConstraints = true
+       
         tableView.frame.size = CGSize(width: self.view.bounds.width - 40, height: self.view.bounds.height - 40)
         tableView.center.x = self.view.center.x
         tableView.center.y = self.view.center.y + 40

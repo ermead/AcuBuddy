@@ -68,52 +68,52 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
         
        
-        label1.translatesAutoresizingMaskIntoConstraints = true
-        //label1.center.y -= 100
-        label1.center.x += self.view.bounds.width
-        label1.frame.size.height = label1.requiredHeight()
-        label1.alpha = 0
-        
-        label2.translatesAutoresizingMaskIntoConstraints = true
-        label2.center.x += self.view.bounds.width
-        label2.frame.size.height = label2.requiredHeight()
-        label2.alpha = 0
-        
-        label3.translatesAutoresizingMaskIntoConstraints = true
-        label3.center.x += self.view.bounds.width
-        label3.frame.size.height = label3.requiredHeight()
-        label3.alpha = 0
-        
-        label4.translatesAutoresizingMaskIntoConstraints = true
-        label4.frame.size.height = label4.requiredHeight()
-        label4.alpha = 0
-        
-        label5.translatesAutoresizingMaskIntoConstraints = true
-        label5.frame.size.height = label5.requiredHeight()
-        label5.alpha = 0
-
-        label6.translatesAutoresizingMaskIntoConstraints = true
-        label6.frame.size.height = label6.requiredHeight()
-        label6.alpha = 0
-        
-        label7.translatesAutoresizingMaskIntoConstraints = true
-        label7.frame.size.height = label7.requiredHeight()
-        label7.alpha = 0
-        
-        label8.translatesAutoresizingMaskIntoConstraints = true
-        label8.frame.size.height = label8.requiredHeight()
-        label8.alpha = 0
-        
-        label9.translatesAutoresizingMaskIntoConstraints = true
-        label9.frame.size.height = label9.requiredHeight()
-        label9.alpha = 0
-      
+//        label1.translatesAutoresizingMaskIntoConstraints = true
+//        //label1.center.y -= 100
+//        label1.center.x += self.view.bounds.width
+//        label1.frame.size.height = label1.requiredHeight()
+//        label1.alpha = 0
+//        
+//        label2.translatesAutoresizingMaskIntoConstraints = true
+//        label2.center.x += self.view.bounds.width
+//        label2.frame.size.height = label2.requiredHeight()
+//        label2.alpha = 0
+//        
+//        label3.translatesAutoresizingMaskIntoConstraints = true
+//        label3.center.x += self.view.bounds.width
+//        label3.frame.size.height = label3.requiredHeight()
+//        label3.alpha = 0
+//        
+//        label4.translatesAutoresizingMaskIntoConstraints = true
+//        label4.frame.size.height = label4.requiredHeight()
+//        label4.alpha = 0
+//        
+//        label5.translatesAutoresizingMaskIntoConstraints = true
+//        label5.frame.size.height = label5.requiredHeight()
+//        label5.alpha = 0
+//
+//        label6.translatesAutoresizingMaskIntoConstraints = true
+//        label6.frame.size.height = label6.requiredHeight()
+//        label6.alpha = 0
+//        
+//        label7.translatesAutoresizingMaskIntoConstraints = true
+//        label7.frame.size.height = label7.requiredHeight()
+//        label7.alpha = 0
+//        
+//        label8.translatesAutoresizingMaskIntoConstraints = true
+//        label8.frame.size.height = label8.requiredHeight()
+//        label8.alpha = 0
+//        
+//        label9.translatesAutoresizingMaskIntoConstraints = true
+//        label9.frame.size.height = label9.requiredHeight()
+//        label9.alpha = 0
+//      
     
     }
     
     override func viewDidAppear(animated: Bool) {
         
-        bringLabels()
+        //bringLabels()
     }
     
     func bringLabels(){
