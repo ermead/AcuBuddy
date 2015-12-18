@@ -41,9 +41,9 @@ class IntroViewController: UIViewController, HolderViewDelegate {
         view.backgroundColor = Colors.blue
         
         // 2
-        var label: UILabel = UILabel(frame: view.frame)
+        let label: UILabel = UILabel(frame: view.frame)
         label.textColor = Colors.white
-        label.font = UIFont(name: "HelveticaNeue-Thin", size: 170.0)
+        label.font = UIFont(name: "HelveticaNeue-Thin", size: 150.0)
         label.textAlignment = NSTextAlignment.Center
         label.text = "AB"
         label.transform = CGAffineTransformScale(label.transform, 0.25, 0.25)
