@@ -25,8 +25,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     let dismissButton = UIButton()
     
-    var dismissButtonFrame: CGRect?
-    
     /*
     label1
     label2
@@ -57,10 +55,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if let dismissButtonFrame = dismissButtonFrame {
-            self.dismissButton.frame = dismissButtonFrame
-        }
-        
+     
         label1.text = "Name1"
         label2.text = "Name2"
         label3.text = text

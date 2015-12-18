@@ -20,6 +20,11 @@ func delay(seconds seconds: Double, completion:()->()) {
 
 class HomePageViewController: UIViewController {
     
+    var screenWidth: CGFloat?
+    var screenHeight: CGFloat?
+    var buttonOriginalWidth: CGFloat?
+    var buttonOriginalHeight: CGFloat?
+    
     // MARK: IB outlets
     
     @IBOutlet weak var button_red: UIButton!
@@ -55,6 +60,11 @@ class HomePageViewController: UIViewController {
         
         //set up the UI
         
+        screenHeight = self.view.bounds.height / 8
+        screenWidth = self.view.bounds.width / 8
+        buttonOriginalHeight = screenWidth! * 2
+        buttonOriginalWidth = screenWidth! * 2
+        
         status.hidden = true
         status.center.x = self.view.center.x
         status.center.y = 50
@@ -83,16 +93,20 @@ class HomePageViewController: UIViewController {
         button_green
         */
         
-      
-        
-        
-        
         self.navigationController?.navigationBarHidden = true
+        
+        button_red.translatesAutoresizingMaskIntoConstraints = true
+        button_yellow.translatesAutoresizingMaskIntoConstraints = true
+        button_grey.translatesAutoresizingMaskIntoConstraints = true
+        button_blue.translatesAutoresizingMaskIntoConstraints = true
+        button_green.translatesAutoresizingMaskIntoConstraints = true
         button_red.center = CGPoint(x: self.view.bounds.width / 2, y: -view.bounds.height)
         button_yellow.center = CGPoint(x: self.view.bounds.width * 2, y: -view.bounds.height)
         button_grey.center = CGPoint(x: self.view.bounds.width * 2, y: view.bounds.height * 2)
         button_blue.center = CGPoint(x: -view.bounds.width, y: view.bounds.height * 2)
         button_green.center = CGPoint(x: -view.bounds.width, y: -view.bounds.height)
+        
+        
         button_red.alpha = 0
         button_yellow.alpha = 0
         button_grey.alpha = 0
@@ -103,7 +117,12 @@ class HomePageViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        bringInButtons()
+       
+        if self.tableView.alpha == 1 {
+            
+        } else {
+            bringInButtons()
+        }
     
     }
     
@@ -144,7 +163,7 @@ class HomePageViewController: UIViewController {
         
         delay(seconds: 3, completion: { _ in
             
-            self.bringInButtons()
+            //self.bringInButtons()
         })
     }
     
@@ -158,7 +177,7 @@ class HomePageViewController: UIViewController {
         
         delay(seconds: 3, completion: { _ in
             
-            self.bringInButtons()
+            //self.bringInButtons()
         })
     }
     
@@ -170,7 +189,7 @@ class HomePageViewController: UIViewController {
         })
         delay(seconds: 3, completion: { _ in
             
-            self.bringInButtons()
+            //self.bringInButtons()
         })
         
     }
@@ -270,6 +289,7 @@ class HomePageViewController: UIViewController {
         var delay = 0.1
         for button in buttons{
             UIView.animateWithDuration(0.5, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
+                button.frame.size = CGSize(width: self.buttonOriginalWidth!, height: self.buttonOriginalHeight!)
                 button.center = self.view.center
                 delay += 0.1
                 }, completion: nil )
@@ -278,7 +298,7 @@ class HomePageViewController: UIViewController {
     }
     
     func expandAsStack(){
-        let buttons = [self.button_red, self.button_yellow, self.button_blue, self.button_green, self.button_grey]
+        let buttons = [self.button_red, self.button_green, self.button_yellow, self.button_grey, self.button_blue]
         var delay = 0.1
         var offSetY = CGFloat(5)
         for button in buttons{
@@ -304,6 +324,7 @@ class HomePageViewController: UIViewController {
         for button in buttons{
             
             UIView.animateWithDuration(0.5, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseInOut], animations: { () -> Void in
+                button.frame.size = CGSize(width: self.buttonOriginalWidth!, height: self.buttonOriginalHeight!)
                 button.frame.origin.x = 0
                 button.center.y = button.frame.size.height + 20 + offSetY
                 delay += 0.1
@@ -521,11 +542,11 @@ class HomePageViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "toDetailView" {
             
             if let dvc: DetailViewController = segue.destinationViewController as? DetailViewController {
-                    print("good")
-                    dvc.dismissButtonFrame = self.dismissButton.frame
+
+                   
             }
         }
     }

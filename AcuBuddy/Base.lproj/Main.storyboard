@@ -52,7 +52,7 @@
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <connections>
-                                            <segue destination="Oez-Rr-Rob" kind="modal" identifier="showDetail" id="rPj-eN-klx"/>
+                                            <segue destination="x6z-Dn-Zm0" kind="modal" identifier="toDetailView" id="L2m-a0-mUM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -242,10 +242,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="BqP-c1-i9e" firstAttribute="leading" secondItem="hTj-Le-QDb" secondAttribute="leading" id="EKb-r8-vyz"/>
-                                    <constraint firstItem="BqP-c1-i9e" firstAttribute="leading" secondItem="hTj-Le-QDb" secondAttribute="leadingMargin" id="HQW-SF-T6w"/>
                                     <constraint firstItem="BqP-c1-i9e" firstAttribute="top" secondItem="hTj-Le-QDb" secondAttribute="top" id="IdB-aQ-rFs"/>
                                     <constraint firstAttribute="bottom" secondItem="BqP-c1-i9e" secondAttribute="bottom" id="QVu-np-8Y6"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="BqP-c1-i9e" secondAttribute="trailing" id="eTJ-uy-iOG"/>
                                     <constraint firstAttribute="trailing" secondItem="BqP-c1-i9e" secondAttribute="trailing" id="sCk-41-8DK"/>
                                 </constraints>
                                 <connections>
@@ -263,7 +261,9 @@
                             <constraint firstItem="hTj-Le-QDb" firstAttribute="top" secondItem="89s-0U-bw5" secondAttribute="topMargin" id="ziE-aE-k3a"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Y5Q-mC-CN1"/>
+                    <navigationItem key="navigationItem" id="Y5Q-mC-CN1">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="7RF-Wa-ZRp"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="BqP-c1-i9e" id="his-WS-Bg3"/>
                         <outlet property="label1" destination="jDb-Db-S5h" id="ifq-og-TsQ"/>
@@ -280,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwp-k4-dRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664" y="-240"/>
+            <point key="canvasLocation" x="1219" y="-240"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="R1s-lO-2by">
@@ -299,24 +299,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uic-aA-k5T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="298.66666666666669" y="-239.50666666666666"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="nhb-tD-oPG">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Oez-Rr-Rob" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="haf-Tg-7AZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="x6z-Dn-Zm0" kind="relationship" relationship="rootViewController" id="0ES-j6-Hf9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4cB-Bo-tty" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1132" y="-240"/>
         </scene>
     </scenes>
 </document>
