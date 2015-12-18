@@ -20,18 +20,25 @@ func delay(seconds seconds: Double, completion:()->()) {
 
 class HomePageViewController: UIViewController {
     
+    var pastValues: [AnyObject] = []
+    
     var screenWidth: CGFloat?
     var screenHeight: CGFloat?
     var buttonOriginalWidth: CGFloat?
     var buttonOriginalHeight: CGFloat?
     
+    let array1 = ["Fire", "Earth", "Metal", "Water", "Wood"]
+    let array2 = ["Moxa", "Diet", "Acupuncture", "Microsystems", "Herbs"]
+    
     // MARK: IB outlets
     
-    var button_red = UIButton()
-    var button_yellow = UIButton()
-    var button_grey = UIButton()
-    var button_blue = UIButton()
-    var button_green = UIButton()
+    let button_red = UIButton()
+    let button_yellow = UIButton()
+    let button_grey = UIButton()
+    let button_blue = UIButton()
+    let button_green = UIButton()
+    
+    let undoButton = UIButton()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -56,11 +63,14 @@ class HomePageViewController: UIViewController {
     
     // MARK: view controller methods
     
+    @IBAction func backButtonTapped(sender: AnyObject) {
+        self.restoreToPastValues()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //set up the UI
-        //setUpButtons()
+        
         
         screenHeight = self.view.bounds.height / 8
         screenWidth = self.view.bounds.width / 8
@@ -80,6 +90,8 @@ class HomePageViewController: UIViewController {
         
         setUpHamburgerButton()
         popUpFromHamburger.hidden = true
+        
+        setUpUndoButton()
         
         setUpTableView()
         setUpCollectionView()
@@ -150,6 +162,7 @@ class HomePageViewController: UIViewController {
     }
     
     @IBAction func redButtonTapped(sender: AnyObject) {
+        storeBackFunctions()
         showMessages(0)
         VariousFunctions().expandAndDisappear(sender as! UIButton, view: self.view)
         delay(seconds: 3, completion: { _ in
@@ -159,6 +172,7 @@ class HomePageViewController: UIViewController {
     }
     
     @IBAction func greenButtonTapped(sender: AnyObject) {
+        storeBackFunctions()
         self.moveButtonsToEdges()
         delay(seconds: 1, completion: { _ in
             self.makeButtonsTransparent()
@@ -171,12 +185,14 @@ class HomePageViewController: UIViewController {
     }
     
     @IBAction func yellowButtonTapped(sender: AnyObject) {
+        storeBackFunctions()
         presentTableView()
     }
  
     @IBAction func greyButtonTapped(sender: AnyObject) {
-        
+        storeBackFunctions()
         self.moveButtonsToLeftEdge()
+        self.setButtonTitles(array2)
         
         delay(seconds: 3, completion: { _ in
             
@@ -185,7 +201,8 @@ class HomePageViewController: UIViewController {
     }
     
     @IBAction func blueButtonTapped(sender: AnyObject) {
-        removeButtonConstraints()
+        storeBackFunctions()
+        //removeButtonConstraints()
         bringButtonsToCenter()
         delay(seconds: 1, completion: { _ in
             self.expandAsStack()
@@ -275,6 +292,19 @@ class HomePageViewController: UIViewController {
         
     }
     
+    func setButtonTitles(femww_ArrayofTitles: [String]){
+        
+        let buttons = [self.button_red, self.button_yellow, self.button_grey, self.button_blue, self.button_green]
+        var i = 0
+        for button in buttons{
+            button.setTitle(femww_ArrayofTitles[i], forState: .Normal)
+            button.titleLabel!.numberOfLines = 1
+            button.titleLabel!.adjustsFontSizeToFitWidth = true
+            button.titleLabel?.lineBreakMode = NSLineBreakMode.ByClipping
+            i++
+        }
+    }
+    
     func setUpButtons(){
         
         /*
@@ -284,12 +314,14 @@ class HomePageViewController: UIViewController {
         button_blue
         button_green
         */
+        let buttons = [self.button_red, self.button_yellow, self.button_blue, self.button_grey, self.button_green]
         
-        button_red.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        button_yellow.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        button_grey.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        button_blue.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        button_green.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        for button in buttons {
+            button.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+            button.layer.borderColor = UIColor.blackColor().CGColor
+            button.layer.borderWidth = 1
+            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        }
         
         button_red.backgroundColor = Colors.red
         button_yellow.backgroundColor = Colors.yellow
@@ -297,17 +329,7 @@ class HomePageViewController: UIViewController {
         button_blue.backgroundColor = Colors.blue1
         button_green.backgroundColor = Colors.green
         
-        button_red.layer.borderColor = UIColor.blackColor().CGColor
-        button_yellow.layer.borderColor = UIColor.blackColor().CGColor
-        button_grey.layer.borderColor = UIColor.blackColor().CGColor
-        button_blue.layer.borderColor = UIColor.blackColor().CGColor
-        button_green.layer.borderColor = UIColor.blackColor().CGColor
-        
-        button_red.layer.borderWidth = 1
-        button_yellow.layer.borderWidth = 1
-        button_grey.layer.borderWidth = 1
-        button_blue.layer.borderWidth = 1
-        button_green.layer.borderWidth = 1
+        self.setButtonTitles(array1)
         
         
         button_red.addTarget(self, action: "redButtonTapped:", forControlEvents: .TouchUpInside)
@@ -497,6 +519,62 @@ class HomePageViewController: UIViewController {
         })
     }
     
+    func storeBackFunctions(){
+        
+        let buttons = [self.button_red, self.button_yellow, self.button_grey, self.button_blue, self.button_green]
+        
+        var arrayOfValues: [AnyObject] = []
+        
+        for button in buttons{
+            let frame = NSValue(CGRect: button.frame)
+            let title = button.titleLabel?.text
+            let cornerRadius = button.layer.cornerRadius
+            arrayOfValues.append(frame)
+            arrayOfValues.append(title!)
+            arrayOfValues.append(cornerRadius)
+        }
+        
+        self.pastValues = arrayOfValues
+    }
+    
+    func restoreToPastValues(){
+        
+        if pastValues.count < 15 {
+            return
+        }
+        
+        let buttons = [self.button_red, self.button_yellow, self.button_grey, self.button_blue, self.button_green]
+        
+        var i = 0
+        
+        for button in buttons{
+            
+            UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [], animations: { () -> Void in
+                
+                let value = self.pastValues[i] as! NSValue
+                let rect = value.CGRectValue()
+                button.frame = rect
+                
+                i++
+                
+                let stringTitle = self.pastValues[i] as! String
+                
+                button.setTitle(stringTitle, forState: .Normal)
+                
+                i++
+                
+                button.layer.cornerRadius = self.pastValues[i] as! CGFloat
+                
+                i++
+                
+                button.alpha = 1
+                
+                }, completion: nil )
+        }
+        
+        
+    }
+    
     //MARK: TableView
     func setUpTableView() {
         tableView.hidden = true
@@ -559,6 +637,23 @@ class HomePageViewController: UIViewController {
             superView!!.alpha = 0
         }
         bringInButtons()
+    }
+    
+    func setUpUndoButton(){
+        undoButton.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
+        undoButton.setTitle("Undo", forState: .Normal)
+        undoButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        undoButton.titleLabel!.numberOfLines = 1
+        undoButton.titleLabel!.adjustsFontSizeToFitWidth = true
+        undoButton.titleLabel?.lineBreakMode = NSLineBreakMode.ByClipping
+        undoButton.backgroundColor = UIColor.lightGrayColor()
+        undoButton.addTarget(self, action: "undoButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(undoButton)
+        
+    }
+    
+    @IBAction func undoButtonTapped(){
+            restoreToPastValues()
     }
     
     func setUpHamburgerButton(){
