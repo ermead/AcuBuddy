@@ -48,6 +48,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
         self.navigationController?.navigationBarHidden = true
         
+        setUpLabels()
+        
         setUpDismissButton(self.view)
       
         
@@ -66,7 +68,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         label8.text = text3
         label9.text = "End"
         
-        setUpLabels()
+        //setUpLabels()
         
   
     }
@@ -113,7 +115,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
         let topLabel9 = NSLayoutConstraint(item: label9, attribute: .Top, relatedBy: .Equal, toItem: label8, attribute: .Bottom, multiplier: 1, constant: 10)
         
-        let bottomLabel9 = NSLayoutConstraint(item: label9, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: 10)
+        let bottomLabel9 = NSLayoutConstraint(item: label9, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1, constant: -30)
         
         constraints.append(topLabel)
         constraints.append(topLabel2)
@@ -173,7 +175,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                 
                 label.center.x -= self.view.bounds.width
                 label.alpha = 1
-                delay += 0.1
+                delay += 0.5
                 
                 }, completion: nil )
           
