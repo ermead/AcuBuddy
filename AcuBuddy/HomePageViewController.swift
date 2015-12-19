@@ -56,6 +56,8 @@ class HomePageViewController: UIViewController {
     let status = UIImageView(image: UIImage(named: "banner"))
     let label = UILabel()
     let messages = ["Connecting ...", "Getting Info...", "Here it is..."]
+    let messages1 = ["Generating Cycle"]
+    let messages2 = ["Controlling Cycle"]
     
     
     let collectionView = UICollectionView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100), collectionViewLayout: UICollectionViewFlowLayout.init())
@@ -169,7 +171,7 @@ class HomePageViewController: UIViewController {
     
     @IBAction func redButtonTapped(sender: AnyObject) {
         storeBackFunctions()
-        showMessages(0)
+        showMessages(0, arrayOfMessages: messages)
         VariousFunctions().expandAndDisappear(sender as! UIButton, view: self.view)
         delay(seconds: 3, completion: { _ in
             
@@ -379,7 +381,7 @@ class HomePageViewController: UIViewController {
     }
     
     func controllingCycle(){
-        
+        showMessages(0, arrayOfMessages: messages2)
 
         _ = [self.button_red, self.button_grey, self.button_green, self.button_yellow, self.button_blue]
         
@@ -407,6 +409,8 @@ class HomePageViewController: UIViewController {
     }
     
     func generatingCycle(){
+        
+        showMessages(0, arrayOfMessages: messages1)
         
         _ = [self.button_red, self.button_grey, self.button_green, self.button_yellow, self.button_blue]
         
@@ -633,7 +637,9 @@ class HomePageViewController: UIViewController {
     
     //MARK: Show Messages
     
-    func showMessages(index: Int) {
+    func showMessages(index: Int, arrayOfMessages: [String]) {
+        
+        let thisArrayOfMessages = arrayOfMessages
         
         UIView.animateWithDuration(0.33, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseOut, animations: { () -> Void in
             
@@ -643,7 +649,7 @@ class HomePageViewController: UIViewController {
                 
                 self.status.hidden = true
                 self.status.center.x -= self.view.frame.size.width
-                self.label.text = self.messages[index]
+                self.label.text = thisArrayOfMessages[index]
                 
                 UIView.transitionWithView(self.status, duration: 0.3, options: [.CurveEaseOut, .TransitionCurlDown] , animations: { () -> Void in
                     self.status.hidden = false
@@ -652,9 +658,9 @@ class HomePageViewController: UIViewController {
                     }, completion: { _ in
                         
                         delay(seconds: 2.0, completion: {
-                            if index < self.messages.count-1 {
+                            if index < thisArrayOfMessages.count-1 {
                                 
-                                self.showMessages(index + 1)
+                                self.showMessages(index + 1, arrayOfMessages: thisArrayOfMessages)
                                 
                             } else {
                                 self.status.hidden = true
@@ -814,7 +820,9 @@ class HomePageViewController: UIViewController {
     
     @IBAction func actionButtonTapped(){
         
-        let arrayOfactions = [self.generatingCycle, self.controllingCycle]
+        self.storeBackFunctions()
+        
+        let arrayOfactions = [self.generatingCycle, self.setButtonsLikeStar, self.controllingCycle, self.bringButtonsToCenter, self.expandAsStack, self.moveButtonsToLeftEdge, self.moveButtonsToEdges, self.setButtonsLikeStar]
         
         let action = arrayOfactions[i]
         
