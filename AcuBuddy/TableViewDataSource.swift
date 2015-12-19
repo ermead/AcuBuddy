@@ -10,19 +10,38 @@ import UIKit
 
 class TableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
+    var data: [AnyObject] = []
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomTableViewCell
-    
+        
         cell.textLabel?.text = "Test"
+        
+        self.data = PointsController.sharedInstance.data
+        
+        if data.count > 1 {
+            
+        let entry = data[indexPath.row]
+            
+        cell.textLabel?.text = entry as? String
+            
+        }
         
         return cell
         
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        
+        if data.count > 1 {
+            
+            return data.count
+            
+        } else {
+        
+            return 5
+        }
     }
     
     

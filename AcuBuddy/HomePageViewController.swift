@@ -51,6 +51,8 @@ class HomePageViewController: UIViewController {
     let button_blue = UIButton()
     let button_green = UIButton()
     
+    var allButtons: [UIButton] = []
+    
     let bottomTabBarButton = UIButton()
     let tabBarButtonLeft = UIButton()
     let tabBarButtonRight = UIButton()
@@ -75,6 +77,8 @@ class HomePageViewController: UIViewController {
     let hamburgerButton = UIButton()
     let popUpFromHamburger = UIView()
     let tabBar = UIView()
+    
+    let shadow = UIView()
 
     
     // MARK: view controller methods
@@ -106,6 +110,8 @@ class HomePageViewController: UIViewController {
         setUpBottomTabBarButton()
         
         setUpTableView()
+        
+        
         
     }
     
@@ -232,6 +238,55 @@ class HomePageViewController: UIViewController {
         
     }
     
+    //MARK: setup Main Buttons UI
+    
+    func setUpButtons(){
+        
+        /*
+        button_red
+        button_yellow
+        button_grey
+        button_blue
+        button_green
+        */
+        self.allButtons = [self.button_red, self.button_yellow, self.button_blue, self.button_grey, self.button_green]
+        
+        for button in allButtons {
+            button.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+            button.layer.borderColor = UIColor.blackColor().CGColor
+            button.layer.borderWidth = 1
+            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            button.layer.shadowColor = UIColor.darkGrayColor().CGColor
+            button.layer.shadowOffset = CGSizeMake(5,5)
+            button.layer.masksToBounds = false
+            button.layer.shadowRadius = 5.0
+            button.layer.shadowOpacity = 0
+            
+        }
+        
+        button_red.backgroundColor = Colors.red
+        button_yellow.backgroundColor = Colors.yellow
+        button_grey.backgroundColor = Colors.grey
+        button_blue.backgroundColor = Colors.blue1
+        button_green.backgroundColor = Colors.green
+        
+        self.setButtonTitles(array1)
+        
+        
+        button_red.addTarget(self, action: "redButtonTapped:", forControlEvents: .TouchUpInside)
+        button_yellow.addTarget(self, action: "yellowButtonTapped:", forControlEvents: .TouchUpInside)
+        button_grey.addTarget(self, action: "greyButtonTapped:", forControlEvents: .TouchUpInside)
+        button_blue.addTarget(self, action: "blueButtonTapped:", forControlEvents: .TouchUpInside)
+        button_green.addTarget(self, action: "greenButtonTapped:", forControlEvents: .TouchUpInside)
+        
+        view.addSubview(button_red)
+        view.addSubview(button_yellow)
+        view.addSubview(button_green)
+        view.addSubview(button_grey)
+        view.addSubview(button_blue)
+        
+    }
+    
     //MARK: Button Animations
     func bringInButtons() {
         let w: CGFloat = self.view.bounds.width / 8
@@ -307,6 +362,16 @@ class HomePageViewController: UIViewController {
                 })
                 
         })
+        
+        if tabBar.hidden == false {
+            let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
+            let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
+            
+            for button in twoBottomButtons{
+                
+                button.frame.origin.y -= (self.view.frame.size.height/8)
+            }            
+        }
         
     }
     
@@ -387,6 +452,11 @@ class HomePageViewController: UIViewController {
                 })
                 
         })
+        for button in allButtons {
+            
+            updateShadowWithOffset(button)
+        }
+     
         
     }
     
@@ -416,6 +486,8 @@ class HomePageViewController: UIViewController {
         UIView.animateWithDuration(1, delay: 1.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
             self.button_blue.frame = newBlueFrame
             }, completion: nil)
+        
+
     }
     
     func generatingCycle(){
@@ -450,6 +522,7 @@ class HomePageViewController: UIViewController {
             self.button_green.frame = newGreenFrame
             }, completion: nil)
         
+        
     }
     
     func setButtonTitles(femww_ArrayofTitles: [String]){
@@ -463,46 +536,6 @@ class HomePageViewController: UIViewController {
             button.titleLabel?.lineBreakMode = NSLineBreakMode.ByClipping
             i++
         }
-    }
-    
-    func setUpButtons(){
-        
-        /*
-        button_red
-        button_yellow
-        button_grey
-        button_blue
-        button_green
-        */
-        let buttons = [self.button_red, self.button_yellow, self.button_blue, self.button_grey, self.button_green]
-        
-        for button in buttons {
-            button.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-            button.layer.borderColor = UIColor.blackColor().CGColor
-            button.layer.borderWidth = 1
-            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        }
-        
-        button_red.backgroundColor = Colors.red
-        button_yellow.backgroundColor = Colors.yellow
-        button_grey.backgroundColor = Colors.grey
-        button_blue.backgroundColor = Colors.blue1
-        button_green.backgroundColor = Colors.green
-        
-        self.setButtonTitles(array1)
-        
-        
-        button_red.addTarget(self, action: "redButtonTapped:", forControlEvents: .TouchUpInside)
-        button_yellow.addTarget(self, action: "yellowButtonTapped:", forControlEvents: .TouchUpInside)
-        button_grey.addTarget(self, action: "greyButtonTapped:", forControlEvents: .TouchUpInside)
-        button_blue.addTarget(self, action: "blueButtonTapped:", forControlEvents: .TouchUpInside)
-        button_green.addTarget(self, action: "greenButtonTapped:", forControlEvents: .TouchUpInside)
-        
-        view.addSubview(button_red)
-        view.addSubview(button_yellow)
-        view.addSubview(button_green)
-        view.addSubview(button_grey)
-        view.addSubview(button_blue)
     }
     
     func sendButtonsAway(){
@@ -782,13 +815,16 @@ class HomePageViewController: UIViewController {
     }
     
     func presentTableView(){
+        
         sendButtonsAway()
+        
         tableView.reloadData()
         
         UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .CurveEaseInOut, animations: { () -> Void in
             self.tableView.hidden = false
             self.tableView.alpha = 1
             self.setUpDismissButton(self.tableView)
+            
             }, completion: nil )
     }
     
@@ -812,9 +848,12 @@ class HomePageViewController: UIViewController {
     }
     
     func setUpUndoButton(){
-        undoButton.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
+        undoButton.frame = CGRect(x: 5, y: 15, width: 40, height: 40)
         undoButton.setTitle("Undo", forState: .Normal)
         undoButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        undoButton.layer.cornerRadius = 3
+        undoButton.layer.borderWidth = 1
+        undoButton.layer.borderColor = UIColor.blackColor().CGColor
         undoButton.titleLabel!.numberOfLines = 1
         undoButton.titleLabel!.adjustsFontSizeToFitWidth = true
         undoButton.titleLabel?.lineBreakMode = NSLineBreakMode.ByClipping
@@ -981,7 +1020,6 @@ class HomePageViewController: UIViewController {
     
     @IBAction func bottomTabBarButtonTapped(){
         
-        print("show tab bar")
         if tabBar.hidden == true {
             tabBar.hidden = false
             
@@ -1052,6 +1090,12 @@ class HomePageViewController: UIViewController {
         tabBarButtonRight.layer.borderWidth = 1
         tabBarButtonLeft.layer.cornerRadius = 3
         tabBarButtonRight.layer.cornerRadius = 3
+        tabBarButtonLeft.setTitle("Points", forState: .Normal)
+        tabBarButtonRight.setTitle("Herbs", forState: .Normal)
+        tabBarButtonLeft.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        tabBarButtonRight.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        tabBarButtonLeft.addTarget(self, action: "leftTabBarButtonTapped", forControlEvents: .TouchUpInside)
+        tabBarButtonRight.addTarget(self, action: "rightTabBarButtonTapped", forControlEvents: .TouchUpInside)
         tabBar.addSubview(tabBarButtonLeft)
         tabBar.addSubview(tabBarButtonRight)
     }
@@ -1083,6 +1127,42 @@ class HomePageViewController: UIViewController {
         print("8 tapped")
     }
     
+    //MARK: TabBarButton Functions
+    
+    @IBAction func leftTabBarButtonTapped() {
+        print("left tab")
+        
+        PointsController.sharedInstance.data = ["pointA", "pointB","pointC","pointD","pointE"]
+        tableView.reloadData()
+        presentTableView()
+    }
+    
+    @IBAction func rightTabBarButtonTapped() {
+        print("right tab")
+        
+        PointsController.sharedInstance.data = ["herbA", "herbB","herbC","herbD","herbE"]
+        tableView.reloadData()
+        presentTableView()
+    }
+    
+    func updateShadowWithOffset(viewWithShadow: UIView){
+        
+        var offSetY: CGFloat?
+        var offSetX: CGFloat?
+        
+        let lightSource: CGPoint = CGPoint(x: self.view.center.x, y: 0)
+        let viewX = viewWithShadow.center.x
+        let viewY = viewWithShadow.frame.origin.y
+        let distanceX = viewX - lightSource.x
+        let distanceY = viewY - lightSource.y
+
+        offSetX = distanceX * 0.1
+       // offSetY = distanceY * 0.1
+        offSetY = 5
+        
+        viewWithShadow.layer.shadowOffset = CGSizeMake(offSetX!,offSetY!)
+        //viewWithShadow.layer.shadowOpacity = 1 - Float(Double(distanceY) * 0.005)
+    }
     
     
     
