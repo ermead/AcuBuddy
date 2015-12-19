@@ -33,6 +33,15 @@ class HomePageViewController: UIViewController {
     
     // MARK: IB outlets
     
+    let popUpButton1 = UIButton()
+    let popUpButton2 = UIButton()
+    let popUpButton3 = UIButton()
+    let popUpButton4 = UIButton()
+    let popUpButton5 = UIButton()
+    let popUpButton6 = UIButton()
+    let popUpButton7 = UIButton()
+    let popUpButton8 = UIButton()
+    
     let button_red = UIButton()
     let button_yellow = UIButton()
     let button_grey = UIButton()
@@ -40,7 +49,6 @@ class HomePageViewController: UIViewController {
     let button_green = UIButton()
     
     let undoButton = UIButton()
-    
     let actionButton = UIButton()
     
     @IBOutlet weak var tableView: UITableView!
@@ -844,7 +852,10 @@ class HomePageViewController: UIViewController {
     
     func setUpActionButton(){
         
-        actionButton.frame = CGRect(x: self.view.center.x, y: 10, width: 80, height: 20)
+        actionButton.frame.size = CGSize(width: 80, height: 20)
+        actionButton.center.x = self.view.center.x
+        actionButton.center.y = 20
+        actionButton.layer.cornerRadius = 5
         actionButton.backgroundColor = UIColor.lightGrayColor()
         actionButton.addTarget(self, action: "actionButtonTapped", forControlEvents: .TouchUpInside)
         view.addSubview(actionButton)
@@ -869,39 +880,135 @@ class HomePageViewController: UIViewController {
     }
     
     func setUpHamburgerButton(){
+        
         hamburgerButton.frame = CGRect(x: self.view.bounds.width - 60, y: 20, width: 50, height: 50)
         hamburgerButton.setImage((UIImage(named: "Hamburger")), forState: .Normal)
         hamburgerButton.addTarget(self, action: "hamburgerButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(hamburgerButton)
         
-        self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: 0, height: 0)
+        self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: (self.view.bounds.width/3) * 2, height: self.view.bounds.height - 90)
         popUpFromHamburger.alpha = 0
         popUpFromHamburger.layer.cornerRadius = 10
         popUpFromHamburger.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(popUpFromHamburger)
         
+        self.setUpPopUpButtonsFromHamburger()
+
     }
     
     @IBAction func hamburgerButtonTapped(){
     
         if popUpFromHamburger.hidden == true {
             popUpFromHamburger.hidden = false
+            
             self.view.bringSubviewToFront(popUpFromHamburger)
+            
             UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
-                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width/3), y: 70, width: (self.view.bounds.width/3) * 2, height: self.view.bounds.height - 90)
+                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width/3) + 10, y: 70, width: (self.view.bounds.width/3) * 2 + 10, height: self.view.bounds.height - 90)
                 self.popUpFromHamburger.alpha = 1
-                }, completion: nil)
+                }, completion: { _ in
+                    
+                    
+            })
+            
             self.makeButtonsTransparent()
+            
         } else {
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
-                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: 0, height: 0)
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+                self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: (self.view.bounds.width/3) * 2 + 10, height: self.view.bounds.height - 90)
                 self.popUpFromHamburger.alpha = 1
-                }, completion: nil)
+                }, completion: { _ in
+                    self.popUpFromHamburger.hidden = true
+            })
             self.makeButtonsOpaque()
-            popUpFromHamburger.hidden = true
+            
         }
       
     }
+    
+    func setUpPopUpButtonsFromHamburger(){
+        
+        let offsetX = CGFloat(5)
+        let offsetY = CGFloat(5)
+        let width = popUpFromHamburger.frame.size.width - offsetX - 10
+        let height = popUpFromHamburger.frame.size.height / 8 - ((offsetY * 2)/8)
+       
+        
+        let popUpButtons = [popUpButton1, popUpButton2, popUpButton3, popUpButton4, popUpButton5, popUpButton6, popUpButton7, popUpButton8]
+        
+        popUpButton1.frame.origin.y = 0 + offsetY
+        popUpButton2.frame.origin.y = height + offsetY
+        popUpButton3.frame.origin.y = height * 2 + offsetY
+        popUpButton4.frame.origin.y = height * 3 + offsetY
+        popUpButton5.frame.origin.y = height * 4 + offsetY
+        popUpButton6.frame.origin.y = height * 5 + offsetY
+        popUpButton7.frame.origin.y = height * 6 + offsetY
+        popUpButton8.frame.origin.y = height * 7 + offsetY
+        
+        popUpButton1.addTarget(self, action: "popUpButton1Tapped", forControlEvents: .TouchUpInside)
+        popUpButton2.addTarget(self, action: "popUpButton2Tapped", forControlEvents: .TouchUpInside)
+        popUpButton3.addTarget(self, action: "popUpButton3Tapped", forControlEvents: .TouchUpInside)
+        popUpButton4.addTarget(self, action: "popUpButton4Tapped", forControlEvents: .TouchUpInside)
+        popUpButton5.addTarget(self, action: "popUpButton5Tapped", forControlEvents: .TouchUpInside)
+        popUpButton6.addTarget(self, action: "popUpButton6Tapped", forControlEvents: .TouchUpInside)
+        popUpButton7.addTarget(self, action: "popUpButton7Tapped", forControlEvents: .TouchUpInside)
+        popUpButton8.addTarget(self, action: "popUpButton8Tapped", forControlEvents: .TouchUpInside)
+        
+        popUpButton1.setTitle("button1", forState: .Normal)
+        popUpButton2.setTitle("button2", forState: .Normal)
+        popUpButton3.setTitle("button3", forState: .Normal)
+        popUpButton4.setTitle("button4", forState: .Normal)
+        popUpButton5.setTitle("button5", forState: .Normal)
+        popUpButton6.setTitle("button6", forState: .Normal)
+        popUpButton7.setTitle("button7", forState: .Normal)
+        popUpButton8.setTitle("button8", forState: .Normal)
+        
+        for button in popUpButtons {
+            
+            button.frame.size = CGSize(width: width, height: height)
+            button.backgroundColor = Colors.blue
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.whiteColor().CGColor
+            button.frame.origin.x = offsetX
+            button.alpha = 1
+            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            popUpFromHamburger.addSubview(button)
+        }
+        
+    }
+    
+    //MARK: PopUpButton Functions
+    
+    @IBAction func popUpButton1Tapped(){
+        print("1 tapped")
+    }
+    @IBAction func popUpButton2Tapped(){
+        print("2 tapped")
+    }
+    @IBAction func popUpButton3Tapped(){
+        print("3 tapped")
+    }
+    @IBAction func popUpButton4Tapped(){
+        print("4 tapped")
+    }
+    @IBAction func popUpButton5Tapped(){
+        print("5 tapped")
+    }
+    @IBAction func popUpButton6Tapped(){
+        print("6 tapped")
+    }
+    @IBAction func popUpButton7Tapped(){
+        print("7 tapped")
+    }
+    @IBAction func popUpButton8Tapped(){
+        print("8 tapped")
+    }
+    
+    
+    
+    
+    
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toDetailView" {
