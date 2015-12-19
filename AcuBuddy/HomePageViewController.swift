@@ -33,6 +33,9 @@ class HomePageViewController: UIViewController {
     
     // MARK: IB outlets
     
+    let undoButton = UIButton()
+    let actionButton = UIButton()
+    
     let popUpButton1 = UIButton()
     let popUpButton2 = UIButton()
     let popUpButton3 = UIButton()
@@ -48,8 +51,9 @@ class HomePageViewController: UIViewController {
     let button_blue = UIButton()
     let button_green = UIButton()
     
-    let undoButton = UIButton()
-    let actionButton = UIButton()
+    let bottomTabBarButton = UIButton()
+    let tabBarButtonLeft = UIButton()
+    let tabBarButtonRight = UIButton()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -67,11 +71,10 @@ class HomePageViewController: UIViewController {
     let messages1 = ["Generating Cycle"]
     let messages2 = ["Controlling Cycle"]
     
-    
-    let collectionView = UICollectionView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100), collectionViewLayout: UICollectionViewFlowLayout.init())
     let dismissButton = UIButton()
     let hamburgerButton = UIButton()
     let popUpFromHamburger = UIView()
+    let tabBar = UIView()
 
     
     // MARK: view controller methods
@@ -80,7 +83,6 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
         
         //set up the UI
-        
         
         screenHeight = self.view.bounds.height / 8
         screenWidth = self.view.bounds.width / 8
@@ -99,15 +101,12 @@ class HomePageViewController: UIViewController {
         status.addSubview(label)
         
         setUpHamburgerButton()
-        popUpFromHamburger.hidden = true
-        
         setUpUndoButton()
         setUpActionButton()
+        setUpBottomTabBarButton()
         
         setUpTableView()
         
-        
-        setUpCollectionView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -661,7 +660,6 @@ class HomePageViewController: UIViewController {
     
     
     //MARK: Show Messages
-    
     func showMessages(index: Int, arrayOfMessages: [String]) {
         
         let thisArrayOfMessages = arrayOfMessages
@@ -698,6 +696,7 @@ class HomePageViewController: UIViewController {
         })
     }
     
+    //MARK: Undo
     func storeBackFunctions(){
         
         let buttons = [self.button_red, self.button_yellow, self.button_grey, self.button_blue, self.button_green]
@@ -793,26 +792,7 @@ class HomePageViewController: UIViewController {
             }, completion: nil )
     }
     
-    func setUpCollectionView(){
-        
-        collectionView.hidden = true
-        collectionView.alpha = 0
-        collectionView.frame.size = CGSize(width: self.view.bounds.width - 40, height: self.view.bounds.height - 40)
-        collectionView.center.x = self.view.center.x
-        collectionView.center.y = self.view.center.y
-        collectionView.backgroundColor = UIColor.blueColor()
-    
-    }
-    
-    func presentCollectionView(){
-        sendButtonsAway()
-        
-        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .CurveEaseInOut, animations: { () -> Void in
-            self.collectionView.hidden = false
-            self.collectionView.alpha = 1
-            }, completion: nil )
-    }
-    
+    //MARK: Various UI Buttons
     func setUpDismissButton(view: UIView){
         
         dismissButton.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
@@ -891,6 +871,7 @@ class HomePageViewController: UIViewController {
         popUpFromHamburger.layer.cornerRadius = 10
         popUpFromHamburger.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(popUpFromHamburger)
+        popUpFromHamburger.hidden = true
         
         self.setUpPopUpButtonsFromHamburger()
 
@@ -975,6 +956,104 @@ class HomePageViewController: UIViewController {
             popUpFromHamburger.addSubview(button)
         }
         
+    }
+    
+    func setUpBottomTabBarButton(){
+      
+        bottomTabBarButton.frame.size = CGSize(width: 80, height: 20)
+        bottomTabBarButton.center.x = self.view.center.x
+        bottomTabBarButton.frame.origin.y = self.view.frame.height - 15
+        bottomTabBarButton.layer.cornerRadius = 5
+        bottomTabBarButton.backgroundColor = UIColor.lightGrayColor()
+        bottomTabBarButton.setTitle("▲", forState: .Normal)
+        bottomTabBarButton.addTarget(self, action: "bottomTabBarButtonTapped", forControlEvents: .TouchUpInside)
+        view.addSubview(bottomTabBarButton)
+        
+        tabBar.frame = CGRect(x: 0, y: self.view.frame.size.height, width: (self.view.bounds.width), height: self.view.frame.size.height/8)
+        tabBar.backgroundColor = UIColor.grayColor()
+        tabBar.layer.borderWidth = 1
+        tabBar.layer.borderColor = UIColor.blackColor().CGColor
+        view.addSubview(tabBar)
+        tabBar.hidden = true
+        
+        self.setUpTabBarButtons()
+    }
+    
+    @IBAction func bottomTabBarButtonTapped(){
+        
+        print("show tab bar")
+        if tabBar.hidden == true {
+            tabBar.hidden = false
+            
+            self.view.bringSubviewToFront(tabBar)
+            
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+                self.tabBar.frame.origin.y = (self.view.frame.size.height - (self.view.frame.size.height/8))
+                
+                self.bottomTabBarButton.frame.origin.y -= (self.tabBar.frame.size.height - 15)
+                self.view.bringSubviewToFront(self.bottomTabBarButton)
+                self.bottomTabBarButton.setTitle("▼", forState: .Normal)
+                
+                let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
+                let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
+                
+                for button in twoBottomButtons{
+                    
+                    button.frame.origin.y -= (self.view.frame.size.height/8)
+                }
+            
+                }, completion: { _ in
+                   //self.makeButtonsTransparent()
+            })
+            
+            
+            
+        } else {
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+                
+                self.tabBar.frame.origin.y = self.view.frame.size.height
+                self.bottomTabBarButton.frame.origin.y += (self.tabBar.frame.size.height - 15)
+                self.bottomTabBarButton.setTitle("▲", forState: .Normal)
+                
+                let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
+                let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
+                
+                for button in twoBottomButtons{
+                    
+                    button.frame.origin.y += (self.view.frame.size.height/8)
+                }
+                
+                }, completion: { _ in
+                    self.tabBar.hidden = true
+                    //self.makeButtonsOpaque()
+            })
+            
+            
+            
+        }
+        
+        
+    }
+    
+    func setUpTabBarButtons(){
+        tabBarButtonLeft.frame.origin.y = 5
+        tabBarButtonRight.frame.origin.y = 5
+        tabBarButtonLeft.frame.size.width = (self.tabBar.frame.size.width / 3) - 5
+        tabBarButtonRight.frame.size.width = (self.tabBar.frame.size.width / 3) - 5
+        tabBarButtonLeft.frame.size.height = self.tabBar.frame.size.height - 7
+        tabBarButtonRight.frame.size.height = self.tabBar.frame.size.height - 7
+        tabBarButtonLeft.center.x = self.tabBar.frame.size.width / 6
+        tabBarButtonRight.center.x = (self.tabBar.frame.size.width / 6) * 5
+        tabBarButtonLeft.backgroundColor = Colors.blue
+        tabBarButtonRight.backgroundColor = Colors.blue
+        tabBarButtonLeft.layer.borderColor = UIColor.whiteColor().CGColor
+        tabBarButtonLeft.layer.borderWidth = 1
+        tabBarButtonRight.layer.borderColor = UIColor.whiteColor().CGColor
+        tabBarButtonRight.layer.borderWidth = 1
+        tabBarButtonLeft.layer.cornerRadius = 3
+        tabBarButtonRight.layer.cornerRadius = 3
+        tabBar.addSubview(tabBarButtonLeft)
+        tabBar.addSubview(tabBarButtonRight)
     }
     
     //MARK: PopUpButton Functions
