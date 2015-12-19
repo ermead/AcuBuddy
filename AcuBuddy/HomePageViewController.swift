@@ -304,6 +304,9 @@ class HomePageViewController: UIViewController {
     }
     
     func setButtonsLikeStar() {
+        let titles = ["Fire", "Earth", "Metal", "Water", "Wood"]
+        setButtonTitles(titles)
+        
         let w: CGFloat = self.view.bounds.width / 8
         let h: CGFloat = self.view.bounds.height / 8
         
@@ -521,6 +524,9 @@ class HomePageViewController: UIViewController {
     }
     
     func expandAsStack(){
+        let titles = ["Heat", "Dampness", "Dryness", "Cold", "Wind"]
+        setButtonTitles(titles)
+        
         let buttons = [self.button_red, self.button_green, self.button_yellow, self.button_grey, self.button_blue]
         var delay = 0.1
         var offSetY = CGFloat(5)
@@ -541,6 +547,9 @@ class HomePageViewController: UIViewController {
     }
     
     func moveButtonsToLeftEdge(){
+        
+       
+        
         let buttons = [self.button_red, self.button_green, self.button_yellow, self.button_grey, self.button_blue]
         var delay = 0.1
         var offSetY = CGFloat(5)
@@ -552,7 +561,12 @@ class HomePageViewController: UIViewController {
                 button.center.y = button.frame.size.height + 20 + offSetY
                 delay += 0.1
                 offSetY += button.frame.size.height + CGFloat(5)
-                }, completion: nil )
+                }, completion: { _ in
+                    
+                    let titles = ["Moxa", "Diet", "Acupuncture", "Microsystems", "Herbs"]
+                    self.setButtonTitles(titles)
+            
+            } )
             
         }
         
@@ -561,6 +575,9 @@ class HomePageViewController: UIViewController {
     }
     
     func moveButtonsToEdges(){
+        
+            let titles = ["Fire", "Earth", "Metal", "Water", "Wood"]
+            setButtonTitles(titles)
         
             let w: CGFloat = self.view.bounds.width / 8
             let h: CGFloat = self.view.bounds.height / 8
@@ -697,7 +714,19 @@ class HomePageViewController: UIViewController {
             return
         }
         
+        
         let buttons = [self.button_red, self.button_yellow, self.button_grey, self.button_blue, self.button_green]
+        
+        var arrayOfValues: [AnyObject] = []
+        
+        for button in buttons{
+            let frame = NSValue(CGRect: button.frame)
+            let title = button.titleLabel?.text
+            let cornerRadius = button.layer.cornerRadius
+            arrayOfValues.append(frame)
+            arrayOfValues.append(title!)
+            arrayOfValues.append(cornerRadius)
+        }
         
         var i = 0
         
@@ -726,6 +755,7 @@ class HomePageViewController: UIViewController {
                 }, completion: nil )
         }
         
+        self.pastValues = arrayOfValues
         
     }
     
@@ -807,7 +837,9 @@ class HomePageViewController: UIViewController {
     }
     
     @IBAction func undoButtonTapped(){
+        
             restoreToPastValues()
+        
     }
     
     func setUpActionButton(){
