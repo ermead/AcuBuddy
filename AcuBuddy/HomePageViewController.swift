@@ -626,7 +626,7 @@ class HomePageViewController: UIViewController {
             
             UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: { () -> Void in
                 self.button_red.frame.size = CGSize(width: w * 2, height: w)
-                self.button_red.center = CGPoint(x: w * 4, y: 0 + self.button_red.frame.height/2)
+                self.button_red.center = CGPoint(x: w * 4, y: 0 + self.button_red.frame.height * 2)
                 self.button_red.layer.cornerRadius = 5
                 self.button_red.alpha = 1
                 }, completion: nil)
@@ -873,7 +873,7 @@ class HomePageViewController: UIViewController {
     
     func setUpActionButton(){
         
-        actionButton.frame.size = CGSize(width: 80, height: 20)
+        actionButton.frame.size = CGSize(width: 80, height: 40)
         actionButton.center.x = self.view.center.x
         actionButton.center.y = 20
         actionButton.layer.cornerRadius = 5
@@ -1009,6 +1009,7 @@ class HomePageViewController: UIViewController {
         bottomTabBarButton.setTitle("▲", forState: .Normal)
         bottomTabBarButton.addTarget(self, action: "bottomTabBarButtonTapped", forControlEvents: .TouchUpInside)
         view.addSubview(bottomTabBarButton)
+        view.bringSubviewToFront(bottomTabBarButton)
         
         tabBar.frame = CGRect(x: 0, y: self.view.frame.size.height, width: (self.view.bounds.width), height: self.view.frame.size.height/8)
         tabBar.backgroundColor = UIColor.grayColor()
