@@ -101,18 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				D71850DD1C2239CC00184931 /* Main.storyboard */,
-				D71850DB1C2239CC00184931 /* IntroViewController.swift */,
-				D7D6E0551C224B5C00400374 /* HomePageViewController.swift */,
-				D7D5DCE11C274A06005BA837 /* HPVC_ContainerViewController.swift */,
-				D7D5DCDF1C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift */,
-				D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */,
+				D7D5DCE51C275671005BA837 /* ViewControllers */,
 				D7D5DCE31C27528C005BA837 /* Models */,
-				D7D5DCE41C27529E005BA837 /* Controllers */,
-				D7CEA7041C2366E00009A3B7 /* DetailViewController.swift */,
-				D7D5DCDD1C273702005BA837 /* ScrollAndZoomViewController.swift */,
+				D7D5DCE41C27529E005BA837 /* ModelControllers */,
 				D7D5DCDB1C2736B6005BA837 /* PopAnimator.swift */,
-				D7D5DCCD1C2666C9005BA837 /* DVC_ContainerViewController.swift */,
-				D7D5DCCF1C2670F4005BA837 /* DVC_CollectionViewCell.swift */,
 				D7D6E0571C22842F00400374 /* VariousFunctions.swift */,
 				D7D6E0541C2244C100400374 /* Layers */,
 				D7D6E0521C22443A00400374 /* Colors.swift */,
@@ -131,11 +123,12 @@
 				D7D5DCD11C26753B005BA837 /* Point.swift */,
 				D7D5DCD31C27279E005BA837 /* Herb.swift */,
 				D7D5DCD91C27325D005BA837 /* Image.swift */,
+				D7D5DCDF1C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
 		};
-		D7D5DCE41C27529E005BA837 /* Controllers */ = {
+		D7D5DCE41C27529E005BA837 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
 				D7CEA7001C234C620009A3B7 /* TableViewDataSourceController.swift */,
@@ -143,7 +136,22 @@
 				D7D5DCD51C2727AE005BA837 /* HerbsController.swift */,
 				D7D5DCD71C273253005BA837 /* ImagesController.swift */,
 			);
-			name = Controllers;
+			name = ModelControllers;
+			sourceTree = "<group>";
+		};
+		D7D5DCE51C275671005BA837 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D71850DB1C2239CC00184931 /* IntroViewController.swift */,
+				D7D6E0551C224B5C00400374 /* HomePageViewController.swift */,
+				D7CEA7041C2366E00009A3B7 /* DetailViewController.swift */,
+				D7D5DCE11C274A06005BA837 /* HPVC_ContainerViewController.swift */,
+				D7D5DCCD1C2666C9005BA837 /* DVC_ContainerViewController.swift */,
+				D7D5DCDD1C273702005BA837 /* ScrollAndZoomViewController.swift */,
+				D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */,
+				D7D5DCCF1C2670F4005BA837 /* DVC_CollectionViewCell.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D7D6E0541C2244C100400374 /* Layers */ = {

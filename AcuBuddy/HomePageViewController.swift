@@ -606,13 +606,11 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
                     
                     let titles = ["Moxa", "Diet", "Acupuncture", "Microsystems", "Herbs"]
                     self.setButtonTitles(titles)
-            
+                    
             } )
             
         }
-        
-        
-        
+   
     }
     
     func moveButtonsToEdges(){
@@ -826,7 +824,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
     
     func presentTableView(){
         
-        sendButtonsAway()
+        //sendButtonsAway()
         
         tableView.reloadData()
         
@@ -847,14 +845,18 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
         dismissButton.backgroundColor = UIColor.lightGrayColor()
         dismissButton.addTarget(self, action: "dismissButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(dismissButton)
+        
     }
     
     @IBAction func dismissButtonTapped(sender: AnyObject){
         let superView = sender.superview
+        print("tapped")
         UIView.animateWithDuration(0.3) { () -> Void in
             superView!!.alpha = 0
         }
+        
         bringInButtons()
+        self.bottomTabBarButton.hidden = false
     }
     
     func setUpUndoButton(){
@@ -1064,6 +1066,21 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
                 self.bottomTabBarButton.frame.origin.y += (self.tabBar.frame.size.height - 15)
                 self.bottomTabBarButton.setTitle("▲", forState: .Normal)
                 
+                var leftStack: [UIButton] = []
+                
+                for button in self.allButtons {
+                    if button.frame.origin.x == 0{
+                        leftStack.append(button)
+                    }
+                    
+                    if leftStack.count == 5 {
+                        self.moveButtonsToLeftEdge()
+                        self.tabBar.hidden = true
+                        return
+                    }
+
+                }
+                
                 let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
                 
                 let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
@@ -1073,6 +1090,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
                     button.frame.origin.y += (self.view.frame.size.height/8)
                         
                     }
+                
                 
                 for button in self.allButtons {
     
@@ -1166,6 +1184,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
 
         tableView.reloadData()
         presentTableView()
+        sendButtonsAway()
     }
     
     @IBAction func rightTabBarButtonTapped() {
@@ -1176,10 +1195,12 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
         
         tableView.reloadData()
         presentTableView()
+        sendButtonsAway()
     }
     
    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if segue.identifier == "toDetailView" {
             
             if let dvc: EM_DetailViewController = segue.destinationViewController as? EM_DetailViewController {
