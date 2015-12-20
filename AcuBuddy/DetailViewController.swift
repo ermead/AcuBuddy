@@ -86,6 +86,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
         if let entry = entry as? Point {
             
             text1 = entry.channel! + "-" + entry.number!
+            label1.textAlignment = NSTextAlignment.Center
+        }
+        
+        if let entry = entry as? Herb {
+            
+            text1 = entry.name!
+            label1.textAlignment = NSTextAlignment.Center
         }
         
     }

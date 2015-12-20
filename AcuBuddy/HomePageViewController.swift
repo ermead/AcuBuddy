@@ -454,10 +454,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate {
                 })
                 
         })
-        for button in allButtons {
-            
-            updateShadowWithOffset(button)
-        }
+      
      
         
     }
@@ -1162,7 +1159,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate {
         print("left tab")
         showMessages(0, arrayOfMessages: array3)
         
-    
+        kIsHerbs = false
+
         tableView.reloadData()
         presentTableView()
     }
@@ -1170,11 +1168,44 @@ class HomePageViewController: UIViewController, UITableViewDelegate {
     @IBAction func rightTabBarButtonTapped() {
         print("right tab")
         showMessages(0, arrayOfMessages: array4)
-        //PointsController.sharedInstance.data = ["herbA", "herbB","herbC","herbD","herbE"]
+        
+        kIsHerbs = true
+        
         tableView.reloadData()
         presentTableView()
     }
     
+   
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toDetailView" {
+            
+            if let dvc: DetailViewController = segue.destinationViewController as? DetailViewController {
+
+              print("segue to detail")
+                
+                let index = tableView.indexPathForSelectedRow?.row
+                
+                if kIsHerbs == true {
+                    let herbs = HerbsController.sharedInstance.herbs
+                    let herb = herbs[index!]
+                    kEntry = herb
+                    
+                } else {
+                
+                    let points = PointsController.sharedInstance.points
+                    let point = points[index!]
+                    kEntry = point
+                    
+                }
+                
+               
+                
+        
+            }
+        }
+    }
+    
+    /*
     func updateShadowWithOffset(viewWithShadow: UIView){
         
         var offSetY: CGFloat?
@@ -1185,39 +1216,15 @@ class HomePageViewController: UIViewController, UITableViewDelegate {
         let viewY = viewWithShadow.frame.origin.y
         let distanceX = viewX - lightSource.x
         _ = viewY - lightSource.y
-
+        
         offSetX = distanceX * 0.1
-       // offSetY = distanceY * 0.1
+        // offSetY = distanceY * 0.1
         offSetY = 5
         
         viewWithShadow.layer.shadowOffset = CGSizeMake(offSetX!,offSetY!)
         //viewWithShadow.layer.shadowOpacity = 1 - Float(Double(distanceY) * 0.005)
     }
-    
-    
-    
-    
-    
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toDetailView" {
-            
-            if let dvc: DetailViewController = segue.destinationViewController as? DetailViewController {
-
-              print("segue to detail")
-                
-                let index = tableView.indexPathForSelectedRow?.row
-                let points = PointsController.sharedInstance.points
-                
-                let point = points[index!]
-                
-                kEntry = point
-                
-        
-            }
-        }
-    }
-
+*/
     
 }
 

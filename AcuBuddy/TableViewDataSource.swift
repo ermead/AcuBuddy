@@ -8,32 +8,49 @@
 
 import UIKit
 
+var kIsHerbs: Bool?
+
 class TableViewDataSource: NSObject, UITableViewDataSource {
-    
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomTableViewCell
         
-        let points = PointsController.sharedInstance.points
-        let point = points[indexPath.row]
-        let channel = point.channel
-        let number = point.number
+        if kIsHerbs == true {
+            //it is a herb
+            
+            let herbs = HerbsController.sharedInstance.herbs
+            let herb = herbs[indexPath.row]
+            let name = herb.name
+            
+            cell.textLabel?.text = name
+            
+        } else {
+            // it is a point
+            let points = PointsController.sharedInstance.points
+            let point = points[indexPath.row]
+            let channel = point.channel
+            let number = point.number
         
-        
-        cell.textLabel?.text = channel! + number!
-        
-        
+            cell.textLabel?.text = channel! + number!
+        }
         return cell
         
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-            let count = PointsController.sharedInstance.points.count
+        var count: Int?
         
-            return count
+        if kIsHerbs == true {
+            
+            count = HerbsController.sharedInstance.herbs.count
+        } else {
+            count = PointsController.sharedInstance.points.count
+        }
+        
+        return count!
         
     }
     
