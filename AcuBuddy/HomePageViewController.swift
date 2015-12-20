@@ -572,13 +572,17 @@ class HomePageViewController: UIViewController {
         var offSetY = CGFloat(5)
         for button in buttons{
             UIView.animateWithDuration(0.5, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
+               
                 button.center.x = self.view.center.x
-                button.center.y = button.frame.size.height + 20 + offSetY
+                button.center.y = button.frame.size.height + 10 + offSetY
                 delay += 0.1
                 offSetY += button.frame.size.height + CGFloat(5)
                 }, completion: {_ in
                   UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+                    
+                    if button.frame.size.width == self.buttonOriginalWidth! {
                         button.frame.size.width = button.frame.size.width * 3
+                    }
                         button.center.x = self.view.center.x
                     }, completion: nil)
             })
@@ -587,9 +591,7 @@ class HomePageViewController: UIViewController {
     }
     
     func moveButtonsToLeftEdge(){
-        
-       
-        
+    
         let buttons = [self.button_red, self.button_green, self.button_yellow, self.button_grey, self.button_blue]
         var delay = 0.1
         var offSetY = CGFloat(5)
@@ -598,7 +600,7 @@ class HomePageViewController: UIViewController {
             UIView.animateWithDuration(0.5, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseInOut], animations: { () -> Void in
                 button.frame.size = CGSize(width: self.buttonOriginalWidth!, height: self.buttonOriginalHeight!)
                 button.frame.origin.x = 0
-                button.center.y = button.frame.size.height + 20 + offSetY
+                button.center.y = button.frame.size.height + 10 + offSetY
                 delay += 0.1
                 offSetY += button.frame.size.height + CGFloat(5)
                 }, completion: { _ in
@@ -1054,12 +1056,27 @@ class HomePageViewController: UIViewController {
                 self.bottomTabBarButton.setTitle("▲", forState: .Normal)
                 
                 let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
-                let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
                 
-                for button in twoBottomButtons{
-                    
+                let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
+
+                for button in twoBottomButtons {
+                        
                     button.frame.origin.y += (self.view.frame.size.height/8)
+                        
+                    }
+                
+                for button in self.allButtons {
+    
+                    if button.frame.origin.y + button.frame.size.height > self.view.bounds.height {
+                        button.frame.origin.y = self.view.bounds.height - button.frame.size.height
+                    }
+                    
+                    if button.frame.size.width > self.buttonOriginalWidth {
+                        
+                       self.expandAsStack()
+                    }
                 }
+                
                 
                 }, completion: { _ in
                     self.tabBar.hidden = true
