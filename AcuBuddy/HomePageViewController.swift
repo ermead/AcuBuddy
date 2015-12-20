@@ -18,7 +18,7 @@ func delay(seconds seconds: Double, completion:()->()) {
     }
 }
 
-class HomePageViewController: UIViewController, UITableViewDelegate {
+class EM_HomePageViewController: UIViewController, UITableViewDelegate {
     
     var pastValues: [AnyObject] = []
     var i = 0
@@ -1130,6 +1130,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate {
     
     @IBAction func popUpButton1Tapped(){
         print("1 tapped")
+        
+    
+        
     }
     @IBAction func popUpButton2Tapped(){
         print("2 tapped")
@@ -1179,20 +1182,20 @@ class HomePageViewController: UIViewController, UITableViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toDetailView" {
             
-            if let dvc: DetailViewController = segue.destinationViewController as? DetailViewController {
+            if let dvc: EM_DetailViewController = segue.destinationViewController as? EM_DetailViewController {
 
               print("segue to detail")
                 
                 let index = tableView.indexPathForSelectedRow?.row
                 
                 if kIsHerbs == true {
-                    let herbs = HerbsController.sharedInstance.herbs
+                    let herbs = EM_HerbsController.sharedInstance.herbs
                     let herb = herbs[index!]
                     kEntry = herb
                     
                 } else {
                 
-                    let points = PointsController.sharedInstance.points
+                    let points = EM_PointsController.sharedInstance.points
                     let point = points[index!]
                     kEntry = point
                     

@@ -10,7 +10,7 @@ import UIKit
 
 var kEntry: AnyObject?
 
-class DetailViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class EM_DetailViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
     let transition = PopAnimator()
     // set this image when you want to use the pop animator to expand it.
@@ -315,9 +315,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? DVC_CollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? EM_DVC_CollectionViewCell
         
-        let images = ImagesController.sharedInstance.images
+        let images = EM_ImagesController.sharedInstance.images
         let image = images[indexPath.row]
         
         cell?.imageView.image = image.image
@@ -328,7 +328,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let images = ImagesController.sharedInstance.images
+        let images = EM_ImagesController.sharedInstance.images
         
         return images.count
     }
@@ -336,12 +336,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
             //print(indexPath)
-            let images = ImagesController.sharedInstance.images
-            let image = images[indexPath.row]
-            
+                
             let vc = ScrollAndZoomViewController() as UIViewController
         
-            let cell: DVC_CollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! DVC_CollectionViewCell
+            let cell: EM_DVC_CollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! EM_DVC_CollectionViewCell
         
             self.selectedImage = cell.imageView
         
@@ -390,7 +388,7 @@ extension UILabel{
     }
 }
 
-extension DetailViewController: UIViewControllerTransitioningDelegate {
+extension EM_DetailViewController: UIViewControllerTransitioningDelegate {
     
     func animationControllerForPresentedController(
         presented: UIViewController,

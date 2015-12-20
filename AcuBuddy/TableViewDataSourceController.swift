@@ -10,17 +10,17 @@ import UIKit
 
 var kIsHerbs: Bool?
 
-class TableViewDataSource: NSObject, UITableViewDataSource {
+class EM_TableViewDataController: NSObject, UITableViewDataSource {
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! EM_CustomTableViewCell
         
         if kIsHerbs == true {
             //it is a herb
             
-            let herbs = HerbsController.sharedInstance.herbs
+            let herbs = EM_HerbsController.sharedInstance.herbs
             let herb = herbs[indexPath.row]
             let name = herb.name
             
@@ -28,7 +28,7 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
             
         } else {
             // it is a point
-            let points = PointsController.sharedInstance.points
+            let points = EM_PointsController.sharedInstance.points
             let point = points[indexPath.row]
             let channel = point.channel
             let number = point.number
@@ -45,9 +45,9 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         
         if kIsHerbs == true {
             
-            count = HerbsController.sharedInstance.herbs.count
+            count = EM_HerbsController.sharedInstance.herbs.count
         } else {
-            count = PointsController.sharedInstance.points.count
+            count = EM_PointsController.sharedInstance.points.count
         }
         
         return count!
@@ -55,7 +55,7 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let points = PointsController.sharedInstance.points
+        let points = EM_PointsController.sharedInstance.points
         let point = points[indexPath.row]
         
         print("cell hit")

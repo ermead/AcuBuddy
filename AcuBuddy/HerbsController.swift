@@ -8,9 +8,9 @@
 
 import Foundation
 
-class HerbsController {
+class EM_HerbsController {
     
-    static let sharedInstance = HerbsController()
+    static let sharedInstance = EM_HerbsController()
     
     var herbs: [Herb] {
         

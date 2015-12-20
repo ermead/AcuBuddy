@@ -9,7 +9,7 @@
         <!--Intro View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="IntroViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="EM_IntroViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bny-Da-uEg"/>
                         <viewControllerLayoutGuide type="bottom" id="UFS-of-q6Z"/>
@@ -30,7 +30,7 @@
         <!--Home Page View Controller-->
         <scene sceneID="YaY-4I-bTT">
             <objects>
-                <viewController id="New-Dd-CdF" customClass="HomePageViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="New-Dd-CdF" customClass="EM_HomePageViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lD1-iC-vDA"/>
                         <viewControllerLayoutGuide type="bottom" id="V36-37-LNP"/>
@@ -49,7 +49,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="61" id="734-BR-EPv" customClass="CustomTableViewCell" customModule="AcuBuddy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="61" id="734-BR-EPv" customClass="EM_CustomTableViewCell" customModule="AcuBuddy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="734-BR-EPv" id="9RJ-Nv-LUi">
@@ -73,7 +73,6 @@
                             <constraint firstItem="XY8-0S-eit" firstAttribute="leading" secondItem="ZRi-VT-6Lj" secondAttribute="leadingMargin" id="0sk-vB-qBa"/>
                             <constraint firstItem="XY8-0S-eit" firstAttribute="centerX" secondItem="ZRi-VT-6Lj" secondAttribute="centerX" id="J7s-D6-Rk3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XY8-0S-eit" secondAttribute="trailing" id="Nrc-6e-TsQ"/>
-                            <constraint firstItem="XY8-0S-eit" firstAttribute="centerY" secondItem="ZRi-VT-6Lj" secondAttribute="centerY" id="ZaP-06-wLk"/>
                             <constraint firstItem="XY8-0S-eit" firstAttribute="top" secondItem="lD1-iC-vDA" secondAttribute="bottom" id="fEz-nX-uBp"/>
                             <constraint firstItem="V36-37-LNP" firstAttribute="top" secondItem="XY8-0S-eit" secondAttribute="bottom" id="snM-0b-crT"/>
                         </constraints>
@@ -84,14 +83,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VU7-wL-HN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="zJr-Em-E4g" customClass="TableViewDataSource" customModule="AcuBuddy" customModuleProvider="target"/>
+                <customObject id="zJr-Em-E4g" customClass="EM_TableViewDataController" customModule="AcuBuddy" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="731" y="-240"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="KeA-bx-eBR">
             <objects>
-                <viewController id="x6z-Dn-Zm0" customClass="DetailViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="x6z-Dn-Zm0" customClass="EM_DetailViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TR6-aB-rO8"/>
                         <viewControllerLayoutGuide type="bottom" id="7o1-qd-B7V"/>
@@ -106,7 +105,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BqP-c1-i9e">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
                                         <subviews>
-                                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MTL-kK-Lqd">
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTL-kK-Lqd">
                                                 <rect key="frame" x="15" y="8" width="290" height="439.5"/>
                                                 <connections>
                                                     <segue destination="VKS-Tj-Of5" kind="embed" id="ejF-LY-eVd"/>
@@ -143,7 +142,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="Tlh-oi-9I9" customClass="DVC_CollectionViewCell" customModule="AcuBuddy" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="Tlh-oi-9I9" customClass="EM_DVC_CollectionViewCell" customModule="AcuBuddy" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -228,7 +227,7 @@
                                             <constraint firstItem="N9u-ZF-JKA" firstAttribute="leading" secondItem="BqP-c1-i9e" secondAttribute="leading" priority="900" constant="15" id="H6d-i0-Epb"/>
                                             <constraint firstAttribute="trailing" secondItem="m0d-Av-Ikz" secondAttribute="trailing" priority="900" constant="15" id="IHy-oj-HoD"/>
                                             <constraint firstItem="OFy-4H-tnE" firstAttribute="leading" secondItem="BqP-c1-i9e" secondAttribute="leading" priority="900" constant="15" id="M5f-Th-GxF"/>
-                                            <constraint firstAttribute="trailing" secondItem="MTL-kK-Lqd" secondAttribute="trailing" priority="250" constant="40" id="NAI-NI-GmH"/>
+                                            <constraint firstAttribute="trailing" secondItem="MTL-kK-Lqd" secondAttribute="trailing" priority="249" constant="40" id="NAI-NI-GmH"/>
                                             <constraint firstItem="OFy-4H-tnE" firstAttribute="top" secondItem="m0d-Av-Ikz" secondAttribute="bottom" priority="900" constant="25" id="R7U-SH-Hmy"/>
                                             <constraint firstItem="qat-om-VoS" firstAttribute="top" secondItem="OFy-4H-tnE" secondAttribute="bottom" priority="900" constant="26" id="ThU-Xn-A80"/>
                                             <constraint firstItem="xZt-83-gr0" firstAttribute="leading" secondItem="BqP-c1-i9e" secondAttribute="leading" priority="900" constant="15" id="X3j-z3-ckB"/>
@@ -240,7 +239,7 @@
                                             <constraint firstItem="cup-lP-sEJ" firstAttribute="leading" secondItem="BqP-c1-i9e" secondAttribute="leading" priority="750" constant="15" id="jHj-ew-wl6"/>
                                             <constraint firstAttribute="bottom" secondItem="MTL-kK-Lqd" secondAttribute="bottom" priority="250" constant="20" id="lS6-Sh-BIi"/>
                                             <constraint firstAttribute="trailing" secondItem="Kms-XK-8aU" secondAttribute="trailing" priority="900" constant="15" id="m0M-b8-vww"/>
-                                            <constraint firstItem="MTL-kK-Lqd" firstAttribute="leading" secondItem="BqP-c1-i9e" secondAttribute="leading" priority="250" constant="40" id="o6y-9s-Oxy"/>
+                                            <constraint firstItem="MTL-kK-Lqd" firstAttribute="leading" secondItem="BqP-c1-i9e" secondAttribute="leading" priority="249" constant="40" id="o6y-9s-Oxy"/>
                                             <constraint firstItem="MsE-Jc-Len" firstAttribute="top" secondItem="qat-om-VoS" secondAttribute="bottom" priority="900" constant="22" id="pis-He-iRo"/>
                                             <constraint firstItem="9BN-AL-kyD" firstAttribute="top" secondItem="N9u-ZF-JKA" secondAttribute="bottom" priority="900" constant="17" id="tdY-rE-jle"/>
                                             <constraint firstItem="cup-lP-sEJ" firstAttribute="bottom" secondItem="xZt-83-gr0" secondAttribute="top" priority="750" constant="10" id="u3G-Tq-YO2"/>
@@ -317,13 +316,13 @@
         <!--Container View Controller-->
         <scene sceneID="cgg-L6-xL3">
             <objects>
-                <viewController id="VKS-Tj-Of5" customClass="DVC_ContainerViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VKS-Tj-Of5" customClass="EM_DVC_ContainerViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uCs-TG-dNY">
                         <rect key="frame" x="0.0" y="0.0" width="290" height="439.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="InnerClassic" translatesAutoresizingMaskIntoConstraints="NO" id="P86-Je-fbc">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="439.5"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="InnerClassic" translatesAutoresizingMaskIntoConstraints="NO" id="P86-Je-fbc">
+                                <rect key="frame" x="-4" y="0.0" width="298" height="439.5"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -342,10 +341,10 @@
             </objects>
             <point key="canvasLocation" x="1727" y="-240.25"/>
         </scene>
-        <!--View Controller-->
+        <!--Container View Controller-->
         <scene sceneID="iIv-De-hl8">
             <objects>
-                <viewController id="vmu-Uy-lJG" sceneMemberID="viewController">
+                <viewController id="vmu-Uy-lJG" customClass="EM_HPVC_ContainerViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8eh-3P-GmY">
                         <rect key="frame" x="0.0" y="0.0" width="288" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -364,6 +363,9 @@
                             <constraint firstItem="Z2J-EL-RTY" firstAttribute="centerX" secondItem="8eh-3P-GmY" secondAttribute="centerX" id="hhE-Uc-Rn0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="Z2J-EL-RTY" id="QSP-un-SY7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEE-il-bss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

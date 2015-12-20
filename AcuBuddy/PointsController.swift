@@ -9,9 +9,9 @@
 import Foundation
 
 
-class PointsController {
+class EM_PointsController {
     
-    static let sharedInstance = PointsController()
+    static let sharedInstance = EM_PointsController()
     
     var data: [Point] = []
     

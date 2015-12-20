@@ -53,7 +53,7 @@ class ScrollAndZoomViewController: UIViewController {
     @IBAction func buttonTapped3(sender: AnyObject) {
         //go to location code coordinates
         
-        let thisLocation: (CGPoint, CGFloat, CGRect, CGPoint) = LocationCoordinatesForImages().shoulderPoin1
+        let thisLocation: (CGPoint, CGFloat, CGRect, CGPoint) = EM_LocationCoordinatesForImages().shoulderPoin1
         
         scrollView.contentOffset = thisLocation.0
         scrollView.zoomScale = thisLocation.1
@@ -71,7 +71,7 @@ class ScrollAndZoomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let images = ImagesController.sharedInstance.images
+        let images = EM_ImagesController.sharedInstance.images
         
         for image in images {
             

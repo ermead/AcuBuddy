@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class ImagesController {
+class EM_ImagesController {
     
-    static let sharedInstance = ImagesController()
+    static let sharedInstance = EM_ImagesController()
     
     var images: [Image] {
         

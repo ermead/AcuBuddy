@@ -9,7 +9,7 @@
 
 import UIKit
 
-class LocationCoordinatesForImages {
+class EM_LocationCoordinatesForImages {
     
     let MistleToeLocation: (CGPoint, CGFloat, CGRect, CGPoint) = (SVoffset: CGPoint(x: 497.0, y: 511.0), SVzoom: CGFloat(0.286043380604382), SVBounds: CGRect(x: 497.0, y: 511.0, width: 414.0, height: 736.0), ImageViewCenter: CGPoint(x: 854.840642936195, y: 1144.17352241753))
     

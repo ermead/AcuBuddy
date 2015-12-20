@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntroViewController: UIViewController, HolderViewDelegate {
+class EM_IntroViewController: UIViewController, HolderViewDelegate {
 
      var holderView = HolderView(frame: CGRectZero)
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
+class EM_CustomTableViewCell: UITableViewCell {
     
     
     override func awakeFromNib() {
