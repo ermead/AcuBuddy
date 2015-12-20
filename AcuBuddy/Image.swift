@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+var kImageViewToPresent: UIImageView?
+
 class Image {
     
     

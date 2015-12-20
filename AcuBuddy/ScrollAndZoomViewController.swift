@@ -23,7 +23,7 @@ class ScrollAndZoomViewController: UIViewController {
     var button3: UIButton!
     
     var arrayOfImages: [UIImage] = []
-    var i: Int = 1
+    var i: Int = -1
     
     @IBAction func buttonTapped(sender: AnyObject) {
         
@@ -32,7 +32,7 @@ class ScrollAndZoomViewController: UIViewController {
         self.imageView.image = arrayOfImages[i]
         
     
-        if self.i >= 2 {
+        if self.i >= (arrayOfImages.count - 1) {
             self.i = -1
         }
         
@@ -40,7 +40,7 @@ class ScrollAndZoomViewController: UIViewController {
     
     
     @IBAction func buttonTapped2(sender: AnyObject) {
-        
+        //Print to get location code
         
         print("let \(textField.text!): (CGPoint, CGFloat, CGRect, CGPoint) = (SVoffset: CGPoint\(scrollView.contentOffset), SVzoom: CGFloat(\(scrollView.zoomScale)), SVBounds: CGRect\(scrollView.bounds), ImageViewCenter: CGPoint\(imageView.center))")
         
@@ -51,6 +51,7 @@ class ScrollAndZoomViewController: UIViewController {
     }
     
     @IBAction func buttonTapped3(sender: AnyObject) {
+        //go to location code coordinates
         
         let thisLocation: (CGPoint, CGFloat, CGRect, CGPoint) = LocationCoordinatesForImages().shoulderPoin1
         
@@ -62,7 +63,7 @@ class ScrollAndZoomViewController: UIViewController {
     }
     
     @IBAction func buttonTapped4(sender: AnyObject) {
-        
+        //dismiss view
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         
     }
@@ -70,15 +71,16 @@ class ScrollAndZoomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-       let images = ImagesController.sharedInstance.images
+        let images = ImagesController.sharedInstance.images
         
         for image in images {
             
             arrayOfImages.append(image.image!)
         }
         
-        imageView = UIImageView(image: arrayOfImages.first)
+        thisImage = kImageViewToPresent?.image
+               
+        imageView = UIImageView(image: thisImage)
         
         //Optional("Offset: (2230.0, 835.333333333333)\nZoom: 0.881515817624876")
         
@@ -223,6 +225,7 @@ class ScrollAndZoomViewController: UIViewController {
 // MARK: - UIScrollViewDelegate
 
 extension ScrollAndZoomViewController: UIScrollViewDelegate {
+    
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return self.imageView
     }

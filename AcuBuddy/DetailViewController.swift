@@ -187,12 +187,19 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
     
     override func viewDidAppear(animated: Bool) {
         
+        if label1.alpha == 0 {
+        
         bringLabels()
+            
+        }
         
         setUpLabelConstraints()
+        
+        collectionView.reloadData()
     }
     
     func setUpLabelConstraints(){
+        
         let labels = [self.label1, self.label2, self.label3, self.collectionView, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
         
         var constraints: [NSLayoutConstraint] = []
@@ -337,11 +344,14 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
             let cell: DVC_CollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! DVC_CollectionViewCell
         
             self.selectedImage = cell.imageView
-            
+        
+            kImageViewToPresent = cell.imageView
+        
             vc.transitioningDelegate = self
-            
+        
             presentViewController(vc, animated: true) { () -> Void in
                 
+        
             }
         
         
@@ -398,6 +408,7 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
     }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
         transition.presenting = false
         
         return transition
