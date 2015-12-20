@@ -56,7 +56,7 @@ class IntroViewController: UIViewController, HolderViewDelegate {
             }), completion: { finished in
             
                 self.view.backgroundColor = Colors.white
-                self.view.subviews.map({ $0.removeFromSuperview() })
+                //self.view.subviews.map({ $0.removeFromSuperview() })
                 
                self.performSegueWithIdentifier("GoToHomePage", sender: self)
                 

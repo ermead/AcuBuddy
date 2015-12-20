@@ -8,10 +8,11 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UIScrollViewDelegate {
+class DetailViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var label1 = UILabel()
     var label2 = UILabel()
@@ -60,7 +61,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
      
         label1.text = "Name1"
         label2.text = "Name2"
-        label3.text = text
+        label3.text = "Name3"
         label4.text = "Name4"
         label5.text = "Name5"
         label6.text = "Name6"
@@ -81,7 +82,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setUpLabelConstraints(){
-        let labels = [self.label1, self.label2, self.label3, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
+        let labels = [self.label1, self.label2, self.label3, self.collectionView, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
         
         var constraints: [NSLayoutConstraint] = []
         
@@ -103,7 +104,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
         let topLabel3 = NSLayoutConstraint(item: label3, attribute: .Top, relatedBy: .Equal, toItem: label2, attribute: .Bottom, multiplier: 1, constant: 10)
         
-        let topLabel4 = NSLayoutConstraint(item: label4, attribute: .Top, relatedBy: .Equal, toItem: label3, attribute: .Bottom, multiplier: 1, constant: 10)
+        let topCollectionView = NSLayoutConstraint(item: collectionView, attribute: .Top, relatedBy: .Equal, toItem: label3, attribute: .Bottom, multiplier: 1, constant: 10)
+        
+        let topLabel4 = NSLayoutConstraint(item: label4, attribute: .Top, relatedBy: .Equal, toItem: collectionView, attribute: .Bottom, multiplier: 1, constant: 10)
         
         let topLabel5 = NSLayoutConstraint(item: label5, attribute: .Top, relatedBy: .Equal, toItem: label4, attribute: .Bottom, multiplier: 1, constant: 10)
         
@@ -120,6 +123,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         constraints.append(topLabel)
         constraints.append(topLabel2)
         constraints.append(topLabel3)
+        constraints.append(topCollectionView)
         constraints.append(topLabel4)
         constraints.append(topLabel5)
         constraints.append(topLabel6)
@@ -142,10 +146,14 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             label.frame.size.width = self.contentView.frame.width
             
         }
+        collectionView.frame.size.height = 50
+        collectionView.frame.size.width = self.contentView.frame.width
+        
         
         contentView.addSubview(label1)
         contentView.addSubview(label2)
         contentView.addSubview(label3)
+        contentView.addSubview(collectionView)
         contentView.addSubview(label4)
         contentView.addSubview(label5)
         contentView.addSubview(label6)
@@ -160,12 +168,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             
         }
         
-      
+        collectionView.center.x += self.view.bounds.width
+        collectionView.alpha = 0
     }
     
     func bringLabels(){
         
-        let labels = [self.label1, self.label2, self.label3, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
+        let labels = [self.label1, self.label2, self.label3, self.collectionView, self.label4, self.label5, self.label6, self.label7, self.label8, self.label9]
         
         for label in labels {
             
@@ -183,7 +192,27 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-
+    
+    //MARK: Collection View
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath)
+        
+        return cell
+    }
+    
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 10
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        print(indexPath)
+        
+    }
+    
     func setUpDismissButton(view: UIView){
         
         dismissButton.frame = CGRect(x: 5, y: 15, width: 40, height: 40)

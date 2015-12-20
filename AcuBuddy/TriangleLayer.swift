@@ -80,7 +80,7 @@ class TriangleLayer: CAShapeLayer {
         triangleAnimationTop.beginTime = triangleAnimationRight.beginTime + triangleAnimationRight.duration
         triangleAnimationTop.duration = 0.20
         
-        var triangleAnimationGroup: CAAnimationGroup = CAAnimationGroup()
+        let triangleAnimationGroup: CAAnimationGroup = CAAnimationGroup()
         triangleAnimationGroup.animations = [triangleAnimationLeft, triangleAnimationRight,
             triangleAnimationTop]
         triangleAnimationGroup.duration = triangleAnimationTop.beginTime + triangleAnimationTop.duration

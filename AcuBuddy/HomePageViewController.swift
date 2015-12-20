@@ -1172,7 +1172,7 @@ class HomePageViewController: UIViewController {
         let viewX = viewWithShadow.center.x
         let viewY = viewWithShadow.frame.origin.y
         let distanceX = viewX - lightSource.x
-        let distanceY = viewY - lightSource.y
+        _ = viewY - lightSource.y
 
         offSetX = distanceX * 0.1
        // offSetY = distanceY * 0.1
