@@ -187,8 +187,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate {
     @IBAction func redButtonTapped(sender: AnyObject) {
         storeBackFunctions()
         showMessages(0, arrayOfMessages: messages)
-        VariousFunctions().expandAndDisappear(sender as! UIButton, view: self.view)
-        delay(seconds: 3, completion: { _ in
+        //VariousFunctions().expandAndDisappear(sender as! UIButton, view: self.view)
+        delay(seconds: 1, completion: { _ in
             
             self.setButtonsLikeStar()
             

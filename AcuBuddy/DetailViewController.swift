@@ -12,6 +12,10 @@ var kEntry: AnyObject?
 
 class DetailViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    let transition = PopAnimator()
+    // set this image when you want to use the pop animator to expand it.
+    
+    var selectedImage: UIImageView?
     
     var entry: AnyObject?
     
@@ -303,10 +307,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
     //MARK: Collection View
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? DetailCollectionViewCell
         
-        cell?.imageView.image = UIImage(named: "InnerClassic")
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? DVC_CollectionViewCell
         
+        let images = ImagesController.sharedInstance.images
+        let image = images[indexPath.row]
+        
+        cell?.imageView.image = image.image
         
         return cell!
     }
@@ -314,12 +321,29 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 10
+        let images = ImagesController.sharedInstance.images
+        
+        return images.count
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        print(indexPath)
+            //print(indexPath)
+            let images = ImagesController.sharedInstance.images
+            let image = images[indexPath.row]
+            
+            let vc = ScrollAndZoomViewController() as UIViewController
+        
+            let cell: DVC_CollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath) as! DVC_CollectionViewCell
+        
+            self.selectedImage = cell.imageView
+            
+            vc.transitioningDelegate = self
+            
+            presentViewController(vc, animated: true) { () -> Void in
+                
+            }
+        
         
     }
     
@@ -354,4 +378,29 @@ extension UILabel{
         
         return label.frame.height
     }
+}
+
+extension DetailViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationControllerForPresentedController(
+        presented: UIViewController,
+        presentingController presenting: UIViewController,
+        sourceController source: UIViewController) ->
+        UIViewControllerAnimatedTransitioning? {
+            
+            transition.originFrame =
+                
+                selectedImage!.superview!.convertRect(selectedImage!.frame, toView: nil)
+            
+            transition.presenting = true
+            
+            return transition
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        
+        return transition
+    }
+    
 }
