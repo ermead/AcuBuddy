@@ -7,3 +7,22 @@
 //
 
 import Foundation
+
+class Point {
+    
+    
+    var channel: String?
+    var number: String?
+    
+    convenience init(channel: String, number: String){
+        
+        self.init()
+        
+        self.channel = channel
+        self.number = number
+    }
+    
+    
+    
+    
+}

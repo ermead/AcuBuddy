@@ -18,7 +18,7 @@ func delay(seconds seconds: Double, completion:()->()) {
     }
 }
 
-class HomePageViewController: UIViewController {
+class HomePageViewController: UIViewController, UITableViewDelegate {
     
     var pastValues: [AnyObject] = []
     var i = 0
@@ -30,6 +30,8 @@ class HomePageViewController: UIViewController {
     
     let array1 = ["Fire", "Earth", "Metal", "Water", "Wood"]
     let array2 = ["Moxa", "Diet", "Acupuncture", "Microsystems", "Herbs"]
+    let array3 = ["Acupuncture Points"]
+    let array4 = ["Herbal Medicines"]
     
     // MARK: IB outlets
     
@@ -721,12 +723,21 @@ class HomePageViewController: UIViewController {
                                 self.showMessages(index + 1, arrayOfMessages: thisArrayOfMessages)
                                 
                             } else {
-                                self.status.hidden = true
+                                
+                                UIView.animateWithDuration(1, animations: { () -> Void in
+                                    //self.status.center.y -= self.view.frame.size.height
+                                    self.status.alpha = 0
+                                    }, completion: { _ in
+                                        
+                                        self.status.hidden = true
+                                        //self.status.center.y += self.view.frame.size.height
+                                        self.status.alpha = 1
+                                })
+                               
                             }
                         
                         })
-                        
-                        
+                       
                 })
         })
     }
@@ -1149,16 +1160,17 @@ class HomePageViewController: UIViewController {
     
     @IBAction func leftTabBarButtonTapped() {
         print("left tab")
+        showMessages(0, arrayOfMessages: array3)
         
-        PointsController.sharedInstance.data = ["pointA", "pointB","pointC","pointD","pointE"]
+    
         tableView.reloadData()
         presentTableView()
     }
     
     @IBAction func rightTabBarButtonTapped() {
         print("right tab")
-        
-        PointsController.sharedInstance.data = ["herbA", "herbB","herbC","herbD","herbE"]
+        showMessages(0, arrayOfMessages: array4)
+        //PointsController.sharedInstance.data = ["herbA", "herbB","herbC","herbD","herbE"]
         tableView.reloadData()
         presentTableView()
     }
@@ -1192,7 +1204,16 @@ class HomePageViewController: UIViewController {
             
             if let dvc: DetailViewController = segue.destinationViewController as? DetailViewController {
 
-                   
+              print("segue to detail")
+                
+                let index = tableView.indexPathForSelectedRow?.row
+                let points = PointsController.sharedInstance.points
+                
+                let point = points[index!]
+                
+                kEntry = point
+                
+        
             }
         }
     }

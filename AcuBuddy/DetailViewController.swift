@@ -8,11 +8,18 @@
 
 import UIKit
 
+var kEntry: AnyObject?
+
 class DetailViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    
+    var entry: AnyObject?
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var containerView: UIView!
     
     var label1 = UILabel()
     var label2 = UILabel()
@@ -38,40 +45,133 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
     label9
     */
     
-    let text = "Lorem ipsum dolor sit amet, ei odio omittantur pri, cu vidisse moderatius vis, mea id debet omnium laoreet. Ne dicat augue eos, apeirian voluptaria id qui. Mei audire aperiri diceret ea. Ne stet tota eos, mei cu purto nominavi, at sed esse corpora maluisset. His purto simul apeirian ea.\n Definiebas reprimique te ius, ad pro rebum dictas. Pro nihil epicurei tincidunt ne, est oratio invidunt disputationi et. Tale invenire eum an, facilis suscipiantur ex quo, nec tota vocent ei. Nam ei utroque definiebas, ea agam vivendo consequat mei, eum ne quaerendum repudiandae. Nam doctus vituperatoribus in, ex sit dignissim vituperata, an eos viris tantas. Te facilisi electram aliquando eos. \n An per prompta fabellas explicari, usu mucius malorum definitiones in. In vel partiendo ocurreret, has cibo gloriatur constituto ea, et eos alii animal. Ad oportere urbanitas vim, sed eu unum probo timeam. Vel omnium erroribus incorrupte an, duo ad euismod mediocrem reprimique, pri eu duis torquatos abhorreant. \n Et malis prodesset vis, per illum utamur sanctus te. Feugait postulant mnesarchum eu eam, te vim accusata assueverit. Id sit modus decore fuisset. Offendit perfecto repudiandae ne vix."
+    var text1 = "Lorem ipsum"
+    var text2 = "Lorem ipsum"
+    var text3 = "Lorem ipsum"
+    var text4 = "In vel."
+    var text5 = "Lorem ipsum"
+    var text6 = "Lorem ipsum"
+    var text7 = "Lorem ipsum"
+    var text8 = "In vel."
+    var text9 = "In vel."
     
-    let text2 = "Lorem ipsum dolor sit amet, ei odio omittantur pri, cu vidisse moderatius vis, mea id debet omnium laoreet. Ne dicat augue eos, apeirian voluptaria id qui. Mei audire aperiri diceret ea. Ne stet tota eos, mei cu purto nominavi, at sed esse corpora maluisset. His purto simul apeirian ea.\n Definiebas reprimique te ius, ad pro rebum dictas. Pro nihil epicurei tincidunt ne, est oratio invidunt disputationi et."
-    
-    let text3 = "In vel partiendo ocurreret, has cibo gloriatur constituto ea, et eos alii animal. Ad oportere urbanitas vim, sed eu unum probo timeam. Vel omnium erroribus incorrupte an, duo ad euismod mediocrem reprimique, pri eu duis torquatos abhorreant. \n Et malis prodesset vis, per illum utamur sanctus te."
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBarHidden = true
         
+        entry = kEntry
+        
+        setUpEntry()
+        
         setUpLabels()
         
         setUpDismissButton(self.view)
-      
+        
+        containerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+        
+        
+        delay(seconds: 1) { () -> () in
+            
+            self.animateImageUpandDown()
+            
+        }
         
         // Do any additional setup after loading the view.
     }
     
+    func setUpEntry(){
+        
+        if let entry = entry as? Point {
+            
+            text1 = entry.channel! + "-" + entry.number!
+        }
+        
+    }
+    
+    func animateImageUpandDown(){
+      
+        UIView.animateWithDuration(5, animations: { () -> Void in
+            
+                self.containerView.frame = CGRect(x: 30, y: 50, width: self.view.frame.width - 30, height: 100)
+            
+                self.containerView.alpha = 1
+
+            
+            }, completion: { _ in
+                
+                self.containerView.alpha = 0
+                self.containerView.frame = CGRect(x: 30, y: 200, width: self.view.frame.width - 30, height: 100)
+
+                
+                delay(seconds: 3, completion: { () -> () in
+                    UIView.animateWithDuration(2, animations: { () -> Void in
+                        
+                        self.containerView.alpha = 1
+                        
+                        self.containerView.frame = CGRect(x: 30, y: 200, width: self.view.frame.width - 30, height: 100)
+                        
+                        }, completion: { _ in
+                            self.containerView.alpha = 0
+                            self.animateImageUpandDown()
+                    })
+                    
+                    
+                })
+        
+        })
+        
+        
+    }
+    
+    func animateImageLeftandRight(){
+        
+        UIView.animateWithDuration(5, animations: { () -> Void in
+            
+            self.containerView.frame = CGRect(x: 30, y: 50, width: self.view.frame.width - 30, height: 100)
+            
+            self.containerView.alpha = 1
+            
+            
+            }, completion: { _ in
+                
+                self.containerView.alpha = 0.5
+                
+                
+                delay(seconds: 3, completion: { () -> () in
+                    UIView.animateWithDuration(2, animations: { () -> Void in
+                        
+                        self.containerView.alpha = 1
+                        self.containerView.frame.origin.x = self.view.frame.width
+                        
+                        }, completion: { _ in
+                            self.animateImageUpandDown()
+                    })
+                    
+                    
+                })
+                
+        })
+        
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
      
-        label1.text = "Name1"
-        label2.text = "Name2"
-        label3.text = "Name3"
-        label4.text = "Name4"
-        label5.text = "Name5"
-        label6.text = "Name6"
-        label7.text = text2
-        label8.text = text3
-        label9.text = "End"
+        label1.text = text1
+        label2.text = text2
+        label3.text = text3
+        label4.text = text4
+        label5.text = text5
+        label6.text = text6
+        label7.text = text7
+        label8.text = text8
+        label9.text = text9
         
         //setUpLabels()
         
-  
+        containerView.alpha = 0
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -196,9 +296,12 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, UICollection
     //MARK: Collection View
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? DetailCollectionViewCell
         
-        return cell
+        cell?.imageView.image = UIImage(named: "InnerClassic")
+        
+        
+        return cell!
     }
     
     

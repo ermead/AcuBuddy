@@ -8,25 +8,22 @@
 
 import UIKit
 
-class TableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+class TableViewDataSource: NSObject, UITableViewDataSource {
     
-    var data: [AnyObject] = []
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomTableViewCell
         
-        cell.textLabel?.text = "Test"
+        let points = PointsController.sharedInstance.points
+        let point = points[indexPath.row]
+        let channel = point.channel
+        let number = point.number
         
-        self.data = PointsController.sharedInstance.data
         
-        if data.count > 1 {
-            
-        let entry = data[indexPath.row]
-            
-        cell.textLabel?.text = entry as? String
-            
-        }
+        cell.textLabel?.text = channel! + number!
+        
         
         return cell
         
@@ -34,16 +31,22 @@ class TableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if data.count > 1 {
-            
-            return data.count
-            
-        } else {
+            let count = PointsController.sharedInstance.points.count
         
-            return 5
-        }
+            return count
+        
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let points = PointsController.sharedInstance.points
+        let point = points[indexPath.row]
+        
+        print("cell hit")
+        
+        kEntry = point
+        
+    }
     
+
 }
 

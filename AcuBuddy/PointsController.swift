@@ -13,6 +13,19 @@ class PointsController {
     
     static let sharedInstance = PointsController()
     
-    var data: [AnyObject] = []
+    var data: [Point] = []
+    
+    var points: [Point] {
+        
+        let lu1 = Point(channel: "LU", number: "1")
+        let lu2 = Point(channel: "LU", number: "2")
+        let lu3 = Point(channel: "LU", number: "3")
+        
+        let array = [lu1, lu2, lu3]
+        
+        self.data = array
+        
+        return array
+    }
     
 }
