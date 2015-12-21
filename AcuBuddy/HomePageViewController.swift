@@ -26,6 +26,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     @IBOutlet weak var containerTable: UIView!
     
+    var dismissViewButtonView: UIView = UIView()
+    
     var pastValues: [AnyObject] = []
     var i = 0
     
@@ -134,10 +136,12 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         setUpTableView()
         
+      
+        
         self.view.bringSubviewToFront(self.containerTable)
         self.containerTable.frame = CGRect(x: 10, y: 160, width: self.view.bounds.size.width - 10, height: self.view.bounds.size.height - 160)
         self.containerTable.hidden = true
-  
+        
         
     }
     
@@ -182,7 +186,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         } else {
             bringInButtons()
             delay(seconds: 0.5, completion: { () -> () in
-                self.setButtonsLikeStar()
+                self.moveButtonsToLeftEdge()
             })
         }
     
@@ -638,9 +642,15 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
         }
         
+        
         containerTable.hidden = false
         containerTable.frame = CGRect(x: self.button_red.frame.origin.x + self.button_red.frame.size.width, y: self.button_red.frame.origin.y - 10 - 50, width: self.view.frame.size.width - self.button_red.frame.size.width, height: 50 + 10 + (self.button_blue.frame.origin.y + button_blue.frame.size.height) - self.button_red.frame.origin.y)
         containerTable.layer.cornerRadius = 20
+        containerTable.alpha = 1
+        setUpDismissButton(dismissViewButtonView)
+        
+        dismissViewButtonView.frame = CGRect(x: 30, y: 50, width: 30, height: 30)
+        //view.addSubview(dismissViewButtonView)
         
         EM_HPVC_ContainerTableViewController().height = button_blue.frame.size.height + 10
 
@@ -786,23 +796,24 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         showMessages(0, arrayOfMessages: messages4)
         
-        var titles = ["2", "5", "4", "1", "3"]
+        let titles = ["2", "5", "4", "1", "3"]
         setButtonTitles(titles)
         
         let w: CGFloat = self.view.bounds.width / 8
         let h: CGFloat = self.view.bounds.height / 8
         
-        var position1 = CGPoint(x: w * 4, y: h * 7)
-        var position2 = CGPoint(x: w * 7, y: h * 1.5)
-        var position3 = CGPoint(x: w * 1, y: h * 4)
-        var position4 = CGPoint(x: w * 1, y: h * 1.5)
-        var position5 = CGPoint(x: w * 4, y: h * 4)
+        let position1 = CGPoint(x: w * 4, y: h * 7)
+        let position2 = CGPoint(x: w * 7, y: h * 1.5)
+        let position3 = CGPoint(x: w * 1, y: h * 4)
+        let position4 = CGPoint(x: w * 1, y: h * 1.5)
+        let position5 = CGPoint(x: w * 4, y: h * 4)
+        /*
         let position6 = CGPoint(x: w * 7, y: h * 4)
         let position7 = CGPoint(x: w * 7, y: h * 4)
         let position8 = CGPoint(x: w * 1, y: h * 7)
         let position9 = CGPoint(x: w * 4, y: h * 1.5)
         let position10 = CGPoint(x: w * 4, y: h * 4)
-        
+        */
         
         for button in self.allButtons {
             button.alpha = 0
@@ -860,17 +871,18 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         showMessages(0, arrayOfMessages: messages4)
         
-        var titles = ["7", "10", "9", "6", "8"]
+        let titles = ["7", "10", "9", "6", "8"]
         setButtonTitles(titles)
         
         let w: CGFloat = self.view.bounds.width / 8
         let h: CGFloat = self.view.bounds.height / 8
-        
+        /*
         var position1 = CGPoint(x: w * 4, y: h * 7)
         var position2 = CGPoint(x: w * 7, y: h * 1.5)
         var position3 = CGPoint(x: w * 1, y: h * 4)
         var position4 = CGPoint(x: w * 1, y: h * 1.5)
         var position5 = CGPoint(x: w * 4, y: h * 4)
+        */
         let position6 = CGPoint(x: w * 7, y: h * 7)
         let position7 = CGPoint(x: w * 7, y: h * 4)
         let position8 = CGPoint(x: w * 1, y: h * 7)
@@ -930,12 +942,12 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         showMessages(0, arrayOfMessages: messages4)
         
-        var titles = ["2 & 7", "5 & 10", "4 & 9", "1 & 6", "3 & 8"]
+        let titles = ["2 & 7", "5 & 10", "4 & 9", "1 & 6", "3 & 8"]
         setButtonTitles(titles)
         
         let w: CGFloat = self.view.bounds.width / 8
         let h: CGFloat = self.view.bounds.height / 8
-        
+        /*
         var position1 = CGPoint(x: w * 4, y: h * 7)
         var position2 = CGPoint(x: w * 7, y: h * 1.5)
         var position3 = CGPoint(x: w * 1, y: h * 4)
@@ -945,8 +957,9 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         let position7 = CGPoint(x: w * 7, y: h * 4)
         let position8 = CGPoint(x: w * 1, y: h * 7)
         let position9 = CGPoint(x: w * 4, y: h * 1.5)
+        */
         let position10 = CGPoint(x: w * 4, y: h * 4)
-        
+
         
         for button in self.allButtons {
             button.alpha = 0
@@ -1001,12 +1014,12 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         showMessages(0, arrayOfMessages: messages4)
         
-        var titles = ["2 & 7", "5 & 10", "4 & 9", "1 & 6", "3 & 8"]
+        let titles = ["2 & 7", "5 & 10", "4 & 9", "1 & 6", "3 & 8"]
         setButtonTitles(titles)
         
         let w: CGFloat = self.view.bounds.width / 8
         let h: CGFloat = self.view.bounds.height / 8
-        
+        /*
         var position1 = CGPoint(x: w * 4, y: h * 7)
         var position2 = CGPoint(x: w * 7, y: h * 1.5)
         var position3 = CGPoint(x: w * 1, y: h * 4)
@@ -1016,6 +1029,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         let position7 = CGPoint(x: w * 7, y: h * 4)
         let position8 = CGPoint(x: w * 1, y: h * 7)
         let position9 = CGPoint(x: w * 4, y: h * 1.5)
+        */
         let position10 = CGPoint(x: w * 4, y: h * 4)
         
         
@@ -1665,7 +1679,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         if segue.identifier == "toDetailView" {
             
-            if let dvc: EM_DetailViewController = segue.destinationViewController as? EM_DetailViewController {
+            if let _: EM_DetailViewController = segue.destinationViewController as? EM_DetailViewController {
 
               print("segue to detail")
                 
@@ -1772,8 +1786,6 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
     }
     
-    
-    
 }
 
 extension EM_HomePageViewController: UIImagePickerControllerDelegate {
@@ -1828,7 +1840,7 @@ extension EM_HomePageViewController  {
     
     @IBAction func blogButtonTapped(sender: AnyObject) {
         
-        let url = "http://maciociaonline.blogspot.com/"
+        _ = "http://maciociaonline.blogspot.com/"
         let url2 = "http://www.shen-nong.com/eng/exam/index.html"
         
         let svc = SFSafariViewController(URL: NSURL(string: url2)!)

@@ -59,7 +59,7 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     
         let headerView = UITableViewHeaderFooterView()
-        headerView.contentView.backgroundColor = UIColor.blackColor()
+        headerView.contentView.backgroundColor = UIColor.clearColor()
         return headerView
         
     }
@@ -117,9 +117,11 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
         let superView = sender.superview
         print("tapped")
         UIView.animateWithDuration(0.3) { () -> Void in
-            //superView!!.alpha = 0
+            superView!!.alpha = 0
         }
-
+        
+        
+        
     }
     
     
