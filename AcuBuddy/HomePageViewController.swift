@@ -615,6 +615,9 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     func moveButtonsToLeftEdge(){
     
+       
+        
+        
         let buttons = [self.button_red, self.button_green, self.button_yellow, self.button_grey, self.button_blue]
         var delay = 0.1
         var offSetY = CGFloat(5)
@@ -623,7 +626,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             UIView.animateWithDuration(0.5, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseInOut], animations: { () -> Void in
                 button.frame.size = CGSize(width: self.buttonOriginalWidth!, height: self.buttonOriginalHeight!)
                 button.frame.origin.x = 0
-                button.center.y = button.frame.size.height + 10 + offSetY
+                button.frame.origin.y = button.frame.size.height + 10 + offSetY
                 delay += 0.1
                 offSetY += button.frame.size.height + CGFloat(5)
                 }, completion: { _ in
@@ -634,7 +637,13 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             } )
             
         }
-   
+        
+        containerTable.hidden = false
+        containerTable.frame = CGRect(x: self.button_red.frame.origin.x + self.button_red.frame.size.width, y: self.button_red.frame.origin.y - 10 - 50, width: self.view.frame.size.width - self.button_red.frame.size.width, height: 50 + 10 + (self.button_blue.frame.origin.y + button_blue.frame.size.height) - self.button_red.frame.origin.y)
+        containerTable.layer.cornerRadius = 20
+        
+        EM_HPVC_ContainerTableViewController().height = button_blue.frame.size.height + 10
+
     }
     
     func moveButtonsToEdges(){
@@ -1208,7 +1217,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         tableView.hidden = true
         tableView.alpha = 0
        
-        tableView.frame.size = CGSize(width: self.view.bounds.width - 40, height: self.view.bounds.height - 40)
+        tableView.frame.size = CGSize(width: self.view.bounds.width, height: self.view.bounds.height - 40)
         tableView.center.x = self.view.center.x
         tableView.center.y = self.view.center.y + 40
         tableView.backgroundColor = UIColor.whiteColor()

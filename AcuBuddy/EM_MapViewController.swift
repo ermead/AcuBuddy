@@ -16,10 +16,11 @@ class EM_MapViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     
+    var dismissButton = UIButton()
+    
     private var locationManager = CLLocationManager()
     
     var currentLocation = CLLocation()
-    
     let regionRadius: CLLocationDistance = 1000
     
     
@@ -44,6 +45,8 @@ class EM_MapViewController: UIViewController, UITableViewDataSource, UITableView
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+        
+        self.setUpDismissButton(self.view)
         
         mapView.delegate = self
         
@@ -182,6 +185,7 @@ class EM_MapViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
         var currentLocation: CLLocation = self.currentLocation
         
         var mapRegion = MKCoordinateRegion()
@@ -205,9 +209,24 @@ class EM_MapViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //MARK: Various UI Buttons
+    func setUpDismissButton(view: UIView){
+        
+        dismissButton.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
+        dismissButton.setTitle("X", forState: .Normal)
+        dismissButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        dismissButton.backgroundColor = UIColor.lightGrayColor()
+        dismissButton.addTarget(self, action: "dismissButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(dismissButton)
+        
+    }
+    
+    @IBAction func dismissButtonTapped(sender: AnyObject){
+        
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
     }
     
     
