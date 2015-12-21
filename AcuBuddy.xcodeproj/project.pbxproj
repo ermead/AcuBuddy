@@ -26,6 +26,7 @@
 		D7D5DCDE1C273702005BA837 /* ScrollAndZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D5DCDD1C273702005BA837 /* ScrollAndZoomViewController.swift */; };
 		D7D5DCE01C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D5DCDF1C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift */; };
 		D7D5DCE21C274A06005BA837 /* HPVC_ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D5DCE11C274A06005BA837 /* HPVC_ContainerViewController.swift */; };
+		D7D5DCE71C2840C8005BA837 /* EM_MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D5DCE61C2840C8005BA837 /* EM_MapViewController.swift */; };
 		D7D6E0491C22438000400374 /* OvalLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E0481C22438000400374 /* OvalLayer.swift */; };
 		D7D6E04B1C22438B00400374 /* TriangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E04A1C22438B00400374 /* TriangleLayer.swift */; };
 		D7D6E04D1C22439F00400374 /* RectangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6E04C1C22439F00400374 /* RectangleLayer.swift */; };
@@ -59,6 +60,7 @@
 		D7D5DCDD1C273702005BA837 /* ScrollAndZoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollAndZoomViewController.swift; sourceTree = "<group>"; };
 		D7D5DCDF1C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollAndZoomLocationCoordinates.swift; sourceTree = "<group>"; };
 		D7D5DCE11C274A06005BA837 /* HPVC_ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPVC_ContainerViewController.swift; sourceTree = "<group>"; };
+		D7D5DCE61C2840C8005BA837 /* EM_MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EM_MapViewController.swift; sourceTree = "<group>"; };
 		D7D6E0481C22438000400374 /* OvalLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalLayer.swift; sourceTree = "<group>"; };
 		D7D6E04A1C22438B00400374 /* TriangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleLayer.swift; sourceTree = "<group>"; };
 		D7D6E04C1C22439F00400374 /* RectangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleLayer.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				D7D5DCDD1C273702005BA837 /* ScrollAndZoomViewController.swift */,
 				D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */,
 				D7D5DCCF1C2670F4005BA837 /* DVC_CollectionViewCell.swift */,
+				D7D5DCE61C2840C8005BA837 /* EM_MapViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				D71850DC1C2239CC00184931 /* IntroViewController.swift in Sources */,
 				D7D6E04B1C22438B00400374 /* TriangleLayer.swift in Sources */,
 				D7D5DCD81C273253005BA837 /* ImagesController.swift in Sources */,
+				D7D5DCE71C2840C8005BA837 /* EM_MapViewController.swift in Sources */,
 				D71850DA1C2239CC00184931 /* AppDelegate.swift in Sources */,
 				D7D5DCE01C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift in Sources */,
 				D7CEA7031C234E9E0009A3B7 /* CustomTableViewCell.swift in Sources */,

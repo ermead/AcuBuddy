@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
+import SafariServices
 
 
 // A delay function
@@ -1605,13 +1608,17 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         self.buttonTappedHandler((popUpButton3.titleLabel?.text)!)
     }
     @IBAction func popUpButton4Tapped(){
-        print("4 tapped")
+        print("4 \(popUpButton4.titleLabel?.text) tapped")
+        self.buttonTappedHandler((popUpButton4.titleLabel?.text)!)
+        
     }
     @IBAction func popUpButton5Tapped(){
-        print("5 tapped")
+        print("5 \(popUpButton5.titleLabel?.text) tapped")
+        self.buttonTappedHandler((popUpButton5.titleLabel?.text)!)
     }
     @IBAction func popUpButton6Tapped(){
-        print("6 tapped")
+        print("6 \(popUpButton6.titleLabel?.text) tapped")
+        self.buttonTappedHandler((popUpButton6.titleLabel?.text)!)
     }
     @IBAction func popUpButton7Tapped(){
         print("7 tapped")
@@ -1730,10 +1737,27 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             self.showMessages(0, arrayOfMessages: messages)
             self.addPhotoButtonTapped(self)
             
+        }
+        
+        if title == "Blogs" {
+            
+            let messages = ["Check Out the Latest Blogs"]
+            self.hamburgerButtonTapped()
+            self.showMessages(0, arrayOfMessages: messages)
+            self.blogButtonTapped(self)
             
         }
         
-        
+        if title == "Maps" {
+            
+            let messages = ["Finding Nearby Resources"]
+            self.hamburgerButtonTapped()
+            self.showMessages(0, arrayOfMessages: messages)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc: EM_MapViewController = storyboard.instantiateViewControllerWithIdentifier("mapView") as! EM_MapViewController
+            presentViewController(vc, animated: true, completion: nil)
+            
+        }
         
         
         
@@ -1744,6 +1768,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
 }
 
 extension EM_HomePageViewController: UIImagePickerControllerDelegate {
+    
+    //ADD PHOTO
     
     @IBAction func addPhotoButtonTapped(sender: AnyObject){
         
@@ -1785,7 +1811,27 @@ extension EM_HomePageViewController: UIImagePickerControllerDelegate {
         
     }
 
+}
+
+extension EM_HomePageViewController  {
+    
+    //SAFARI VIEWER
+    
+    @IBAction func blogButtonTapped(sender: AnyObject) {
+        
+        let url = "http://maciociaonline.blogspot.com/"
+        let url2 = "http://www.shen-nong.com/eng/exam/index.html"
+        
+        let svc = SFSafariViewController(URL: NSURL(string: url2)!)
+        svc.view.frame = CGRect(x: 50, y: 50, width: 180, height: 180)
+        
+        self.presentViewController(svc, animated: true, completion: nil)
+        
+    }
     
     
 }
+
+
+
 

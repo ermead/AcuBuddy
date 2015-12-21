@@ -382,7 +382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEE-il-bss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="731" y="467"/>
+            <point key="canvasLocation" x="528" y="480"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="G2o-jh-pFU">
@@ -410,7 +410,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rOQ-lo-jZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1081" y="467"/>
+            <point key="canvasLocation" x="820" y="436.5"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="jMe-oN-UBw">
+            <objects>
+                <viewController storyboardIdentifier="mapView" id="EbQ-4f-wO6" customClass="EM_MapViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gIX-BE-Ews"/>
+                        <viewControllerLayoutGuide type="bottom" id="omE-ce-L0W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9fy-DW-5Ys">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tHP-5n-ieG">
+                                <rect key="frame" x="20" y="57" width="280" height="128"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4zW-tP-GMY">
+                                <rect key="frame" x="20" y="193" width="280" height="355"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6tS-C2-qwJ">
+                                <rect key="frame" x="20" y="28" width="186" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDv-vG-6tP">
+                                <rect key="frame" x="214" y="28" width="86" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="getButtonTapped:" destination="EbQ-4f-wO6" eventType="touchUpInside" id="PPg-Pf-oBW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="tHP-5n-ieG" id="OvS-bR-OVj"/>
+                        <outlet property="tableView" destination="4zW-tP-GMY" id="0U3-zK-5y4"/>
+                        <outlet property="textField" destination="6tS-C2-qwJ" id="cHj-95-xRD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sii-Vh-PQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1181" y="512"/>
         </scene>
     </scenes>
     <resources>
