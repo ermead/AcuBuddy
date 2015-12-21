@@ -18,7 +18,10 @@ func delay(seconds seconds: Double, completion:()->()) {
     }
 }
 
-class EM_HomePageViewController: UIViewController, UITableViewDelegate {
+
+class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate {
+    
+    @IBOutlet weak var containerTable: UIView!
     
     var pastValues: [AnyObject] = []
     var i = 0
@@ -32,6 +35,18 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
     let array2 = ["Moxa", "Diet", "Acupuncture", "Microsystems", "Herbs"]
     let array3 = ["Acupuncture Points"]
     let array4 = ["Herbal Medicines"]
+    let remedies = ["Moxa", "Diet", "Acupuncture", "Microsystems", "Herbs"]
+    let flavors = ["Bitter", "Sweet", "Acrid", "Salty", "Sour"]
+    let organs = ["Heart", "Spleen", "Lung", "Kidney", "Liver"]
+    let senseOrgans = ["Tongue", "Mouth", "Nose", "Ears", "Eyes"]
+    let emotions = ["Joy", "Worry", "Sadness", "Fear", "Anger"]
+    let correspondences = ["Pulse", "Muscles", "Skin", "Head Hair", "Sinews"]
+    let colors = ["Red", "Yellow", "White", "Blue", "Green"]
+    
+    
+    let pathogenicFactors = ["Heat", "Dampness", "Dryness", "Cold", "Wind"]
+    
+    let popUpButtonTitles = ["Remedies", "Disorders", "Add Photo", "Settings", "Blogs", "Maps"]
     
     // MARK: IB outlets
     
@@ -61,6 +76,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
+    
     @IBOutlet var cloud1: UIImageView!
     @IBOutlet var cloud2: UIImageView!
     @IBOutlet var cloud3: UIImageView!
@@ -74,6 +90,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
     let messages = ["Connecting ...", "Getting Info...", "Here it is..."]
     let messages1 = ["Generating Cycle"]
     let messages2 = ["Controlling Cycle"]
+    let messages3 = ["River Map"]
+    let messages4 = ["Magic Square"]
     
     let dismissButton = UIButton()
     let hamburgerButton = UIButton()
@@ -113,7 +131,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
         
         setUpTableView()
         
-        
+        self.view.bringSubviewToFront(self.containerTable)
+        self.containerTable.frame = CGRect(x: 10, y: 160, width: self.view.bounds.size.width - 10, height: self.view.bounds.size.height - 160)
+        self.containerTable.hidden = true
+  
         
     }
     
@@ -665,6 +686,378 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
         
     }
     
+    func moveButtonsLikeCross(){
+        
+        showMessages(0, arrayOfMessages: messages3)
+        
+        let titles = ["Fire", "Earth", "Metal", "Water", "Wood"]
+        setButtonTitles(titles)
+        
+        let w: CGFloat = self.view.bounds.width / 8
+        let h: CGFloat = self.view.bounds.height / 8
+        
+        UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: { () -> Void in
+            
+            self.button_red.frame.size = CGSize(width: w * 2, height: w * 2)
+            self.button_red.center = CGPoint(x: w * 4, y: h * 1.5)
+            self.button_red.layer.cornerRadius = 15
+            self.button_red.alpha = 1
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_red.alpha = 1
+                })
+                
+        })
+        
+        
+        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: {
+            
+            self.button_yellow.frame.size = CGSize(width: w * 2, height: w * 2)
+            self.button_yellow.center = CGPoint(x: w * 4, y: h * 4)
+            self.button_yellow.layer.cornerRadius = 15
+            self.button_yellow.alpha = 1
+            
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_yellow.alpha = 1
+                })
+                
+        })
+        
+        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
+            options: [.CurveEaseOut], animations: {
+                
+                self.button_green.frame.size = CGSize(width: w * 2, height: w * 2)
+                self.button_green.center = CGPoint(x: w * 1, y: h * 4)
+                self.button_green.layer.cornerRadius = 15
+                self.button_green.alpha = 1
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_green.alpha = 1
+                })
+                
+        })
+        
+        UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
+            options: [.CurveEaseOut], animations: {
+                
+                self.button_grey.frame.size = CGSize(width: w * 2, height: w * 2)
+                self.button_grey.center = CGPoint(x: w * 7, y: h * 4)
+                self.button_grey.layer.cornerRadius = 15
+                self.button_grey.alpha = 1
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_grey.alpha = 1
+                })
+                
+        })
+        
+        UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
+            options: [.CurveEaseOut], animations: {
+                
+                self.button_blue.frame.size = CGSize(width: w * 2, height: w * 2)
+                self.button_blue.center = CGPoint(x: w * 4, y: h * 7)
+                self.button_blue.layer.cornerRadius = 15
+                self.button_blue.alpha = 1
+                
+            }, completion: {_ in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.button_blue.alpha = 1
+                })
+                
+        })
+        
+        
+    }
+    
+    func moveButtonsNineFoldPalace(){
+        
+        showMessages(0, arrayOfMessages: messages4)
+        
+        var titles = ["2", "5", "4", "1", "3"]
+        setButtonTitles(titles)
+        
+        let w: CGFloat = self.view.bounds.width / 8
+        let h: CGFloat = self.view.bounds.height / 8
+        
+        var position1 = CGPoint(x: w * 4, y: h * 7)
+        var position2 = CGPoint(x: w * 7, y: h * 1.5)
+        var position3 = CGPoint(x: w * 1, y: h * 4)
+        var position4 = CGPoint(x: w * 1, y: h * 1.5)
+        var position5 = CGPoint(x: w * 4, y: h * 4)
+        let position6 = CGPoint(x: w * 7, y: h * 4)
+        let position7 = CGPoint(x: w * 7, y: h * 4)
+        let position8 = CGPoint(x: w * 1, y: h * 7)
+        let position9 = CGPoint(x: w * 4, y: h * 1.5)
+        let position10 = CGPoint(x: w * 4, y: h * 4)
+        
+        
+        for button in self.allButtons {
+            button.alpha = 0
+        }
+        
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.button_blue.alpha = 1
+            self.button_blue.center = position1
+            }, completion: { _ in
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                    self.button_red.alpha = 1
+                    self.button_red.center = position2
+                    }, completion: { _ in
+                        
+                        UIView.animateWithDuration(1, animations: { () -> Void in
+                            self.button_green.alpha = 1
+                            self.button_green.center = position3
+                            }, completion: { _ in
+                                
+                                UIView.animateWithDuration(1, animations: { () -> Void in
+                                    self.button_grey.alpha = 1
+                                    self.button_grey.center = position4
+                                    }, completion: { _ in
+                                        UIView.animateWithDuration(1, animations: { () -> Void in
+                                            self.button_yellow.alpha = 1
+                                            self.button_yellow.center = position5
+                                            }, completion: { _ in
+                                                
+                                                for button in self.allButtons {
+                                                    button.alpha = 1
+                                                }
+//                                                delay(seconds: 2, completion: { () -> () in
+//                                                    
+//                                                    self.moveButtonsNineFoldPalace2()
+//                                                    
+//                                                })
+                                                
+                                            
+                                                })
+                                                
+                                                
+                                        })
+                                        
+                                        
+                                })
+                                
+                        })
+                        
+                })
+        
+
+    }
+    
+    func moveButtonsNineFoldPalace2(){
+        
+        showMessages(0, arrayOfMessages: messages4)
+        
+        var titles = ["7", "10", "9", "6", "8"]
+        setButtonTitles(titles)
+        
+        let w: CGFloat = self.view.bounds.width / 8
+        let h: CGFloat = self.view.bounds.height / 8
+        
+        var position1 = CGPoint(x: w * 4, y: h * 7)
+        var position2 = CGPoint(x: w * 7, y: h * 1.5)
+        var position3 = CGPoint(x: w * 1, y: h * 4)
+        var position4 = CGPoint(x: w * 1, y: h * 1.5)
+        var position5 = CGPoint(x: w * 4, y: h * 4)
+        let position6 = CGPoint(x: w * 7, y: h * 7)
+        let position7 = CGPoint(x: w * 7, y: h * 4)
+        let position8 = CGPoint(x: w * 1, y: h * 7)
+        let position9 = CGPoint(x: w * 4, y: h * 1.5)
+        let position10 = CGPoint(x: w * 4, y: h * 4)
+        
+        
+        for button in self.allButtons {
+            button.alpha = 0
+        }
+        
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.button_blue.alpha = 1
+            self.button_blue.center = position6
+            }, completion: { _ in
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                    self.button_red.alpha = 1
+                    self.button_red.center = position7
+                    }, completion: { _ in
+                        
+                        UIView.animateWithDuration(1, animations: { () -> Void in
+                            self.button_green.alpha = 1
+                            self.button_green.center = position8
+                            }, completion: { _ in
+                                
+                                UIView.animateWithDuration(1, animations: { () -> Void in
+                                    self.button_grey.alpha = 1
+                                    self.button_grey.center = position9
+                                    }, completion: { _ in
+                                        UIView.animateWithDuration(1, animations: { () -> Void in
+                                            self.button_yellow.alpha = 1
+                                            self.button_yellow.center = position10
+                                            }, completion: { _ in
+                                                
+                                                for button in self.allButtons {
+                                                    button.alpha = 1
+                                                }
+                                                
+                                                
+                                                
+                                        })
+                                        
+                                        
+                                })
+                                
+                                
+                        })
+                        
+                })
+                
+        })
+        
+        
+    }
+    
+    func moveButtonsNineFoldPalaceStretch(){
+        
+        showMessages(0, arrayOfMessages: messages4)
+        
+        var titles = ["2 & 7", "5 & 10", "4 & 9", "1 & 6", "3 & 8"]
+        setButtonTitles(titles)
+        
+        let w: CGFloat = self.view.bounds.width / 8
+        let h: CGFloat = self.view.bounds.height / 8
+        
+        var position1 = CGPoint(x: w * 4, y: h * 7)
+        var position2 = CGPoint(x: w * 7, y: h * 1.5)
+        var position3 = CGPoint(x: w * 1, y: h * 4)
+        var position4 = CGPoint(x: w * 1, y: h * 1.5)
+        var position5 = CGPoint(x: w * 4, y: h * 4)
+        let position6 = CGPoint(x: w * 7, y: h * 7)
+        let position7 = CGPoint(x: w * 7, y: h * 4)
+        let position8 = CGPoint(x: w * 1, y: h * 7)
+        let position9 = CGPoint(x: w * 4, y: h * 1.5)
+        let position10 = CGPoint(x: w * 4, y: h * 4)
+        
+        
+        for button in self.allButtons {
+            button.alpha = 0
+        }
+        
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.button_blue.alpha = 1
+            self.button_blue.frame = CGRect(x: w * 3, y: self.button_yellow.frame.origin.y + self.buttonOriginalHeight!, width: w * 4, height:
+            w * 2)
+            }, completion: { _ in
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                    self.button_red.alpha = 1
+                    self.button_red.frame = CGRect(x: w * 5, y: h * 2, width: 2 * w, height: w * 4)
+                    }, completion: { _ in
+                        
+                        UIView.animateWithDuration(1, animations: { () -> Void in
+                            self.button_green.alpha = 1
+                            self.button_green.frame = CGRect(x: w * 1, y: h * 3.25, width: w * 2, height: w * 4)
+                            }, completion: { _ in
+                                
+                                UIView.animateWithDuration(1, animations: { () -> Void in
+                                    self.button_grey.alpha = 1
+                                    self.button_grey.frame = CGRect(x: w * 1, y: h * 2, width: w * 4, height: w * 2)
+                                    }, completion: { _ in
+                                        UIView.animateWithDuration(1, animations: { () -> Void in
+                                            self.button_yellow.alpha = 1
+                                            self.button_yellow.center = position10
+                                            }, completion: { _ in
+                                                
+                                                for button in self.allButtons {
+                                                    button.alpha = 1
+                                                }
+                                                
+                                                
+                                                
+                                        })
+                                        
+                                        
+                                })
+                                
+                                
+                        })
+                        
+                })
+                
+        })
+        
+        
+    }
+    
+    func moveButtonsNineFoldPalaceRotate(){
+        
+        showMessages(0, arrayOfMessages: messages4)
+        
+        var titles = ["2 & 7", "5 & 10", "4 & 9", "1 & 6", "3 & 8"]
+        setButtonTitles(titles)
+        
+        let w: CGFloat = self.view.bounds.width / 8
+        let h: CGFloat = self.view.bounds.height / 8
+        
+        var position1 = CGPoint(x: w * 4, y: h * 7)
+        var position2 = CGPoint(x: w * 7, y: h * 1.5)
+        var position3 = CGPoint(x: w * 1, y: h * 4)
+        var position4 = CGPoint(x: w * 1, y: h * 1.5)
+        var position5 = CGPoint(x: w * 4, y: h * 4)
+        let position6 = CGPoint(x: w * 7, y: h * 7)
+        let position7 = CGPoint(x: w * 7, y: h * 4)
+        let position8 = CGPoint(x: w * 1, y: h * 7)
+        let position9 = CGPoint(x: w * 4, y: h * 1.5)
+        let position10 = CGPoint(x: w * 4, y: h * 4)
+        
+        
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.button_blue.alpha = 1
+            self.button_blue.frame.origin.x -= self.buttonOriginalWidth!
+  
+            
+            }, completion: { _ in
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                    self.button_red.alpha = 1
+                    self.button_red.frame.origin.y += self.buttonOriginalHeight!
+
+                    }, completion: { _ in
+                        
+                        UIView.animateWithDuration(1, animations: { () -> Void in
+                            self.button_grey.alpha = 1
+                            self.button_grey.frame.origin.x += self.buttonOriginalHeight!
+                            
+                            }, completion: { _ in
+                                
+                                UIView.animateWithDuration(1, animations: { () -> Void in
+                                    self.button_green.alpha = 1
+                                    self.button_green.frame.origin.y -= self.buttonOriginalHeight!
+                                    
+                                    }, completion: { _ in
+                                        UIView.animateWithDuration(1, animations: { () -> Void in
+                                            self.button_yellow.alpha = 1
+                                            self.button_yellow.center = position10
+                                            }, completion: { _ in
+                                                
+                                                for button in self.allButtons {
+                                                    button.alpha = 1
+                                                }
+                                                
+                                                
+                                                
+                                        })
+                                        
+                                        
+                                })
+                                
+                                
+                        })
+                        
+                })
+                
+        })
+        
+        
+    }
+    
+
+
     func makeButtonsTransparent(){
        let buttons = [self.button_red, self.button_green, self.button_yellow, self.button_grey, self.button_blue]
         
@@ -896,7 +1289,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
         
         self.storeBackFunctions()
         
-        let arrayOfactions = [self.generatingCycle, self.setButtonsLikeStar, self.controllingCycle, self.bringButtonsToCenter, self.expandAsStack, self.moveButtonsToLeftEdge, self.moveButtonsToEdges, self.setButtonsLikeStar]
+        let arrayOfactions = [self.generatingCycle, self.setButtonsLikeStar, self.controllingCycle, self.bringButtonsToCenter, self.expandAsStack, self.moveButtonsToLeftEdge, self.moveButtonsToEdges, self.setButtonsLikeStar, self.moveButtonsLikeCross, self.moveButtonsNineFoldPalace, self.moveButtonsNineFoldPalace2, self.moveButtonsNineFoldPalaceStretch, self.moveButtonsNineFoldPalaceRotate, self.moveButtonsLikeCross, self.setButtonsLikeStar]
         
         let action = arrayOfactions[i]
         
@@ -904,10 +1297,17 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
         
         if i == arrayOfactions.count {
             self.i = 0
+            return
         }
         
         action()
-    
+        
+      delay(seconds: 5) { () -> () in
+        
+            //self.actionButtonTapped()
+        
+        }
+       
     }
     
     func setUpHamburgerButton(){
@@ -1007,6 +1407,27 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
             popUpFromHamburger.addSubview(button)
         }
         
+        self.setupPopUpButtonTitles()
+            
+        
+        
+    }
+    
+    func  setupPopUpButtonTitles(){
+        
+        let buttons = [self.popUpButton1, self.popUpButton2, self.popUpButton3, self.popUpButton4, self.popUpButton5, self.popUpButton6, self.popUpButton7, self.popUpButton8]
+        
+        let array = self.popUpButtonTitles
+        
+        var i = 0
+        
+        for title in array {
+            
+            let button = buttons[i]
+            button.setTitle(title, forState: .Normal)
+            i++
+        }
+        
     }
     
     func setUpBottomTabBarButton(){
@@ -1045,13 +1466,35 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
                 self.view.bringSubviewToFront(self.bottomTabBarButton)
                 self.bottomTabBarButton.setTitle("▼", forState: .Normal)
                 
+                var leftStack: [UIButton] = []
+                
+                for button in self.allButtons {
+                    if button.frame.origin.x == 0{
+                        leftStack.append(button)
+                    }
+                    
+                    if leftStack.count == 5 {
+                        self.moveButtonsToLeftEdge()
+                        return
+                    }
+                    
+                }
+                
+                
                 let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
                 let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
                 
                 for button in twoBottomButtons{
-                    
-                    button.frame.origin.y -= (self.view.frame.size.height/8)
+                    if button.frame.size.width > self.buttonOriginalWidth {
+                        
+                        self.expandAsStack()
+                        
+                    } else {button.frame.origin.y -= (self.view.frame.size.height/8)}
                 }
+                
+              
+                
+               
             
                 }, completion: { _ in
                    //self.makeButtonsTransparent()
@@ -1147,16 +1590,19 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
     //MARK: PopUpButton Functions
     
     @IBAction func popUpButton1Tapped(){
-        print("1 tapped")
+        print("1 \(popUpButton1.titleLabel?.text) tapped")
         
-    
+        self.buttonTappedHandler((popUpButton1.titleLabel?.text)!)
         
     }
     @IBAction func popUpButton2Tapped(){
-        print("2 tapped")
+        print("2 \(popUpButton2.titleLabel?.text) tapped")
+        self.buttonTappedHandler((popUpButton2.titleLabel?.text)!)
+     
     }
     @IBAction func popUpButton3Tapped(){
-        print("3 tapped")
+        print("3 \(popUpButton3.titleLabel?.text) tapped")
+        self.buttonTappedHandler((popUpButton3.titleLabel?.text)!)
     }
     @IBAction func popUpButton4Tapped(){
         print("4 tapped")
@@ -1249,6 +1695,97 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate {
         //viewWithShadow.layer.shadowOpacity = 1 - Float(Double(distanceY) * 0.005)
     }
 */
+    
+    
+    func buttonTappedHandler(title: String){
+    
+        if title == "Remedies" {
+            
+            let titles = self.remedies
+            let messages = ["Remedies"]
+            
+            self.hamburgerButtonTapped()
+            self.bringButtonsToCenter()
+            self.expandAsStack()
+            self.setButtonTitles(titles)
+            self.showMessages(0, arrayOfMessages: messages)
+        }
+        
+        if title == "Disorders" {
+            
+            let titles = self.pathogenicFactors
+            let messages = ["Pathogenic Factors"]
+            
+            self.hamburgerButtonTapped()
+            self.bringButtonsToCenter()
+            self.expandAsStack()
+            self.setButtonTitles(titles)
+            self.showMessages(0, arrayOfMessages: messages)
+        }
+        
+        if title == "Add Photo" {
+            
+            let messages = ["Add Photo"]
+            self.hamburgerButtonTapped()
+            self.showMessages(0, arrayOfMessages: messages)
+            self.addPhotoButtonTapped(self)
+            
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+}
+
+extension EM_HomePageViewController: UIImagePickerControllerDelegate {
+    
+    @IBAction func addPhotoButtonTapped(sender: AnyObject){
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        let photoChoiceAlert = UIAlertController(title: "Select Photo Location", message: nil, preferredStyle: .ActionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+            photoChoiceAlert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (_) -> Void in
+                imagePicker.sourceType = .PhotoLibrary
+                
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            
+            photoChoiceAlert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (_) -> Void in
+                imagePicker.sourceType = .Camera
+                
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }))
+            
+        }
+        
+        photoChoiceAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        
+        self.presentViewController(photoChoiceAlert, animated: true, completion: nil)
+        
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+        _ = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+    }
+
+    
     
 }
 

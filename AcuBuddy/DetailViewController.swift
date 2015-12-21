@@ -76,12 +76,6 @@ class EM_DetailViewController: UIViewController, UIScrollViewDelegate, UICollect
         containerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
         
         
-        delay(seconds: 1) { () -> () in
-            
-            self.animateImageUpandDown()
-            
-        }
-        
         // Do any additional setup after loading the view.
     }
     
