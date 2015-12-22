@@ -25,6 +25,9 @@ func delay(seconds seconds: Double, completion:()->()) {
 
 class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate {
     
+    var didSetDefaultOffSets: Bool = false
+    var xOffSetAdjust: CGFloat? = 0
+    var yOffSetAdjust: CGFloat? = 1
     
     var blueSquare = UIView()
     var motionManager = CMMotionManager()
@@ -121,12 +124,15 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         blueSquare.center = self.view.center
         blueSquare.frame.size = CGSize(width: 15, height: 15)
         blueSquare.backgroundColor = Colors.blue
         self.view.addSubview(blueSquare)
         
-        self.monitorMotion()
+        monitorMotion()
+        animateBlueIntoRed()
         
         //set up the UI
         self.containerImage.alpha = 1
@@ -503,22 +509,29 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     // MARK: further methods
     
     //MARK: Motion:
+    func setDefaultOffSets(x: CGFloat, y: CGFloat){
+      self.didSetDefaultOffSets = true
+        self.xOffSetAdjust = x
+        self.yOffSetAdjust = y
     
+    }
     
     func monitorMotion(){
         motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue()) { (motion, error ) -> Void in
             
             if let attitude = motion?.attitude {
                 
-                var xOffset = self.view.frame.size.width/2.0 * CGFloat(attitude.roll * 1.2)
-                var yOffset = self.view.frame.size.height/2.0 * CGFloat(attitude.pitch * 1.2)
+                let xOffset = (self.view.frame.size.width/2.0 * CGFloat(attitude.roll * 1.2))
+                let yOffset = (self.view.frame.size.height/2.0 * CGFloat((attitude.pitch - Double(self.yOffSetAdjust!)) * 1.8))
                 
                 UIView.animateWithDuration(1, animations: { () -> Void in
                     self.blueSquare.center = CGPointMake(self.view.center.x + xOffset, self.view.center.y + yOffset)
                     }, completion: nil )
                 
                 //print("Pitch: \(attitude.pitch), Yaw: \(attitude.yaw), Roll: \(attitude.roll)")
-                
+                if self.didSetDefaultOffSets == false {
+                self.setDefaultOffSets(xOffset, y: CGFloat(attitude.pitch ))
+                }
                 for button in self.allButtons{
                     self.updateShadowWithOffset(button)
                 }
@@ -526,6 +539,24 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
             //print(motion)
         }
+    }
+    
+    
+    func animateBlueIntoRed(){
+        
+        UIView.animateWithDuration(5.0, animations: { () -> Void in
+            if self.blueSquare.backgroundColor == UIColor.blueColor() {
+                self.blueSquare.backgroundColor = UIColor.redColor()
+            } else {
+                self.blueSquare.backgroundColor = UIColor.blueColor()
+            }
+            
+            }, completion: { _ in
+                
+                self.animateBlueIntoRed()
+        } )
+        
+        
     }
     
     //MARK: Buttons:
