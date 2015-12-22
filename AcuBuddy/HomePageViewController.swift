@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import SafariServices
+import CoreMotion
 
 
 // A delay function
@@ -23,6 +24,10 @@ func delay(seconds seconds: Double, completion:()->()) {
 
 
 class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate {
+    
+    
+    var blueSquare = UIView()
+    var motionManager = CMMotionManager()
     
     @IBOutlet weak var containerTable: UIView!
     @IBOutlet weak var containerImage: UIView!
@@ -116,8 +121,15 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        blueSquare.center = self.view.center
+        blueSquare.frame.size = CGSize(width: 15, height: 15)
+        blueSquare.backgroundColor = Colors.blue
+        self.view.addSubview(blueSquare)
+        
+        self.monitorMotion()
+        
         //set up the UI
-        self.containerImage.alpha = 0
+        self.containerImage.alpha = 1
         //view.backgroundColor = UIColor(patternImage: UIImage(named: "bg-sunny")!)
         
         screenHeight = self.view.bounds.height / 8
@@ -194,9 +206,9 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         containerImage.alpha = 0
         
-        UIView.animateWithDuration(10) { () -> Void in
+        UIView.animateWithDuration(8) { () -> Void in
             
-            //self.containerImage.alpha = 1
+            self.containerImage.alpha = 1
         }
        
         if self.tableView.alpha == 1 {
@@ -489,6 +501,34 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     }
     
     // MARK: further methods
+    
+    //MARK: Motion:
+    
+    
+    func monitorMotion(){
+        motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue()) { (motion, error ) -> Void in
+            
+            if let attitude = motion?.attitude {
+                
+                var xOffset = self.view.frame.size.width/2.0 * CGFloat(attitude.roll * 1.2)
+                var yOffset = self.view.frame.size.height/2.0 * CGFloat(attitude.pitch * 1.2)
+                
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                    self.blueSquare.center = CGPointMake(self.view.center.x + xOffset, self.view.center.y + yOffset)
+                    }, completion: nil )
+                
+                //print("Pitch: \(attitude.pitch), Yaw: \(attitude.yaw), Roll: \(attitude.roll)")
+                
+                for button in self.allButtons{
+                    self.updateShadowWithOffset(button)
+                }
+            }
+            
+            //print(motion)
+        }
+    }
+    
+    //MARK: Buttons:
     
     func removeButtonConstraints(){
         
@@ -1562,9 +1602,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                    
                     
             } )
-        
-            
-          
+    
             
         } else {
             
@@ -2159,26 +2197,26 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         }
     }
     
-    /*
+    
     func updateShadowWithOffset(viewWithShadow: UIView){
         
         var offSetY: CGFloat?
         var offSetX: CGFloat?
         
-        let lightSource: CGPoint = CGPoint(x: self.view.center.x, y: 0)
+        let lightSource: CGPoint = CGPoint(x: self.blueSquare.center.x, y: self.blueSquare.center.y)
         let viewX = viewWithShadow.center.x
-        let viewY = viewWithShadow.frame.origin.y
+        let viewY = viewWithShadow.center.y
         let distanceX = viewX - lightSource.x
-        _ = viewY - lightSource.y
+        let distanceY = viewY - lightSource.y
         
         offSetX = distanceX * 0.1
         // offSetY = distanceY * 0.1
-        offSetY = 5
+        offSetY = distanceY * 0.1
         
         viewWithShadow.layer.shadowOffset = CGSizeMake(offSetX!,offSetY!)
-        //viewWithShadow.layer.shadowOpacity = 1 - Float(Double(distanceY) * 0.005)
+        viewWithShadow.layer.shadowOpacity = 0.15
     }
-*/
+
     
     
     func buttonTappedHandler(title: String){

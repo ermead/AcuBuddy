@@ -351,6 +351,10 @@
         <scene sceneID="cgg-L6-xL3">
             <objects>
                 <viewController id="VKS-Tj-Of5" customClass="EM_DVC_ContainerViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GOe-fc-jxW"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZG1-o5-bDJ"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uCs-TG-dNY">
                         <rect key="frame" x="0.0" y="0.0" width="290" height="439.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -379,6 +383,10 @@
         <scene sceneID="iIv-De-hl8">
             <objects>
                 <viewController id="vmu-Uy-lJG" customClass="EM_HPVC_ContainerViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4sQ-Bv-huE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pla-d6-wbv"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8eh-3P-GmY">
                         <rect key="frame" x="0.0" y="0.0" width="288" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -409,6 +417,10 @@
         <scene sceneID="G2o-jh-pFU">
             <objects>
                 <viewController storyboardIdentifier="homeTableContainer" id="x8n-cj-ExL" customClass="EM_HPVC_ContainerTableViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dTw-3P-VtP"/>
+                        <viewControllerLayoutGuide type="bottom" id="eEz-NY-1tQ"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bOG-2i-Ss2">
                         <rect key="frame" x="0.0" y="0.0" width="246" height="404"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -587,6 +599,10 @@
         <scene sceneID="RmB-bo-kgb">
             <objects>
                 <viewController id="x7y-WG-EOz" customClass="EM_PopOutContainerViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kQa-EY-pX0"/>
+                        <viewControllerLayoutGuide type="bottom" id="8gJ-jX-Y2M"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3Al-qU-U1C">
                         <rect key="frame" x="0.0" y="0.0" width="164" height="274"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

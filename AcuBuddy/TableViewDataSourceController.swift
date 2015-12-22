@@ -12,6 +12,7 @@ var kIsHerbs: Bool?
 
 class EM_TableViewDataController: NSObject, UITableViewDataSource {
     
+
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -21,6 +22,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             //it is a herb
             
             let herbs = EM_HerbsController.sharedInstance.herbs
+            
             let herb = herbs[indexPath.row]
             let name = herb.name
             
@@ -29,6 +31,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         } else {
             // it is a point
             let points = EM_PointsController.sharedInstance.points
+        
             let point = points[indexPath.row]
             let channel = point.channel
             let number = point.number

@@ -18,7 +18,7 @@ class EM_HPVC_ContainerViewController: UIViewController {
         let image = EM_ImagesController.sharedInstance.images.first?.image
         
         imageView.image = image
-        imageView.alpha = 0.2
+        imageView.alpha = 0.6
         
     }
     
