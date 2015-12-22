@@ -93,6 +93,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="NvS-gN-Rhh"/>
                     <connections>
+                        <outlet property="containerImage" destination="XY8-0S-eit" id="H7H-UY-KoV"/>
                         <outlet property="containerTable" destination="FEk-XY-ae6" id="c4K-we-xR6"/>
                         <outlet property="tableView" destination="nBy-ff-ZS3" id="gSy-LT-wkm"/>
                     </connections>
