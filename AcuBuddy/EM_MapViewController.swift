@@ -55,7 +55,7 @@ class EM_MapViewController: UIViewController, UITableViewDataSource, UITableView
         textField.text = "Acupuncturists"
         
         // set initial location in Honolulu
-        var initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
+        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
         
         //initialLocation = CLLocation(latitude: 40.7608333, longitude: -111.8902778)
         
@@ -186,7 +186,7 @@ class EM_MapViewController: UIViewController, UITableViewDataSource, UITableView
     
     func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        var currentLocation: CLLocation = self.currentLocation
+        let currentLocation: CLLocation = self.currentLocation
         
         var mapRegion = MKCoordinateRegion()
         

@@ -37,6 +37,9 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     var buttonOriginalWidth: CGFloat?
     var buttonOriginalHeight: CGFloat?
     
+    @IBOutlet weak var popOutToLeading: NSLayoutConstraint!
+    
+    //MARK: BUTTON titles
     let elements = ["Fire", "Earth", "Metal", "Water", "Wood"]
     let array2 = ["Moxa", "Diet", "Acupuncture", "Microsystems", "Herbs"]
     let array3 = ["Acupuncture Points"]
@@ -104,6 +107,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     let popUpFromHamburger = UIView()
     let tabBar = UIView()
     
+    @IBOutlet weak var popOutContainer: UIView!
     let shadow = UIView()
 
     
@@ -113,6 +117,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         super.viewDidLoad()
         
         //set up the UI
+        self.containerImage.alpha = 0
+        //view.backgroundColor = UIColor(patternImage: UIImage(named: "bg-sunny")!)
         
         screenHeight = self.view.bounds.height / 8
         screenWidth = self.view.bounds.width / 8
@@ -137,8 +143,12 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         setUpTableView()
         
+        setUpPopOutContainer()
       
+        //TODO: Nest these functions
         
+        //2:
+            
         self.view.bringSubviewToFront(self.containerTable)
         self.containerTable.frame = CGRect(x: 10, y: 160, width: self.view.bounds.size.width - 10, height: self.view.bounds.size.height - 160)
         self.containerTable.hidden = true
@@ -186,7 +196,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         UIView.animateWithDuration(10) { () -> Void in
             
-            self.containerImage.alpha = 1
+            //self.containerImage.alpha = 1
         }
        
         if self.tableView.alpha == 1 {
@@ -371,7 +381,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
         let duration = 2.0
         let delay = 0.0
-        let options = [UIViewKeyframeAnimationOptions.CalculationModePaced, UIViewKeyframeAnimationOptions.Repeat]
+        _ = [UIViewKeyframeAnimationOptions.CalculationModePaced, UIViewKeyframeAnimationOptions.Repeat]
         let fullRotation = CGFloat(M_PI * 2)
         
   
@@ -1506,7 +1516,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                             } else {
                                 
                                 UIView.animateWithDuration(1, animations: { () -> Void in
-                                    //self.status.center.y -= self.view.frame.size.height
+                                    
                     
                                     }, completion: { _ in
                                         
@@ -1521,6 +1531,62 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                        
                 })
         })
+    }
+    
+    //MARK: Show Popout Container
+    
+    func setUpPopOutContainer(){
+    
+    //self.popOutContainer.translatesAutoresizingMaskIntoConstraints = true
+    self.popOutContainer.frame = CGRect(x: 0 , y: self.view.bounds.height - (self.view.bounds.height * 2/3), width: (self.view.bounds.width/4) * 2, height: self.view.bounds.height/2)
+    self.popOutContainer.frame.origin.x -= self.popOutContainer.frame.size.width
+    popOutContainer.alpha = 0
+    popOutContainer.layer.cornerRadius = 10
+    popOutContainer.backgroundColor = UIColor.lightGrayColor()
+    
+    }
+    
+    func showPopOutContainer(viewToDisplayMenu: UIView){
+        
+        if popOutContainer.alpha == 0 {
+            self.popOutContainer.hidden = false
+            //self.popOutContainer.translatesAutoresizingMaskIntoConstraints = true
+            UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .CurveEaseInOut, animations: { () -> Void in
+                self.popOutContainer.frame = CGRect(x: 50, y: self.view.bounds.height - (self.view.bounds.height * 2/3), width: (self.view.bounds.width/4) * 3, height: self.view.bounds.height - 100)
+                self.popOutContainer.alpha = 1
+                self.view.bringSubviewToFront(self.popOutContainer)
+                 self.makeButtonsTransparent()
+                viewToDisplayMenu.backgroundColor = Colors.grey
+                viewToDisplayMenu.superview?.alpha = 0.77
+                }, completion: { _ in
+                   
+                    
+            } )
+        
+            
+          
+            
+        } else {
+            
+            
+            //self.popOutContainer.translatesAutoresizingMaskIntoConstraints = true
+            self.view.sendSubviewToBack(self.popOutContainer)
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .CurveEaseInOut, animations: { () -> Void in
+                viewToDisplayMenu.backgroundColor = Colors.blue
+                viewToDisplayMenu.superview?.alpha = 1
+                //self.popOutContainer.frame.origin.x -= self.popOutContainer.frame.size.width
+                self.popOutContainer.alpha = 0
+                self.makeButtonsOpaque()
+                
+                }, completion: { _ in 
+            
+                    self.popOutContainer.hidden = true
+            } )
+
+            
+        }
+        
+        
     }
     
     //MARK: Undo
@@ -1642,16 +1708,16 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         superView!!.hidden = true
         
            UIView.animateWithDuration(2, animations: { () -> Void in
-            self.status.alpha = 0
+            
             
             }, completion: { _ in
                 
                 self.status.hidden = true
+               
                 self.setButtonTitles(self.elements)
            
            })
-        
-       
+    
     }
     
     func setUpUndoButton(){
@@ -2017,6 +2083,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     @IBAction func popUpButton5Tapped(){
         print("5 \(popUpButton5.titleLabel?.text) tapped")
         self.buttonTappedHandler((popUpButton5.titleLabel?.text)!)
+        
+        self.showPopOutContainer(self.popUpButton5)
     }
     @IBAction func popUpButton6Tapped(){
         print("6 \(popUpButton6.titleLabel?.text) tapped")
@@ -2025,10 +2093,15 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     @IBAction func popUpButton7Tapped(){
         print("7 \(popUpButton7.titleLabel?.text) tapped")
         self.buttonTappedHandler((popUpButton7.titleLabel?.text)!)
+        
+        
     }
     @IBAction func popUpButton8Tapped(){
+        
         print("8 \(popUpButton8.titleLabel?.text) tapped")
         self.buttonTappedHandler((popUpButton8.titleLabel?.text)!)
+        
+        self.showPopOutContainer(self.popUpButton8)
     }
     
     //MARK: TabBarButton Functions
@@ -2166,7 +2239,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         if title == "Correspondences" {
             
-            let messages = ["System of Correspondences"]
+            _ = ["System of Correspondences"]
             //self.showMessages(0, arrayOfMessages: messages)
             self.hamburgerButtonTapped()
             self.moveButtonsToLeftEdge()

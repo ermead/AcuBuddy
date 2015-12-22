@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AcuBuddy/HomePageViewController.swift"
-            timestampString = "472444811.257193"
+            timestampString = "472505116.563374"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "912"
-            endingLineNumber = "912"
+            startingLineNumber = "922"
+            endingLineNumber = "922"
             landmarkName = "setButtonTitles(_:)"
             landmarkType = "5">
          </BreakpointContent>
