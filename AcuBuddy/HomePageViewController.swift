@@ -498,59 +498,39 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
     }
     
-    @IBAction func redButtonTapped(sender: AnyObject) {
+    @IBAction func redButtonTapped(sender: UIButton) {
         storeBackFunctions()
-        showMessages(0, arrayOfMessages: messages)
-        //VariousFunctions().expandAndDisappear(sender as! UIButton, view: self.view)
-        delay(seconds: 1, completion: { _ in
-            
-            self.setButtonsLikeStar()
-            
-        })
+        print(sender.titleLabel?.text)
+        buttonTappedHandler((sender.titleLabel?.text)!)
+        
     }
     
-    @IBAction func greenButtonTapped(sender: AnyObject) {
+    @IBAction func greenButtonTapped(sender: UIButton) {
         storeBackFunctions()
-        self.moveButtonsToEdges()
-        delay(seconds: 1, completion: { _ in
-            self.makeButtonsTransparent()
-        })
+        print(sender.titleLabel?.text)
+        buttonTappedHandler((sender.titleLabel?.text)!)
         
-        delay(seconds: 3, completion: { _ in
-            
-            //self.bringInButtons()
-        })
     }
     
-    @IBAction func yellowButtonTapped(sender: AnyObject) {
+    @IBAction func yellowButtonTapped(sender: UIButton) {
         storeBackFunctions()
-        //presentTableView()
-     
-    }
- 
-    @IBAction func greyButtonTapped(sender: AnyObject) {
-        storeBackFunctions()
-        self.moveButtonsToLeftEdge()
-        self.setButtonTitles(array2)
+        print(sender.titleLabel?.text)
+        buttonTappedHandler((sender.titleLabel?.text)!)
         
-        delay(seconds: 3, completion: { _ in
-            
-            //self.bringInButtons()
-        })
+        
     }
     
-    @IBAction func blueButtonTapped(sender: AnyObject) {
-        storeBackFunctions()
-        
-        bringButtonsToCenter()
-        
-        delay(seconds: 1, completion: { _ in
-            self.expandAsStack()
-        })
-        delay(seconds: 3, completion: { _ in
+    @IBAction func greyButtonTapped(sender: UIButton) {
+            storeBackFunctions()
+            print(sender.titleLabel?.text)
+            buttonTappedHandler((sender.titleLabel?.text)!)
             
-            //self.bringInButtons()
-        })
+    }
+    
+    @IBAction func blueButtonTapped(sender: UIButton) {
+        storeBackFunctions()
+        print(sender.titleLabel?.text)
+        buttonTappedHandler((sender.titleLabel?.text)!)
         
     }
     
@@ -936,6 +916,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     func sendButtonsAway(){
         
         UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseIn, animations: { () -> Void in
+            
             self.button_red.center = CGPoint(x: self.view.bounds.width / 2, y: -self.view.bounds.height)
             self.button_yellow.center = CGPoint(x: self.view.bounds.width * 2, y: -self.view.bounds.height)
             self.button_grey.center = CGPoint(x: self.view.bounds.width * 2, y: self.view.bounds.height * 2)
@@ -959,9 +940,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     }
     
     func expandAsStack(){
-        let titles = ["Heat", "Dampness", "Dryness", "Cold", "Wind"]
-        setButtonTitles(titles)
-        
+       
         let buttons = [self.button_red, self.button_green, self.button_yellow, self.button_grey, self.button_blue]
         var delay = 0.1
         var offSetY = CGFloat(5)
@@ -969,7 +948,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             UIView.animateWithDuration(0.5, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
                
                 button.center.x = self.view.center.x
-                button.center.y = button.frame.size.height + 10 + offSetY
+                button.center.y = button.frame.size.height + 40 + offSetY
                 delay += 0.1
                 offSetY += button.frame.size.height + CGFloat(5)
                 }, completion: {_ in
@@ -994,7 +973,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             UIView.animateWithDuration(0.5, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
                 
                 button.center.x = self.view.center.x
-                button.center.y = button.frame.size.height + 10 + offSetY
+                button.center.y = button.frame.size.height + 40 + offSetY
                 delay += 0.1
                 offSetY += button.frame.size.height + CGFloat(5)
                 }, completion: {_ in
@@ -1528,12 +1507,12 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                                 
                                 UIView.animateWithDuration(1, animations: { () -> Void in
                                     //self.status.center.y -= self.view.frame.size.height
-                                    self.status.alpha = 0
+                    
                                     }, completion: { _ in
                                         
-                                        self.status.hidden = true
-                                        //self.status.center.y += self.view.frame.size.height
-                                        self.status.alpha = 1
+                                        
+                                       
+    
                                 })
                                
                             }
@@ -1661,6 +1640,17 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         self.bottomTabBarButton.hidden = false
         print("dismiss tapped")
         superView!!.hidden = true
+        
+           UIView.animateWithDuration(2, animations: { () -> Void in
+            self.status.alpha = 0
+            
+            }, completion: { _ in
+                
+                self.status.hidden = true
+                self.setButtonTitles(self.elements)
+           
+           })
+        
        
     }
     
@@ -1898,15 +1888,14 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 
                 for button in twoBottomButtons{
                     if button.frame.size.width > self.buttonOriginalWidth {
-                        
-                        self.expandAsStack()
-                        
+                        if self.label.text == "Remedies" {
+                            self.expandAsStackRemedies()
+                        } else {
+                            self.expandAsStack()
+                        }
                     } else {button.frame.origin.y -= (self.view.frame.size.height/8)}
                 }
-                
-              
-                
-               
+ 
             
                 }, completion: { _ in
                    //self.makeButtonsTransparent()
@@ -1955,7 +1944,11 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                     
                     if button.frame.size.width > self.buttonOriginalWidth {
                         
-                       self.expandAsStack()
+                        if self.label.text == "Remedies" {
+                            self.expandAsStackRemedies()
+                        } else {
+                            self.expandAsStack()
+                        }
                     }
                 }
                 
@@ -2116,7 +2109,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     
     func buttonTappedHandler(title: String){
-    
+        //Buttons for HamburgerPopUp
+        
+        containerTable.hidden = true
+        
         if title == "Remedies" {
             
             let titles = self.remedies
@@ -2152,9 +2148,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         if title == "Blogs" {
             
-            let messages = ["Check Out the Latest Blogs"]
             self.hamburgerButtonTapped()
-            self.showMessages(0, arrayOfMessages: messages)
             self.blogButtonTapped(self)
             
         }
@@ -2176,6 +2170,126 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             //self.showMessages(0, arrayOfMessages: messages)
             self.hamburgerButtonTapped()
             self.moveButtonsToLeftEdge()
+            
+        }
+        
+      //Buttons For Remedies:
+        if title == "Microsystems" {
+            
+            let messages = ["Microsystems"]
+            self.showMessages(0, arrayOfMessages: messages)
+        
+
+        }
+        
+        if title == "Acupuncture" {
+            
+            let messages = ["Acupuncture"]
+            self.showMessages(0, arrayOfMessages: messages)
+            
+            kIsHerbs = false
+            
+            tableView.reloadData()
+            presentTableView()
+            
+            for button in self.allButtons {
+                  UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    
+                    button.alpha = 0
+                    
+                    }, completion: { _ in
+                        
+                    
+                  })
+                
+            }
+            
+            
+            
+        }
+        
+        if title == "Herbs" {
+            
+            let messages = ["Herbal Medicine"]
+            self.showMessages(0, arrayOfMessages: messages)
+            
+            kIsHerbs = true
+            
+            tableView.reloadData()
+            presentTableView()
+            
+            for button in self.allButtons {
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    
+                    button.alpha = 0
+                    
+                    }, completion: { _ in
+                        
+                        
+                })
+                
+            }
+
+            
+        }
+        
+        if title == "Moxa" {
+            
+            let messages = ["Moxabustion"]
+            self.showMessages(0, arrayOfMessages: messages)
+          
+            
+            
+        }
+        
+        if title == "Diet" {
+            
+            let messages = ["Dietary Guidelines"]
+            self.showMessages(0, arrayOfMessages: messages)
+          
+            
+            
+        }
+        
+        //Buttons for Disorders:
+        if title == "Heat" {
+            
+            let messages = ["Hot Disorders"]
+            self.showMessages(0, arrayOfMessages: messages)
+         
+            
+            
+        }
+        if title == "Wind" {
+            
+            let messages = ["Windy Disorders"]
+            self.showMessages(0, arrayOfMessages: messages)
+          
+            
+            
+        }
+        if title == "Dampness" {
+            
+            let messages = ["Damp Disorders"]
+            self.showMessages(0, arrayOfMessages: messages)
+          
+            
+            
+        }
+        if title == "Dryness" {
+            
+            let messages = ["Dry Disorders"]
+            self.showMessages(0, arrayOfMessages: messages)
+           
+            
+            
+        }
+        if title == "Cold" {
+            
+            let messages = ["Cold Disorders"]
+            self.showMessages(0, arrayOfMessages: messages)
+          
+            
             
         }
         

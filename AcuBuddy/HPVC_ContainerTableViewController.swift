@@ -23,7 +23,7 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
         if categoryIndex >= categories.count {
             categoryIndex = 0
         }
-        self.categoryLabel.text = categories[categoryIndex]
+        self.categoryLabel.text = categories[categoryIndex].capitalizedString
         
         indexSection += 5
         if indexSection >= tableView.numberOfSections - 1 {
@@ -38,7 +38,7 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
         if categoryIndex < 0 {
             categoryIndex = 0
         }
-        self.categoryLabel.text = categories[categoryIndex]
+        self.categoryLabel.text = categories[categoryIndex].capitalizedString
         
         indexSection -= 5
         if indexSection <= 0 {
