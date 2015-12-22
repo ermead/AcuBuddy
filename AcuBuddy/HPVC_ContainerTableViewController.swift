@@ -9,7 +9,12 @@
 import Foundation
 import UIKit
 
+let dismissNotification = "dismissNotification"
+
 class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+   
+    let nc = NSNotificationCenter.defaultCenter()
     
     @IBOutlet weak var categoryLabel: UILabel!
     
@@ -144,11 +149,12 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
         let superView = sender.superview
         print("HPVC_ContainerTableViewController dismiss button tapped")
         UIView.animateWithDuration(0.3) { () -> Void in
-            superView!!.alpha = 0
+           // superView!!.alpha = 0
         }
         
+        nc.postNotificationName(dismissNotification, object: self)
         
-        
+
     }
     
     

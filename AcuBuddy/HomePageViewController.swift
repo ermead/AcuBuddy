@@ -25,6 +25,9 @@ func delay(seconds seconds: Double, completion:()->()) {
 
 class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate {
     
+    let nc = NSNotificationCenter.defaultCenter()
+    
+    
     var didSetDefaultOffSets: Bool = false
     var xOffSetAdjust: CGFloat? = 0
     var yOffSetAdjust: CGFloat? = 1
@@ -123,8 +126,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        //(self, selector: "firstBellRang:", name: FirstBellNotification, object: nil)
+        nc.addObserver(self, selector: "handleDismissNotification", name: dismissNotification, object: nil)
         
         blueSquare.center = self.view.center
         blueSquare.frame.size = CGSize(width: 15, height: 15)
@@ -507,6 +510,17 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     }
     
     // MARK: further methods
+    
+    //MARK: NSNotifications: 
+    
+    func handleDismissNotification() {
+        print("dismiss notification handled")
+        containerTable.alpha = 0
+        containerTable.hidden = true
+        self.bottomTabBarButton.hidden = false
+        self.undoButton.hidden = false
+        self.setButtonsLikeStar()
+    }
     
     //MARK: Motion:
     func setDefaultOffSets(x: CGFloat, y: CGFloat){
@@ -1093,14 +1107,6 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
         }
         
-        
-        containerTable.hidden = false
-        containerTable.frame = CGRect(x: self.button_red.frame.origin.x + self.button_red.frame.size.width, y: self.button_red.frame.origin.y - 10 - 50, width: self.view.frame.size.width - self.button_red.frame.size.width, height: 50 + 10 + (self.button_blue.frame.origin.y + button_blue.frame.size.height) - self.button_red.frame.origin.y)
-        containerTable.layer.cornerRadius = 20
-        containerTable.alpha = 1
-        setUpDismissButton(dismissViewButtonView)
-        dismissViewButtonView.frame = CGRect(x: 30, y: 50, width: 30, height: 30)
-
     }
     
     func moveButtonsToEdges(){
@@ -1728,7 +1734,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
     }
     
-    //MARK: TableView
+    //MARK: TableViews
     func setUpTableView() {
         tableView.hidden = true
         tableView.alpha = 0
@@ -1757,6 +1763,19 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             }, completion: nil )
     }
     
+    ///2
+    func presentContainerTable(){
+        containerTable.hidden = false
+        containerTable.frame = CGRect(x: self.button_red.frame.origin.x + self.button_red.frame.size.width, y: self.button_red.frame.origin.y - 10 - 50, width: self.view.frame.size.width - self.button_red.frame.size.width, height: 50 + 10 + (self.button_blue.frame.origin.y + button_blue.frame.size.height) - self.button_red.frame.origin.y)
+        containerTable.layer.cornerRadius = 20
+        containerTable.alpha = 1
+        setUpDismissButton(dismissViewButtonView)
+        dismissViewButtonView.frame = CGRect(x: 30, y: 50, width: 30, height: 30)
+        self.bottomTabBarButton.hidden = true
+        self.tabBar.hidden = true
+        self.undoButton.hidden = true
+    }
+    
     //MARK: Various UI Buttons
     func setUpDismissButton(view: UIView){
         
@@ -1773,6 +1792,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         let superView = sender.superview
         self.bringInButtons()
         self.bottomTabBarButton.hidden = false
+        self.tabBar.hidden = false
         print("dismiss tapped")
         superView!!.hidden = true
         
@@ -2004,7 +2024,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 self.bottomTabBarButton.setTitle("▼", forState: .Normal)
                 
                 var leftStack: [UIButton] = []
-                
+                /*
                 for button in self.allButtons {
                     if button.frame.origin.x == 0{
                         leftStack.append(button)
@@ -2031,7 +2051,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                     } else {button.frame.origin.y -= (self.view.frame.size.height/8)}
                 }
  
-            
+            */
                 }, completion: { _ in
                    //self.makeButtonsTransparent()
             })
@@ -2312,6 +2332,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             //self.showMessages(0, arrayOfMessages: messages)
             self.hamburgerButtonTapped()
             self.moveButtonsToLeftEdge()
+            self.presentContainerTable()
             
         }
         

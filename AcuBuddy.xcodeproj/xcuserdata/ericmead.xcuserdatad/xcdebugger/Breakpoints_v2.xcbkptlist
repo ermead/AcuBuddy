@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AcuBuddy/HomePageViewController.swift"
-            timestampString = "472515173.350904"
+            timestampString = "472520164.638472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "993"
-            endingLineNumber = "993"
+            startingLineNumber = "1007"
+            endingLineNumber = "1007"
             landmarkName = "setButtonTitles(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AcuBuddy/HPVC_ContainerTableViewController.swift"
-            timestampString = "472444158.739139"
+            timestampString = "472518466.762763"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "tableView(_:heightForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
