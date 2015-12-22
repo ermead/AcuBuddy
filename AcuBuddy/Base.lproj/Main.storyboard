@@ -427,6 +427,12 @@
                                     <action selector="rightButtonTapped:" destination="x8n-cj-ExL" eventType="touchUpInside" id="XAQ-pi-wDq"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scH-6Z-RWT">
+                                <rect key="frame" x="102" y="27" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="DEh-8r-SS7" secondAttribute="bottom" id="2qC-y9-ygV"/>
@@ -438,8 +444,10 @@
                             <constraint firstItem="DEh-8r-SS7" firstAttribute="top" secondItem="0Dw-wd-LN7" secondAttribute="bottom" constant="2" id="T9c-Kn-kP7"/>
                             <constraint firstAttribute="trailing" secondItem="DEh-8r-SS7" secondAttribute="trailing" id="Y7z-Em-wjd"/>
                             <constraint firstItem="JfF-Uk-6ri" firstAttribute="leading" secondItem="bOG-2i-Ss2" secondAttribute="leading" id="fcO-Sc-e0P"/>
+                            <constraint firstItem="DEh-8r-SS7" firstAttribute="top" secondItem="scH-6Z-RWT" secondAttribute="bottom" constant="2" id="hce-SC-nWl"/>
                             <constraint firstItem="DEh-8r-SS7" firstAttribute="centerX" secondItem="bOG-2i-Ss2" secondAttribute="centerX" id="hgY-AY-m4a"/>
                             <constraint firstAttribute="trailing" secondItem="0Dw-wd-LN7" secondAttribute="trailing" id="jt1-Vn-Dow"/>
+                            <constraint firstItem="scH-6Z-RWT" firstAttribute="centerX" secondItem="bOG-2i-Ss2" secondAttribute="centerX" id="l4Q-XL-Lbn"/>
                             <constraint firstItem="DEh-8r-SS7" firstAttribute="top" secondItem="bOG-2i-Ss2" secondAttribute="top" constant="50" id="m1C-0o-fwD"/>
                             <constraint firstItem="0Dw-wd-LN7" firstAttribute="leading" secondItem="JfF-Uk-6ri" secondAttribute="trailing" constant="20" id="mDU-hI-OaS"/>
                             <constraint firstItem="DEh-8r-SS7" firstAttribute="centerY" secondItem="bOG-2i-Ss2" secondAttribute="centerY" id="sYV-Qj-zBi"/>
@@ -447,6 +455,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryLabel" destination="scH-6Z-RWT" id="BUY-Tv-uxO"/>
                         <outlet property="tableView" destination="DEh-8r-SS7" id="DQW-ny-L7w"/>
                     </connections>
                 </viewController>

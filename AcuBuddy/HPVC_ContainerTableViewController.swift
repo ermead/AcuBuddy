@@ -11,11 +11,20 @@ import UIKit
 
 class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var categoryLabel: UILabel!
+    
     let dismissButton = UIButton()
     
     var indexSection = 0
+    var categoryIndex = 0
     
     @IBAction func rightButtonTapped(sender: AnyObject) {
+        categoryIndex += 1
+        if categoryIndex >= categories.count {
+            categoryIndex = 0
+        }
+        self.categoryLabel.text = categories[categoryIndex]
+        
         indexSection += 5
         if indexSection >= tableView.numberOfSections - 1 {
             indexSection = 0
@@ -25,6 +34,12 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
     }
    
     @IBAction func leftButtonTapped(sender: AnyObject) {
+        categoryIndex -= 1
+        if categoryIndex < 0 {
+            categoryIndex = 0
+        }
+        self.categoryLabel.text = categories[categoryIndex]
+        
         indexSection -= 5
         if indexSection <= 0 {
             indexSection = 0
@@ -38,6 +53,8 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
     
     let dictionary: NSDictionary = ["colors": ["Red", "Green", "Yellow", "White", "Blue"], "organs" : ["Heart", "Liver", "Spleen", "Lung", "Kidney"], "emotions": ["Joy", "Anger", "Worry", "Grief", "Fear"]]
     
+    var categories: [String] = []
+    var array1: [[String]] = []
     var array: [String] = []
     
     var height: CGFloat?
@@ -46,8 +63,18 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
         
         height = EM_HomePageViewController().buttonOriginalHeight
         
-        array = (dictionary["colors"] as! [String]) + (dictionary["organs"] as! [String]) + (dictionary["emotions"] as! [String])
+        categories = dictionary.allKeys as! [String]
         
+        for category in categories {
+            
+            array1.append(dictionary[category] as! [String])
+        }
+        
+        array = array1.flatMap { $0 }
+        
+        self.categoryLabel.text = categories[0]
+        
+        print(categories)
         setUpDismissButton(self.view)
     }
     
@@ -115,7 +142,7 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
     
     @IBAction func dismissButtonTapped(sender: AnyObject){
         let superView = sender.superview
-        print("tapped")
+        print("HPVC_ContainerTableViewController dismiss button tapped")
         UIView.animateWithDuration(0.3) { () -> Void in
             superView!!.alpha = 0
         }
