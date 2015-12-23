@@ -529,6 +529,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         self.containerImage.hidden = false
         containerTable.alpha = 0
         containerTable.hidden = true
+        self.hamburgerButton.alpha = 1
         self.bottomTabBarButton.alpha = 1
         self.bottomTabBarButton.userInteractionEnabled = true
         self.undoButton.hidden = false
@@ -1796,7 +1797,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         //sendButtonsAway()
         
         tableView.reloadData()
-        
+        self.containerImage.hidden = true
         UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .CurveEaseInOut, animations: { () -> Void in
             self.tableView.hidden = false
             self.tableView.alpha = 1
@@ -1822,7 +1823,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     //MARK: Various UI Buttons
     func setUpDismissButton(view: UIView){
         
-        dismissButton.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
+        dismissButton.frame = CGRect(x: 7, y: 5, width: 40, height: 40)
         dismissButton.setTitle("X", forState: .Normal)
         dismissButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         dismissButton.backgroundColor = UIColor.lightGrayColor()
@@ -1837,6 +1838,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         //self.bottomTabBarButton.hidden = false
         //self.tabBar.hidden = false
         print("dismiss tapped")
+        self.handleDismissNotification()
         superView!!.hidden = true
         
            UIView.animateWithDuration(2, animations: { () -> Void in
@@ -2152,9 +2154,16 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
 
                 for button in twoBottomButtons {
+                    
+                    if button.frame.size.width > self.buttonOriginalWidth {
                         
-                    button.frame.origin.y += (self.view.frame.size.height/8)
+                        continue
                         
+                    } else {
+                    
+                        button.frame.origin.y += (self.view.frame.size.height/8)
+                    }
+                    
                     }
                 
                 
@@ -2404,6 +2413,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             self.hamburgerButtonTapped()
             self.moveButtonsToLeftEdge()
             self.presentContainerTable()
+            self.hamburgerButton.alpha = 0
             
         }
         
