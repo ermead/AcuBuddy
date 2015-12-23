@@ -8,13 +8,46 @@
 
 import UIKit
 
-class EM_PopOutContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    let popOutDismissed = "popOutDismissed"
 
+class EM_PopOutContainerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var dismissView: UIView!
+    let dismissButton = UIButton()
+    let nc = NSNotificationCenter.defaultCenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUpDismissButton(self.dismissView)
+        
         // Do any additional setup after loading the view.
     }
+    
+    func setUpDismissButton(view: UIView){
+        
+        dismissButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        dismissButton.setTitle("X", forState: .Normal)
+        dismissButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        dismissButton.backgroundColor = UIColor.lightGrayColor()
+        dismissButton.addTarget(self, action: "dismissButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(dismissButton)
+        
+    }
+    
+    @IBAction func dismissButtonTapped(sender: AnyObject){
+        let superView = sender.superview
+        print("HPVC_PopOut dismiss button tapped")
+        UIView.animateWithDuration(0.3) { () -> Void in
+            // superView!!.alpha = 0
+        }
+        
+        nc.postNotificationName(popOutDismissed, object: self)
+        
+        
+    }
+
+    
+    //MARK: Table Views
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)

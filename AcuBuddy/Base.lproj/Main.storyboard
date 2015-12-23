@@ -607,8 +607,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="164" height="274"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YyC-hf-YxK">
-                                <rect key="frame" x="0.0" y="0.0" width="164" height="274"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YyC-hf-YxK">
+                                <rect key="frame" x="0.0" y="28" width="164" height="246"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="fJT-Vs-rAL">
@@ -625,10 +625,20 @@
                                     <outlet property="delegate" destination="x7y-WG-EOz" id="ifL-gh-Xwu"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0K-lS-hnM">
+                                <rect key="frame" x="134" y="0.0" width="30" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="S07-Lj-elc"/>
+                                    <constraint firstAttribute="height" constant="30" id="wRQ-Zy-oVh"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="YyC-hf-YxK" firstAttribute="top" secondItem="3Al-qU-U1C" secondAttribute="top" id="3SA-Nl-3no"/>
+                            <constraint firstItem="YyC-hf-YxK" firstAttribute="top" secondItem="3Al-qU-U1C" secondAttribute="top" constant="30" id="3SA-Nl-3no"/>
+                            <constraint firstAttribute="trailing" secondItem="H0K-lS-hnM" secondAttribute="trailing" id="5Wq-DD-CFH"/>
+                            <constraint firstItem="H0K-lS-hnM" firstAttribute="top" secondItem="kQa-EY-pX0" secondAttribute="bottom" id="QJb-OD-V2G"/>
                             <constraint firstAttribute="trailing" secondItem="YyC-hf-YxK" secondAttribute="trailing" id="RIK-cG-3Sk"/>
                             <constraint firstItem="YyC-hf-YxK" firstAttribute="centerY" secondItem="3Al-qU-U1C" secondAttribute="centerY" id="U10-W0-e8O"/>
                             <constraint firstItem="YyC-hf-YxK" firstAttribute="leading" secondItem="3Al-qU-U1C" secondAttribute="leading" id="UiU-7L-oPo"/>
@@ -636,10 +646,13 @@
                             <constraint firstAttribute="bottom" secondItem="YyC-hf-YxK" secondAttribute="bottom" id="p8D-Gb-3Qe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dismissView" destination="H0K-lS-hnM" id="ccq-bH-Iwz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nv-E4-zjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="49"/>
+            <point key="canvasLocation" x="1032" y="59"/>
         </scene>
     </scenes>
     <resources>

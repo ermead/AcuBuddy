@@ -128,6 +128,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         super.viewDidLoad()
         //(self, selector: "firstBellRang:", name: FirstBellNotification, object: nil)
         nc.addObserver(self, selector: "handleDismissNotification", name: dismissNotification, object: nil)
+        nc.addObserver(self, selector: "handlePopoutDismissedNotification", name: popOutDismissed, object: nil)
         
         blueSquare.center = self.view.center
         blueSquare.frame.size = CGSize(width: 15, height: 15)
@@ -518,9 +519,33 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         containerTable.alpha = 0
         containerTable.hidden = true
         self.bottomTabBarButton.hidden = false
+        self.tabBar.hidden = false
         self.undoButton.hidden = false
         self.setButtonsLikeStar()
+       
     }
+    
+    func handlePopoutDismissedNotification(){
+        
+        self.popOutContainer.hidden = true
+        self.popUpFromHamburger.userInteractionEnabled = true
+        
+        let array : [UIButton] = [popUpButton1, popUpButton2, popUpButton3, popUpButton4, popUpButton5, popUpButton6, popUpButton7, popUpButton8]
+        
+        for button in array {
+            
+            button.backgroundColor = Colors.blue
+        }
+        
+        self.popUpFromHamburger.alpha = 1
+        self.bottomTabBarButton.alpha = 1
+        self.bottomTabBarButton.userInteractionEnabled = true
+        self.undoButton.hidden = false
+        
+        //self.hamburgerButtonTapped()
+        
+    }
+    
     
     //MARK: Motion:
     func setDefaultOffSets(x: CGFloat, y: CGFloat){
@@ -1544,7 +1569,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         for button in buttons {
             
             UIView.animateWithDuration(0.5, animations: { () -> Void in
-                button.alpha = 0.3
+                button.alpha = 0.1
             })
         }
         
@@ -1620,21 +1645,27 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     popOutContainer.alpha = 0
     popOutContainer.layer.cornerRadius = 10
     popOutContainer.backgroundColor = UIColor.lightGrayColor()
+    popOutContainer.hidden = true
     
     }
     
     func showPopOutContainer(viewToDisplayMenu: UIView){
         
-        if popOutContainer.alpha == 0 {
+        if popOutContainer.hidden == true {
+            
+            self.popUpFromHamburger.userInteractionEnabled = false
             self.popOutContainer.hidden = false
             //self.popOutContainer.translatesAutoresizingMaskIntoConstraints = true
             UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .CurveEaseInOut, animations: { () -> Void in
-                self.popOutContainer.frame = CGRect(x: 50, y: self.view.bounds.height - (self.view.bounds.height * 2/3), width: (self.view.bounds.width/4) * 3, height: self.view.bounds.height - 100)
+                //self.popOutContainer.frame = CGRect(x: 50, y: self.view.bounds.height - (self.view.bounds.height * 2/3), width: (self.view.bounds.width/4) * 3, height: self.view.bounds.height - 100)
                 self.popOutContainer.alpha = 1
                 self.view.bringSubviewToFront(self.popOutContainer)
                  self.makeButtonsTransparent()
                 viewToDisplayMenu.backgroundColor = Colors.grey
                 viewToDisplayMenu.superview?.alpha = 0.77
+                self.bottomTabBarButton.alpha = 0
+                self.bottomTabBarButton.userInteractionEnabled = false
+               
                 }, completion: { _ in
                    
                     
