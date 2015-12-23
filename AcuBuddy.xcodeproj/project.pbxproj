@@ -12,6 +12,7 @@
 		D71850DF1C2239CC00184931 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71850DD1C2239CC00184931 /* Main.storyboard */; };
 		D71850E11C2239CC00184931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71850E01C2239CC00184931 /* Assets.xcassets */; };
 		D71850E41C2239CC00184931 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71850E21C2239CC00184931 /* LaunchScreen.storyboard */; };
+		D76F384F1C2A52D800B0963C /* EM_QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F384E1C2A52D800B0963C /* EM_QuizViewController.swift */; };
 		D7CEA7011C234C620009A3B7 /* TableViewDataSourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CEA7001C234C620009A3B7 /* TableViewDataSourceController.swift */; };
 		D7CEA7031C234E9E0009A3B7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */; };
 		D7CEA7051C2366E00009A3B7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CEA7041C2366E00009A3B7 /* DetailViewController.swift */; };
@@ -48,6 +49,7 @@
 		D71850E01C2239CC00184931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D71850E31C2239CC00184931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D71850E51C2239CC00184931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D76F384E1C2A52D800B0963C /* EM_QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EM_QuizViewController.swift; sourceTree = "<group>"; };
 		D7CEA7001C234C620009A3B7 /* TableViewDataSourceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceController.swift; sourceTree = "<group>"; };
 		D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D7CEA7041C2366E00009A3B7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */,
 				D7D5DCCF1C2670F4005BA837 /* DVC_CollectionViewCell.swift */,
 				D7D5DCE61C2840C8005BA837 /* EM_MapViewController.swift */,
+				D76F384E1C2A52D800B0963C /* EM_QuizViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				D71850DC1C2239CC00184931 /* IntroViewController.swift in Sources */,
 				D7D6E04B1C22438B00400374 /* TriangleLayer.swift in Sources */,
 				D7D5DCEB1C29D5E2005BA837 /* HPVC_PopOutContainerViewController.swift in Sources */,
+				D76F384F1C2A52D800B0963C /* EM_QuizViewController.swift in Sources */,
 				D7D5DCD81C273253005BA837 /* ImagesController.swift in Sources */,
 				D7D5DCE71C2840C8005BA837 /* EM_MapViewController.swift in Sources */,
 				D71850DA1C2239CC00184931 /* AppDelegate.swift in Sources */,

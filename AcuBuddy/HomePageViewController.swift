@@ -69,7 +69,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     let pathogenicFactors = ["Heat", "Dampness", "Dryness", "Cold", "Wind"]
     
     
-    let popUpButtonTitles = ["Remedies", "Disorders", "Correspondences", "Add Photo", "Settings", "Blogs", "Maps"]
+    let popUpButtonTitles = ["Remedies", "Disorders", "Correspondences", "Add Photo", "Settings", "Blogs", "Maps", "Quiz"]
     
     // MARK: IB outlets
     
@@ -2419,6 +2419,18 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             performSegueWithIdentifier("goToMapView", sender: self)
             
         
+        }
+        
+        if title == "Quiz" {
+            
+            let messages = ["Take a Challenge"]
+            self.hamburgerButtonTapped()
+            //self.showMessages(0, arrayOfMessages: messages)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            performSegueWithIdentifier("goToQuizView", sender: self)
+            
+            
         }
         
         if title == "Correspondences" {

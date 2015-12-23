@@ -115,6 +115,7 @@
                         <outlet property="popOutToLeading" destination="3Ra-pi-704" id="F76-8J-vq4"/>
                         <outlet property="tableView" destination="nBy-ff-ZS3" id="gSy-LT-wkm"/>
                         <segue destination="EbQ-4f-wO6" kind="modal" identifier="goToMapView" id="8WA-1z-4g2"/>
+                        <segue destination="P8M-nb-PmN" kind="modal" identifier="goToQuizView" id="6g6-ox-gNF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VU7-wL-HN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -347,6 +348,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uic-aA-k5T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="298.66666666666669" y="-239.50666666666666"/>
+        </scene>
+        <!--Quiz View Controller-->
+        <scene sceneID="FVP-NM-w5g">
+            <objects>
+                <viewController storyboardIdentifier="QuizView" id="P8M-nb-PmN" customClass="EM_QuizViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q8h-Np-KTZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="TRb-xg-gmb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8ul-AP-g2w">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h37-uR-Ig2">
+                                <rect key="frame" x="139" y="111" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gll-zZ-TAi">
+                                <rect key="frame" x="137" y="223" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="button1Tapped:" destination="P8M-nb-PmN" eventType="touchUpInside" id="Fwv-Cr-fmy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDR-c1-RV2">
+                                <rect key="frame" x="137" y="360" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="button2Tapped:" destination="P8M-nb-PmN" eventType="touchUpInside" id="7Vx-7L-0bx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYQ-cX-dSH">
+                                <rect key="frame" x="139" y="311" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rYQ-cX-dSH" firstAttribute="centerX" secondItem="8ul-AP-g2w" secondAttribute="centerX" id="3nZ-Hw-lPs"/>
+                            <constraint firstItem="fDR-c1-RV2" firstAttribute="centerX" secondItem="8ul-AP-g2w" secondAttribute="centerX" id="XMq-rk-vJL"/>
+                            <constraint firstItem="gll-zZ-TAi" firstAttribute="centerX" secondItem="8ul-AP-g2w" secondAttribute="centerX" id="jdi-k9-iwf"/>
+                            <constraint firstItem="h37-uR-Ig2" firstAttribute="centerX" secondItem="8ul-AP-g2w" secondAttribute="centerX" id="vzV-Jw-H6H"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button1" destination="gll-zZ-TAi" id="wL4-mI-249"/>
+                        <outlet property="button2" destination="fDR-c1-RV2" id="aWg-3C-Nqa"/>
+                        <outlet property="label1" destination="h37-uR-Ig2" id="sbJ-vO-8tt"/>
+                        <outlet property="label2" destination="rYQ-cX-dSH" id="IFR-42-HSz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XEn-R7-vIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="107" y="506"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="cgg-L6-xL3">
@@ -659,7 +718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nv-E4-zjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="-21"/>
+            <point key="canvasLocation" x="967" y="-12"/>
         </scene>
     </scenes>
     <resources>
