@@ -222,9 +222,12 @@ class EM_MapViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func dismissButtonTapped(sender: AnyObject){
-        
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName(dismissNotification, object: self)
         UIView.animateWithDuration(0.3) { () -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
+            
+           self.dismissViewControllerAnimated(true, completion: nil)
+            
         }
         
     }

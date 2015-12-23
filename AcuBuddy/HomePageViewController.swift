@@ -27,6 +27,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     let nc = NSNotificationCenter.defaultCenter()
     
+    var didPlayIntro: Bool = false
     
     var didSetDefaultOffSets: Bool = false
     var xOffSetAdjust: CGFloat? = 0
@@ -190,6 +191,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         button_green
         */
         
+        self.containerImage.alpha = 0
+        
         screenHeight = self.view.bounds.height / 8
         screenWidth = self.view.bounds.width / 8
         buttonOriginalHeight = screenWidth! * 2
@@ -214,7 +217,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     }
     
     override func viewDidAppear(animated: Bool) {
+        
         super.viewDidAppear(animated)
+        
+        status.hidden = true
         
         containerImage.alpha = 0
         
@@ -223,14 +229,16 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             self.containerImage.alpha = 1
         }
        
-        if self.tableView.alpha == 1 {
+        if didPlayIntro == false {
+            self.animateIntroButtons()
+            self.didPlayIntro = true
             
         } else {
-            //bringInButtons()
-            delay(seconds: 0, completion: { () -> () in
-                self.animateIntroButtons()
-            })
+            
+            self.setButtonsLikeStar()
         }
+        
+    
     
     }
     
@@ -518,17 +526,18 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     func handleDismissNotification() {
         print("dismiss notification handled")
+        self.containerImage.hidden = false
         containerTable.alpha = 0
         containerTable.hidden = true
-        self.bottomTabBarButton.hidden = false
-        self.tabBar.hidden = false
+        self.bottomTabBarButton.alpha = 1
+        self.bottomTabBarButton.userInteractionEnabled = true
         self.undoButton.hidden = false
         self.setButtonsLikeStar()
        
     }
     
     func handlePopoutDismissedNotification(){
-        
+        self.containerImage.hidden = false
         self.popOutContainer.hidden = true
         self.popUpFromHamburger.userInteractionEnabled = true
         
@@ -1128,7 +1137,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                     
                     let titles = self.elements
                     self.setButtonTitles(titles)
-                    self.containerImage.hidden = true
+                    
                     
             } )
             
@@ -1798,14 +1807,15 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     ///2
     func presentContainerTable(){
+        self.containerImage.hidden = true
         containerTable.hidden = false
         containerTable.frame = CGRect(x: self.button_red.frame.origin.x + self.button_red.frame.size.width, y: self.button_red.frame.origin.y - 10 - 50, width: self.view.frame.size.width - self.button_red.frame.size.width, height: 50 + 10 + (self.button_blue.frame.origin.y + button_blue.frame.size.height) - self.button_red.frame.origin.y)
         containerTable.layer.cornerRadius = 20
         containerTable.alpha = 1
         setUpDismissButton(dismissViewButtonView)
         dismissViewButtonView.frame = CGRect(x: 30, y: 50, width: 30, height: 30)
-        self.bottomTabBarButton.hidden = true
-        self.tabBar.hidden = true
+        self.bottomTabBarButton.alpha = 0
+        self.bottomTabBarButton.userInteractionEnabled = false
         self.undoButton.hidden = true
     }
     
@@ -1824,8 +1834,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     @IBAction func dismissButtonTapped(sender: AnyObject){
         let superView = sender.superview
         self.bringInButtons()
-        self.bottomTabBarButton.hidden = false
-        self.tabBar.hidden = false
+        //self.bottomTabBarButton.hidden = false
+        //self.tabBar.hidden = false
         print("dismiss tapped")
         superView!!.hidden = true
         
@@ -1861,7 +1871,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     @IBAction func undoButtonTapped(){
         
             restoreToPastValues()
-        
+            self.status.hidden = true
     }
     
     func setUpActionButton(){
@@ -2081,7 +2091,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 self.bottomTabBarButton.setTitle("▼", forState: .Normal)
                 
                 var leftStack: [UIButton] = []
-                /*
+                
                 for button in self.allButtons {
                     if button.frame.origin.x == 0{
                         leftStack.append(button)
@@ -2108,7 +2118,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                     } else {button.frame.origin.y -= (self.view.frame.size.height/8)}
                 }
  
-            */
+            
                 }, completion: { _ in
                    //self.makeButtonsTransparent()
             })
@@ -2376,17 +2386,21 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
             let messages = ["Finding Nearby Resources"]
             self.hamburgerButtonTapped()
-            self.showMessages(0, arrayOfMessages: messages)
+            //self.showMessages(0, arrayOfMessages: messages)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc: EM_MapViewController = storyboard.instantiateViewControllerWithIdentifier("mapView") as! EM_MapViewController
-            presentViewController(vc, animated: true, completion: nil)
+            
+            performSegueWithIdentifier("goToMapView", sender: self)
+            
+//            let vc: EM_MapViewController = storyboard.instantiateViewControllerWithIdentifier("mapView") as! EM_MapViewController
+//            presentViewController(vc, animated: true, completion: nil)
             
         }
         
         if title == "Correspondences" {
             
-            _ = ["System of Correspondences"]
+            let messages = ["System of Correspondences"]
             //self.showMessages(0, arrayOfMessages: messages)
+            self.status.hidden = true
             self.hamburgerButtonTapped()
             self.moveButtonsToLeftEdge()
             self.presentContainerTable()

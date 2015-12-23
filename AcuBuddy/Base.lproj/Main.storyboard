@@ -114,6 +114,7 @@
                         <outlet property="popOutContainer" destination="wyU-lS-Pgy" id="5tp-HG-fY7"/>
                         <outlet property="popOutToLeading" destination="3Ra-pi-704" id="F76-8J-vq4"/>
                         <outlet property="tableView" destination="nBy-ff-ZS3" id="gSy-LT-wkm"/>
+                        <segue destination="EbQ-4f-wO6" kind="modal" identifier="goToMapView" id="8WA-1z-4g2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VU7-wL-HN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -445,25 +446,30 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfF-Uk-6ri">
                                 <rect key="frame" x="0.0" y="15" width="113" height="33"/>
-                                <state key="normal" title="◀︎"/>
+                                <state key="normal" title="◀︎">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="leftButtonTapped:" destination="x8n-cj-ExL" eventType="touchUpInside" id="UgF-kd-8Ge"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Dw-wd-LN7">
                                 <rect key="frame" x="133" y="15" width="113" height="33"/>
-                                <state key="normal" title=" ▶︎"/>
+                                <state key="normal" title=" ▶︎">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="rightButtonTapped:" destination="x8n-cj-ExL" eventType="touchUpInside" id="XAQ-pi-wDq"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scH-6Z-RWT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scH-6Z-RWT">
                                 <rect key="frame" x="102" y="27" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="DEh-8r-SS7" secondAttribute="bottom" id="2qC-y9-ygV"/>
                             <constraint firstItem="0Dw-wd-LN7" firstAttribute="top" secondItem="bOG-2i-Ss2" secondAttribute="top" priority="750" constant="15" id="4pf-Wn-qDK"/>
@@ -585,6 +591,7 @@
                             <constraint firstItem="6tS-C2-qwJ" firstAttribute="top" secondItem="gIX-BE-Ews" secondAttribute="bottom" constant="40" id="xhx-N8-atb"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="rjJ-CK-cX2"/>
                     <connections>
                         <outlet property="mapView" destination="tHP-5n-ieG" id="OvS-bR-OVj"/>
                         <outlet property="tableView" destination="4zW-tP-GMY" id="0U3-zK-5y4"/>
@@ -593,7 +600,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sii-Vh-PQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1181" y="512"/>
+            <point key="canvasLocation" x="1307" y="654"/>
         </scene>
         <!--Pop Out Container View Controller-->
         <scene sceneID="RmB-bo-kgb">
@@ -652,7 +659,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nv-E4-zjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1032" y="59"/>
+            <point key="canvasLocation" x="1088" y="-21"/>
         </scene>
     </scenes>
     <resources>

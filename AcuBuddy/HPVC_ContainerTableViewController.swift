@@ -77,10 +77,11 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
         
         array = array1.flatMap { $0 }
         
-        self.categoryLabel.text = categories[0]
+        self.categoryLabel.text = categories[0].capitalizedString
         
         print(categories)
         setUpDismissButton(self.view)
+        tableView.userInteractionEnabled = false
     }
     
     
@@ -140,6 +141,9 @@ class EM_HPVC_ContainerTableViewController: UIViewController, UITableViewDataSou
         dismissButton.setTitle("X", forState: .Normal)
         dismissButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         dismissButton.backgroundColor = UIColor.lightGrayColor()
+        dismissButton.layer.cornerRadius = 5
+        dismissButton.layer.borderWidth = 1
+        dismissButton.layer.borderColor = UIColor.blackColor().CGColor
         dismissButton.addTarget(self, action: "dismissButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(dismissButton)
         
