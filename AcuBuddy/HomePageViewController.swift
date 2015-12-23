@@ -66,6 +66,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     let pathogenicFactors = ["Heat", "Dampness", "Dryness", "Cold", "Wind"]
     
+    
     let popUpButtonTitles = ["Remedies", "Disorders", "Correspondences", "Add Photo", "Settings", "Blogs", "Maps"]
     
     // MARK: IB outlets
@@ -73,6 +74,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     let undoButton = UIButton()
     let actionButton = UIButton()
     
+    let dismissButtonForHamburgerPopup = UIButton()
     let popUpButton1 = UIButton()
     let popUpButton2 = UIButton()
     let popUpButton3 = UIButton()
@@ -1910,6 +1912,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         popUpFromHamburger.layer.cornerRadius = 10
         popUpFromHamburger.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(popUpFromHamburger)
+
         popUpFromHamburger.hidden = true
         
         self.setUpPopUpButtonsFromHamburger()
@@ -1949,12 +1952,14 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     func setUpPopUpButtonsFromHamburger(){
         
         let offsetX = CGFloat(5)
-        let offsetY = CGFloat(5)
+        let offsetY = CGFloat(25)
         let width = popUpFromHamburger.frame.size.width - offsetX - 10
-        let height = popUpFromHamburger.frame.size.height / 8 - ((offsetY * 2)/8)
+        let height = popUpFromHamburger.frame.size.height / 8 - ((offsetY + 5)/8)
        
         
-        let popUpButtons = [popUpButton1, popUpButton2, popUpButton3, popUpButton4, popUpButton5, popUpButton6, popUpButton7, popUpButton8]
+        let popUpButtons = [dismissButtonForHamburgerPopup ,popUpButton1, popUpButton2, popUpButton3, popUpButton4, popUpButton5, popUpButton6, popUpButton7, popUpButton8]
+        
+        dismissButtonForHamburgerPopup.frame.origin.y = 0
         
         popUpButton1.frame.origin.y = 0 + offsetY
         popUpButton2.frame.origin.y = height + offsetY
@@ -1965,6 +1970,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         popUpButton7.frame.origin.y = height * 6 + offsetY
         popUpButton8.frame.origin.y = height * 7 + offsetY
         
+        
+        dismissButtonForHamburgerPopup.addTarget(self, action: "dismissButtonForHamburgerPopupTapped", forControlEvents: .TouchUpInside)
         popUpButton1.addTarget(self, action: "popUpButton1Tapped", forControlEvents: .TouchUpInside)
         popUpButton2.addTarget(self, action: "popUpButton2Tapped", forControlEvents: .TouchUpInside)
         popUpButton3.addTarget(self, action: "popUpButton3Tapped", forControlEvents: .TouchUpInside)
@@ -1974,6 +1981,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         popUpButton7.addTarget(self, action: "popUpButton7Tapped", forControlEvents: .TouchUpInside)
         popUpButton8.addTarget(self, action: "popUpButton8Tapped", forControlEvents: .TouchUpInside)
         
+        dismissButtonForHamburgerPopup.setTitle("X", forState: .Normal)
         popUpButton1.setTitle("button1", forState: .Normal)
         popUpButton2.setTitle("button2", forState: .Normal)
         popUpButton3.setTitle("button3", forState: .Normal)
@@ -1994,10 +2002,28 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             popUpFromHamburger.addSubview(button)
         }
+        dismissButtonForHamburgerPopup.frame.size = CGSize(width: width * 1/7, height: height * 1/3)
+        dismissButtonForHamburgerPopup.backgroundColor = Colors.white
+        dismissButtonForHamburgerPopup.setTitleColor(Colors.blue, forState: .Normal)
+        dismissButtonForHamburgerPopup.layer.borderWidth = 0.5
+        dismissButtonForHamburgerPopup.layer.borderColor = Colors.blue.CGColor
         
         self.setupPopUpButtonTitles()
-            
         
+        
+        
+        
+    }
+    
+    func dismissButtonForHamburgerPopupTapped() {
+        
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+            self.popUpFromHamburger.frame = CGRect(x: (self.view.bounds.width), y: 70, width: (self.view.bounds.width/3) * 2 + 10, height: self.view.bounds.height - 90)
+            self.popUpFromHamburger.alpha = 1
+            }, completion: { _ in
+                self.popUpFromHamburger.hidden = true
+        })
+        self.makeButtonsOpaque()
         
     }
     
