@@ -22,6 +22,7 @@ func delay(seconds seconds: Double, completion:()->()) {
     }
 }
 
+let presentTableNotification = "present table with info"
 
 class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate {
     
@@ -129,7 +130,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //(self, selector: "firstBellRang:", name: FirstBellNotification, object: nil)
+        
+        nc.addObserver(self, selector: "handlePresentTableViewNotifications:", name: presentTableNotification, object: nil)
         nc.addObserver(self, selector: "handleDismissNotification", name: dismissNotification, object: nil)
         nc.addObserver(self, selector: "handlePopoutDismissedNotification", name: popOutDismissed, object: nil)
         
@@ -235,7 +237,11 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
         } else {
             
+            if tableView.alpha == 0{
+            
             self.setButtonsLikeStar()
+                
+            }
         }
         
     
@@ -524,8 +530,20 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     //MARK: NSNotifications: 
     
+    func handlePresentTableViewNotifications(notification: NSNotification){
+        
+            if let userDictionary = notification.userInfo {
+                let dataSetString = userDictionary["key"] as! String
+                kDataSet = dataSetString
+            }
+            
+            self.tableView.reloadData()
+        
+    }
+    
     func handleDismissNotification() {
         print("dismiss notification handled")
+        kDataSet = ""
         self.containerImage.hidden = false
         containerTable.alpha = 0
         containerTable.hidden = true
@@ -2422,6 +2440,13 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
             let messages = ["Microsystems"]
             self.showMessages(0, arrayOfMessages: messages)
+            
+            kIsHerbs = false
+            nc.postNotificationName(presentTableNotification, object: self, userInfo: ["key" : title])
+            
+            tableView.reloadData()
+            presentTableView()
+            sendButtonsAway()
         
 
         }

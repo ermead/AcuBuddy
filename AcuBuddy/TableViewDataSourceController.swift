@@ -9,14 +9,19 @@
 import UIKit
 
 var kIsHerbs: Bool?
+var kDataSet: String?
 
 class EM_TableViewDataController: NSObject, UITableViewDataSource {
     
 
     
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! EM_CustomTableViewCell
+        
+      
         
         if kIsHerbs == true {
             //it is a herb
@@ -38,6 +43,12 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         
             cell.textLabel?.text = channel! + number!
         }
+        
+        if kDataSet == "Microsystems" {
+            
+            cell.textLabel?.text = "Microsystems"
+        }
+        
         return cell
         
     }
@@ -51,6 +62,11 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             count = EM_HerbsController.sharedInstance.herbs.count
         } else {
             count = EM_PointsController.sharedInstance.points.count
+        }
+        
+        if kDataSet == "Microsystems" {
+            
+           
         }
         
         return count!
