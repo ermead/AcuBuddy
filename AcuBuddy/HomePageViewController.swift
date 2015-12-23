@@ -2294,7 +2294,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         showMessages(0, arrayOfMessages: array3)
         
         kIsHerbs = false
-
+        kDataSet = "Acupuncture"
         tableView.reloadData()
         presentTableView()
         sendButtonsAway()
@@ -2305,7 +2305,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         showMessages(0, arrayOfMessages: array4)
         
         kIsHerbs = true
-        
+        kDataSet = "Herbs"
         tableView.reloadData()
         presentTableView()
         sendButtonsAway()
@@ -2418,9 +2418,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
             performSegueWithIdentifier("goToMapView", sender: self)
             
-//            let vc: EM_MapViewController = storyboard.instantiateViewControllerWithIdentifier("mapView") as! EM_MapViewController
-//            presentViewController(vc, animated: true, completion: nil)
-            
+        
         }
         
         if title == "Correspondences" {
@@ -2458,6 +2456,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
             kIsHerbs = false
             
+            nc.postNotificationName(presentTableNotification, object: self, userInfo: ["key" : title])
+            
             tableView.reloadData()
             presentTableView()
             
@@ -2484,6 +2484,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
             kIsHerbs = true
             
+            nc.postNotificationName(presentTableNotification, object: self, userInfo: ["key" : title])
+            
             tableView.reloadData()
             presentTableView()
             
@@ -2507,6 +2509,11 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             let messages = ["Moxabustion"]
             self.showMessages(0, arrayOfMessages: messages)
           
+            nc.postNotificationName(presentTableNotification, object: self, userInfo: ["key" : title])
+            
+            tableView.reloadData()
+            presentTableView()
+            sendButtonsAway()
             
             
         }
@@ -2516,6 +2523,11 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             let messages = ["Dietary Guidelines"]
             self.showMessages(0, arrayOfMessages: messages)
           
+            nc.postNotificationName(presentTableNotification, object: self, userInfo: ["key" : title])
+            
+            tableView.reloadData()
+            presentTableView()
+            sendButtonsAway()
             
             
         }

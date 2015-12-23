@@ -21,7 +21,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! EM_CustomTableViewCell
         
-      
+        // Keys: "Microsystems", "Acupuncture", "Diet", "Herbs", "Moxa"
         
         if kIsHerbs == true {
             //it is a herb
@@ -33,7 +33,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             
             cell.textLabel?.text = name
             
-        } else {
+        } else if kDataSet == "Acupuncture" {
             // it is a point
             let points = EM_PointsController.sharedInstance.points
         
@@ -42,11 +42,21 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             let number = point.number
         
             cell.textLabel?.text = channel! + number!
-        }
-        
-        if kDataSet == "Microsystems" {
+        } else if kDataSet == "Microsystems" {
             
             cell.textLabel?.text = "Microsystems"
+            
+        } else if kDataSet == "Diet" {
+            
+            cell.textLabel?.text = "Diet"
+            
+        } else if kDataSet == "Moxa" {
+            
+             cell.textLabel?.text = "Moxa"
+            
+        } else {
+            
+            cell.textLabel?.text = "Error"
         }
         
         return cell
@@ -60,13 +70,26 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         if kIsHerbs == true {
             
             count = EM_HerbsController.sharedInstance.herbs.count
-        } else {
-            count = EM_PointsController.sharedInstance.points.count
-        }
-        
-        if kDataSet == "Microsystems" {
             
-           
+        } else if kDataSet == "Acupuncture" {
+            
+            count = EM_PointsController.sharedInstance.points.count
+            
+        } else if kDataSet == "Microsystems" {
+            
+            count = 8
+            
+        } else if kDataSet == "Diet" {
+            
+            count = 8
+            
+        } else if kDataSet == "Moxa" {
+            
+            count = 8
+            
+        } else {
+            
+            count = 8
         }
         
         return count!
