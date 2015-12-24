@@ -115,7 +115,6 @@
                         <outlet property="popOutToLeading" destination="3Ra-pi-704" id="F76-8J-vq4"/>
                         <outlet property="tableView" destination="nBy-ff-ZS3" id="gSy-LT-wkm"/>
                         <segue destination="EbQ-4f-wO6" kind="modal" identifier="goToMapView" id="8WA-1z-4g2"/>
-                        <segue destination="P8M-nb-PmN" kind="modal" identifier="goToQuizView" id="6g6-ox-gNF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VU7-wL-HN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -349,6 +348,33 @@
             </objects>
             <point key="canvasLocation" x="298.66666666666669" y="-239.50666666666666"/>
         </scene>
+        <!--Game View Controller-->
+        <scene sceneID="bqd-tl-NlQ">
+            <objects>
+                <viewController id="b3n-kJ-KA1" customClass="GameViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rZk-OY-jLC"/>
+                        <viewControllerLayoutGuide type="bottom" id="1ZV-c6-Aik"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5KR-FN-Wow" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrf-I9-ODy">
+                                <rect key="frame" x="0.0" y="0.0" width="56" height="51"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="myDismissView" destination="vrf-I9-ODy" id="cYT-gs-ACE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WsK-iC-BLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-708" y="499"/>
+        </scene>
         <!--Quiz View Controller-->
         <scene sceneID="FVP-NM-w5g">
             <objects>
@@ -405,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XEn-R7-vIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="107" y="506"/>
+            <point key="canvasLocation" x="-202" y="499"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="cgg-L6-xL3">
@@ -471,7 +497,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEE-il-bss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528" y="480"/>
+            <point key="canvasLocation" x="622" y="499"/>
         </scene>
         <!--Container Table View Controller-->
         <scene sceneID="G2o-jh-pFU">
@@ -555,7 +581,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rOQ-lo-jZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="820" y="436.5"/>
+            <point key="canvasLocation" x="926" y="474.5"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="jMe-oN-UBw">
@@ -659,7 +685,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sii-Vh-PQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1307" y="654"/>
+            <point key="canvasLocation" x="1295" y="531"/>
         </scene>
         <!--Pop Out Container View Controller-->
         <scene sceneID="RmB-bo-kgb">
@@ -714,11 +740,13 @@
                     </view>
                     <connections>
                         <outlet property="dismissView" destination="H0K-lS-hnM" id="ccq-bH-Iwz"/>
+                        <segue destination="P8M-nb-PmN" kind="modal" identifier="goToQuizView" id="jOD-PV-neS"/>
+                        <segue destination="b3n-kJ-KA1" kind="modal" identifier="toGameView" id="S4I-a9-n4V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nv-E4-zjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="967" y="-12"/>
+            <point key="canvasLocation" x="321" y="384"/>
         </scene>
     </scenes>
     <resources>

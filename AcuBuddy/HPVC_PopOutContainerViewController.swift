@@ -46,20 +46,56 @@ class EM_PopOutContainerViewController: UIViewController, UITableViewDelegate, U
         
     }
 
+    //MARK: Table View Button Names: 
+    
+    let buttonNames: [String] = ["Quiz", "Games", "Calligraphy"]
     
     //MARK: Table Views
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
-        cell.textLabel?.text = "Button"
+        let buttonName: String = buttonNames[indexPath.row] as String
+        
+        cell.textLabel?.text = buttonName
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 8
+        return buttonNames.count
+        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let buttonName: String = buttonNames[indexPath.row] as String
+        
+        buttonTappedHandler(buttonName)
+        
+    }
+    
+    func buttonTappedHandler(buttonName: String){
+        
+        if buttonName == "Quiz" {
+            
+            performSegueWithIdentifier("goToQuizView", sender: self)
+            
+        } else if buttonName == "Calligraphy" {
+            
+            
+            
+        } else if buttonName == "Games" {
+            
+            performSegueWithIdentifier("toGameView", sender: self)
+            
+            
+        } else {
+            
+            print("haven't set up selection yet")
+            
+        }
         
     }
 

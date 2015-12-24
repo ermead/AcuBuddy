@@ -13,6 +13,7 @@ import SafariServices
 import CoreMotion
 
 
+
 // A delay function
 func delay(seconds seconds: Double, completion:()->()) {
     let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
@@ -27,6 +28,8 @@ let presentTableNotification = "present table with info"
 class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate {
     
     let nc = NSNotificationCenter.defaultCenter()
+    
+    let layer1 = CAGradientLayer()
     
     var didPlayIntro: Bool = false
     
@@ -131,6 +134,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addCALayers()
+        
         nc.addObserver(self, selector: "handlePresentTableViewNotifications:", name: presentTableNotification, object: nil)
         nc.addObserver(self, selector: "handleDismissNotification", name: dismissNotification, object: nil)
         nc.addObserver(self, selector: "handlePopoutDismissedNotification", name: popOutDismissed, object: nil)
@@ -171,6 +176,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         setUpTableView()
         
         setUpPopOutContainer()
+        
+        
       
         //TODO: Nest these functions
         
@@ -248,7 +255,85 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     }
     
-    //MARK: IntroAnimation: 
+    
+    
+    ///////////////////////////////////
+    
+    
+    //TODO: Clean Up functions
+    //MARK: Begin functions to be cleaned up:
+    
+    //MARK Orbit Animation
+    
+    func orbit(){
+        
+        let box = CGRectMake(-150, -150, 300, 300)
+        
+        let orbit = CAKeyframeAnimation()
+        orbit.keyPath = "position"
+        orbit.path = CGPathCreateWithEllipseInRect(box, nil )
+        orbit.duration = 4
+        orbit.additive = true
+        orbit.repeatCount = HUGE
+        orbit.calculationMode = kCAAnimationPaced
+        orbit.rotationMode = kCAAnimationRotateAuto
+        blueSquare.layer.addAnimation(orbit, forKey: "orbit")
+        
+        
+        
+    }
+
+    //MARK: CALayers:
+    
+    func addCALayers(){
+        
+    
+    
+    //CALayers
+        
+//    let layer = CAShapeLayer()
+//    layer.path = UIBezierPath(roundedRect: CGRect(x: 64, y: 64, width: 160, height: 160), cornerRadius: 50).CGPath
+//    layer.fillColor = UIColor.redColor().CGColor
+//    view.layer.addSublayer(layer)
+    
+    layer1.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+    layer1.colors = [UIColor.whiteColor().CGColor, Colors.blue.CGColor]
+    self.view.layer.addSublayer(layer1)
+
+    let animationMoveY = CAKeyframeAnimation()
+    animationMoveY.keyPath = "position.y"
+    animationMoveY.values = [0, 500, 800, 200, 100]
+    animationMoveY.keyTimes = [0, 0.5, 1, 1.5, 2]
+    animationMoveY.duration = 5
+    animationMoveY.additive = true
+    
+   // layer1.addAnimation(animationMoveY, forKey: "move")
+        
+        let animationFadeIn = CABasicAnimation()
+        animationFadeIn.keyPath = "opacity"
+        animationFadeIn.duration = 15.0
+        animationFadeIn.fromValue = 0
+        
+        let animationFadeOut = CABasicAnimation()
+        animationFadeOut.keyPath = "opacity"
+        animationFadeOut.duration = 15.0
+        animationFadeOut.toValue = 0
+        
+    //layer1.addAnimation(animationFadeIn, forKey: "fade in slowly")
+        
+        let animationGroup = CAAnimationGroup()
+        animationGroup.duration  = 60
+        animationGroup.animations = [animationFadeIn, animationFadeOut, animationFadeIn]
+        
+        layer1.addAnimation(animationGroup, forKey: "fade in then fade out")
+
+        
+    }
+    
+    
+    //MARK: End functions to be cleaned up:
+    
+    //MARK: IntroAnimation:
     
     func animateIntroButtons(){
         
@@ -258,7 +343,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         let w: CGFloat = self.view.bounds.width / 16
         let h: CGFloat = self.view.bounds.height / 16
         
+      
+        
         func animatePart7(){
+         
             
             self.storeBackFunctions()
             
@@ -2426,9 +2514,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             let messages = ["Take a Challenge"]
             self.hamburgerButtonTapped()
             //self.showMessages(0, arrayOfMessages: messages)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            performSegueWithIdentifier("goToQuizView", sender: self)
+        
             
             
         }

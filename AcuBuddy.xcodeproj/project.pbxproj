@@ -13,6 +13,11 @@
 		D71850E11C2239CC00184931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71850E01C2239CC00184931 /* Assets.xcassets */; };
 		D71850E41C2239CC00184931 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71850E21C2239CC00184931 /* LaunchScreen.storyboard */; };
 		D76F384F1C2A52D800B0963C /* EM_QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F384E1C2A52D800B0963C /* EM_QuizViewController.swift */; };
+		D76F38741C2C5EF100B0963C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F38731C2C5EF100B0963C /* GameScene.swift */; };
+		D76F38761C2C5EF900B0963C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F38751C2C5EF900B0963C /* GameViewController.swift */; };
+		D76F38781C2C5F0200B0963C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D76F38771C2C5F0200B0963C /* GameScene.sks */; };
+		D76F387A1C2C641E00B0963C /* SurfGameSpriteKitScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D76F38791C2C641E00B0963C /* SurfGameSpriteKitScene.sks */; };
+		D76F387C1C2C658E00B0963C /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76F387B1C2C658E00B0963C /* SpriteKit.framework */; };
 		D7CEA7011C234C620009A3B7 /* TableViewDataSourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CEA7001C234C620009A3B7 /* TableViewDataSourceController.swift */; };
 		D7CEA7031C234E9E0009A3B7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */; };
 		D7CEA7051C2366E00009A3B7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CEA7041C2366E00009A3B7 /* DetailViewController.swift */; };
@@ -50,6 +55,11 @@
 		D71850E31C2239CC00184931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D71850E51C2239CC00184931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D76F384E1C2A52D800B0963C /* EM_QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EM_QuizViewController.swift; sourceTree = "<group>"; };
+		D76F38731C2C5EF100B0963C /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		D76F38751C2C5EF900B0963C /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		D76F38771C2C5F0200B0963C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		D76F38791C2C641E00B0963C /* SurfGameSpriteKitScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SurfGameSpriteKitScene.sks; sourceTree = "<group>"; };
+		D76F387B1C2C658E00B0963C /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		D7CEA7001C234C620009A3B7 /* TableViewDataSourceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceController.swift; sourceTree = "<group>"; };
 		D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D7CEA7041C2366E00009A3B7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D76F387C1C2C658E00B0963C /* SpriteKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +103,7 @@
 		D71850CD1C2239CC00184931 = {
 			isa = PBXGroup;
 			children = (
+				D76F387B1C2C658E00B0963C /* SpriteKit.framework */,
 				D71850D81C2239CC00184931 /* AcuBuddy */,
 				D71850D71C2239CC00184931 /* Products */,
 			);
@@ -109,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				D71850DD1C2239CC00184931 /* Main.storyboard */,
+				D76F38791C2C641E00B0963C /* SurfGameSpriteKitScene.sks */,
 				D7D5DCE51C275671005BA837 /* ViewControllers */,
 				D7D5DCE31C27528C005BA837 /* Models */,
 				D7D5DCE41C27529E005BA837 /* ModelControllers */,
@@ -123,6 +136,16 @@
 				D71850E51C2239CC00184931 /* Info.plist */,
 			);
 			path = AcuBuddy;
+			sourceTree = "<group>";
+		};
+		D76F38721C2C5E9700B0963C /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				D76F38731C2C5EF100B0963C /* GameScene.swift */,
+				D76F38751C2C5EF900B0963C /* GameViewController.swift */,
+				D76F38771C2C5F0200B0963C /* GameScene.sks */,
+			);
+			name = Game;
 			sourceTree = "<group>";
 		};
 		D7D5DCE31C27528C005BA837 /* Models */ = {
@@ -162,6 +185,7 @@
 				D7D5DCCF1C2670F4005BA837 /* DVC_CollectionViewCell.swift */,
 				D7D5DCE61C2840C8005BA837 /* EM_MapViewController.swift */,
 				D76F384E1C2A52D800B0963C /* EM_QuizViewController.swift */,
+				D76F38721C2C5E9700B0963C /* Game */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -235,6 +259,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D76F38781C2C5F0200B0963C /* GameScene.sks in Resources */,
+				D76F387A1C2C641E00B0963C /* SurfGameSpriteKitScene.sks in Resources */,
 				D71850E41C2239CC00184931 /* LaunchScreen.storyboard in Resources */,
 				D71850E11C2239CC00184931 /* Assets.xcassets in Resources */,
 				D71850DF1C2239CC00184931 /* Main.storyboard in Resources */,
@@ -248,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D76F38741C2C5EF100B0963C /* GameScene.swift in Sources */,
 				D7EB05C11C2623C500FDDA91 /* PointsController.swift in Sources */,
 				D7CEA7051C2366E00009A3B7 /* DetailViewController.swift in Sources */,
 				D7D5DCD41C27279E005BA837 /* Herb.swift in Sources */,
@@ -269,6 +296,7 @@
 				D7D6E04B1C22438B00400374 /* TriangleLayer.swift in Sources */,
 				D7D5DCEB1C29D5E2005BA837 /* HPVC_PopOutContainerViewController.swift in Sources */,
 				D76F384F1C2A52D800B0963C /* EM_QuizViewController.swift in Sources */,
+				D76F38761C2C5EF900B0963C /* GameViewController.swift in Sources */,
 				D7D5DCD81C273253005BA837 /* ImagesController.swift in Sources */,
 				D7D5DCE71C2840C8005BA837 /* EM_MapViewController.swift in Sources */,
 				D71850DA1C2239CC00184931 /* AppDelegate.swift in Sources */,
