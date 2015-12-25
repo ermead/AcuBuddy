@@ -93,13 +93,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AcuBuddy/Draw/BNRDrawViewController.m"
-            timestampString = "472694782.767199"
+            filePath = "AcuBuddy/Draw/EM_CalligraphyView.swift"
+            timestampString = "472702957.379863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "-dismiss"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "touchesBegan(_:withEvent:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

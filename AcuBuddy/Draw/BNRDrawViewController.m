@@ -21,11 +21,14 @@
 
 @implementation BNRDrawViewController
 
-- (IBAction)buttonTapped:(id)sender {
+
+- (IBAction)backButtonTapped:(id)sender {
     
+    NSLog(@"back button tapped");
+
+    [self.navigationController performSegueWithIdentifier: @"toHomeView" sender:self];
     
 }
-
 
 - (void)loadView {
  

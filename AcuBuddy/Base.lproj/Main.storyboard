@@ -6,6 +6,24 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Calligraphy View Controller-->
+        <scene sceneID="gFE-3q-iO8">
+            <objects>
+                <viewController id="96P-dG-jWk" customClass="EM_CalligraphyViewController" customModule="AcuBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rNx-wp-I46"/>
+                        <viewControllerLayoutGuide type="bottom" id="4yn-TM-09c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BNv-ft-qUn" customClass="EM_CalligraphyView" customModule="AcuBuddy" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8V-Bi-ID6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1092" y="-199"/>
+        </scene>
         <!--Intro View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -359,34 +377,19 @@
                     <view key="view" contentMode="scaleToFill" id="7mW-fO-IsZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrt-cR-MA3">
-                                <rect key="frame" x="20" y="8" width="75" height="50"/>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.93725490199999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="BzL-PC-P1p"/>
-                                    <constraint firstAttribute="width" constant="75" id="EUy-bq-ZMh"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="buttonTapped:" destination="vk1-pX-BGz" eventType="touchUpInside" id="hcJ-tj-YpA"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="qrt-cR-MA3" firstAttribute="top" secondItem="WbY-uF-JBL" secondAttribute="bottom" constant="8" id="Jdi-07-w4s"/>
-                            <constraint firstItem="qrt-cR-MA3" firstAttribute="leading" secondItem="7mW-fO-IsZ" secondAttribute="leadingMargin" id="nvz-Iw-B34"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="buttonOutlet" destination="qrt-cR-MA3" id="1WF-Oy-9WO"/>
-                        <segue destination="New-Dd-CdF" kind="modal" identifier="toHomeView" id="YoN-8x-AvZ"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="9O9-S6-r8R">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="fSj-cM-wky">
+                            <connections>
+                                <action selector="backButtonTapped:" destination="vk1-pX-BGz" id="1sG-hX-zrE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFZ-im-RHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1092" y="499"/>
+            <point key="canvasLocation" x="-774" y="617"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="bqd-tl-NlQ">
@@ -413,7 +416,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WsK-iC-BLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-708" y="499"/>
+            <point key="canvasLocation" x="-176" y="499"/>
         </scene>
         <!--Quiz View Controller-->
         <scene sceneID="FVP-NM-w5g">
@@ -471,7 +474,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XEn-R7-vIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-202" y="499"/>
+            <point key="canvasLocation" x="330" y="499"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="cgg-L6-xL3">
@@ -537,7 +540,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEE-il-bss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="622" y="499"/>
+            <point key="canvasLocation" x="1154" y="499"/>
         </scene>
         <!--Container Table View Controller-->
         <scene sceneID="G2o-jh-pFU">
@@ -621,7 +624,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rOQ-lo-jZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="926" y="474.5"/>
+            <point key="canvasLocation" x="1458" y="474.5"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="jMe-oN-UBw">
@@ -725,7 +728,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sii-Vh-PQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1295" y="531"/>
+            <point key="canvasLocation" x="1827" y="531"/>
         </scene>
         <!--Pop Out Container View Controller-->
         <scene sceneID="RmB-bo-kgb">
@@ -782,18 +785,38 @@
                         <outlet property="dismissView" destination="H0K-lS-hnM" id="ccq-bH-Iwz"/>
                         <segue destination="P8M-nb-PmN" kind="modal" identifier="goToQuizView" id="jOD-PV-neS"/>
                         <segue destination="b3n-kJ-KA1" kind="modal" identifier="toGameView" id="S4I-a9-n4V"/>
-                        <segue destination="vk1-pX-BGz" kind="modal" identifier="toDrawView" id="ryU-lF-J9a"/>
+                        <segue destination="xc5-xO-Fyx" kind="modal" identifier="toDrawView" id="ryU-lF-J9a"/>
+                        <segue destination="96P-dG-jWk" kind="modal" identifier="toCalligraphyView" id="ivK-mK-62J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nv-E4-zjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="321" y="384"/>
+            <point key="canvasLocation" x="853" y="384"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gib-gX-Hkq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xc5-xO-Fyx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wyr-N1-loB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="New-Dd-CdF" kind="modal" identifier="toHomeView" id="JTI-qL-qzT"/>
+                        <segue destination="vk1-pX-BGz" kind="relationship" relationship="rootViewController" id="tgy-lC-S31"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZO0-Jx-kaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1184" y="617"/>
         </scene>
     </scenes>
     <resources>
         <image name="InnerClassic" width="1385" height="2344"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YoN-8x-AvZ"/>
+        <segue reference="JTI-qL-qzT"/>
     </inferredMetricsTieBreakers>
 </document>

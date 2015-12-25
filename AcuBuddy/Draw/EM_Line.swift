@@ -8,6 +8,15 @@
 
 import UIKit
 
-class Lines: NSObject {
+class EM_Line: NSObject {
+    
+    var begin: CGPoint
+    var end: CGPoint
+    
+    init(begin: CGPoint, end: CGPoint) {
+        
+        self.begin = begin
+        self.end = end
+    }
 
 }

@@ -84,6 +84,7 @@ class EM_PopOutContainerViewController: UIViewController, UITableViewDelegate, U
             
         } else if buttonName == "Calligraphy" {
             
+           // performSegueWithIdentifier("toCalligraphyView", sender: self)
             performSegueWithIdentifier("toDrawView", sender: self)
             
         } else if buttonName == "Games" {

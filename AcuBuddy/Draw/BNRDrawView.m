@@ -32,7 +32,7 @@
     
     if (self) {
         
-        [self setUpdismissButton];
+        //[self setUpdismissButton];
         
         
         self.linesInProgress = [[NSMutableDictionary alloc]init];
