@@ -113,6 +113,7 @@
     NSLog(@"Recognized tap");
     
     CGPoint point = [gr locationInView:self];
+    
     self.selectedLine = [self lineAtPoint:point];
     
     if (self.selectedLine) {
@@ -121,7 +122,7 @@
         UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteLine:)];
         menu.menuItems = @[deleteItem];
         
-        [menu setTargetRect:CGRectMake(point.x, point.y, 2, 2) inView:self];
+        [menu setTargetRect:CGRectMake(point.x, point.y, 1, 1) inView:self];
         [menu setMenuVisible:YES animated:YES];
     } else {
         [[UIMenuController sharedMenuController] setMenuVisible:NO animated:YES];

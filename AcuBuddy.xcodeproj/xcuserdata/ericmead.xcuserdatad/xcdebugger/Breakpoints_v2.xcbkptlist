@@ -78,11 +78,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AcuBuddy/Draw/BNRDrawView.m"
-            timestampString = "472694547.347653"
+            timestampString = "472704191.303241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "-dismissButtonTapped:"
             landmarkType = "5">
          </BreakpointContent>
