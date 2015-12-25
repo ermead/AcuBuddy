@@ -18,58 +18,51 @@ class EM_QuizViewController: UIViewController {
     let dismissButton = UIButton()
     
     var currentQuestionIndex: Int = 0
-    var questions: [String] = []
-    var answers: [String] = []
+
+    var QuestionsAndAnswers: NSDictionary = ["From what is cognac made?":"Grapes", "what is 7 + 7?": "14", "What is the capital of Vermont?": "Montpelier"]
     
-    var questions1 = ["From what is cognac made?", "what is 7 + 7?", "What is the capital of Vermont?"]
-    var answers1 = ["Grapes", "14", "Montpelier"]
+    var thisAnswer: String?
     
     func showQuestion(){
         
-            self.currentQuestionIndex++
-            if self.currentQuestionIndex == self.questions.count {
-                self.currentQuestionIndex = 0;
-            }
+        self.currentQuestionIndex++
         
-            let question = self.questions[self.currentQuestionIndex]
+        let allKeys = self.QuestionsAndAnswers.allKeys
         
-            self.label1.text = question
-            self.label2.text = "???"
+        if self.currentQuestionIndex == allKeys.count {
+            self.currentQuestionIndex = 0;
+        }
+        let key = allKeys[self.currentQuestionIndex] as! String
+        let answer = self.QuestionsAndAnswers[key] as! String
+        self.thisAnswer = answer
         
+        self.label1.text = key
+        self.label2.text = "???"
         
     }
     
     func showAnswer(){
-        
-        let answer = self.answers[self.currentQuestionIndex]
-        self.label2.text = answer
-    
+         self.label2.text = self.thisAnswer
         
     }
     
     
-    
-
-    
     @IBAction func button1Tapped(sender: AnyObject) {
         //show question
         showQuestion()
-        
     }
     
     @IBAction func button2Tapped(sender: AnyObject) {
         //show answer
         showAnswer()
-        
     }
+    
+    
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        questions = questions1
-        answers = answers1
-        
+     
         setUpDismissButton(self.view)
 
         // Do any additional setup after loading the view.
@@ -98,40 +91,5 @@ class EM_QuizViewController: UIViewController {
         }
         
     }
-    
-
-    /*
- d
-    
-    @implementation QuizViewController
-    
-    -(IBAction)showQuestion:(id)sender
-    {
-    self.currentQuestionIndex++;
-    if (self.currentQuestionIndex == [self.questions count]){
-    self.currentQuestionIndex = 0;
-    }
-    NSString *question = self.questions[self.currentQuestionIndex];
-    self.questionLabel.text = question;
-    self.answerLabel.text = @"???";
-    }
-    
-    -(IBAction)showAnswer:(id)sender
-    {
-    NSString *answer = self.answers[self.currentQuestionIndex];
-    self.answerLabel.text = answer;
-    }
-    
-    -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-    {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)   {
-    self.questions = @[@"From what is cognac made?", @"what is 7 + 7?", @"What is the capital of Vermont?"];
-    self.answers = @[@"Grapes", @"14", @"Montpelier"];
-    }
-    return self;
-    }
-    @end
-    */
 
 }

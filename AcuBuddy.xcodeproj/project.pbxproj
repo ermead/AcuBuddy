@@ -119,7 +119,6 @@
 		D71850CD1C2239CC00184931 = {
 			isa = PBXGroup;
 			children = (
-				D76F387B1C2C658E00B0963C /* SpriteKit.framework */,
 				D71850D81C2239CC00184931 /* AcuBuddy */,
 				D71850D71C2239CC00184931 /* Products */,
 			);
@@ -150,6 +149,7 @@
 				D71850D91C2239CC00184931 /* AppDelegate.swift */,
 				D71850E21C2239CC00184931 /* LaunchScreen.storyboard */,
 				D71850E51C2239CC00184931 /* Info.plist */,
+				D76F387B1C2C658E00B0963C /* SpriteKit.framework */,
 			);
 			path = AcuBuddy;
 			sourceTree = "<group>";
@@ -222,7 +222,6 @@
 		D7D5DCE51C275671005BA837 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D76F387D1C2C6CAB00B0963C /* Draw */,
 				D71850DB1C2239CC00184931 /* IntroViewController.swift */,
 				D7D6E0551C224B5C00400374 /* HomePageViewController.swift */,
 				D7D5DCEA1C29D5E2005BA837 /* HPVC_PopOutContainerViewController.swift */,
@@ -235,6 +234,7 @@
 				D7D5DCCF1C2670F4005BA837 /* DVC_CollectionViewCell.swift */,
 				D7D5DCE61C2840C8005BA837 /* EM_MapViewController.swift */,
 				D76F384E1C2A52D800B0963C /* EM_QuizViewController.swift */,
+				D76F387D1C2C6CAB00B0963C /* Draw */,
 				D76F38721C2C5E9700B0963C /* Game */,
 			);
 			name = ViewControllers;
