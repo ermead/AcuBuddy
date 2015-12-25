@@ -348,6 +348,46 @@
             </objects>
             <point key="canvasLocation" x="298.66666666666669" y="-239.50666666666666"/>
         </scene>
+        <!--Draw View Controller-->
+        <scene sceneID="upY-MR-azr">
+            <objects>
+                <viewController id="vk1-pX-BGz" customClass="BNRDrawViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WbY-uF-JBL"/>
+                        <viewControllerLayoutGuide type="bottom" id="VTv-eI-BU0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7mW-fO-IsZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrt-cR-MA3">
+                                <rect key="frame" x="20" y="8" width="75" height="50"/>
+                                <color key="backgroundColor" red="0.95294117649999999" green="0.93725490199999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BzL-PC-P1p"/>
+                                    <constraint firstAttribute="width" constant="75" id="EUy-bq-ZMh"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="vk1-pX-BGz" eventType="touchUpInside" id="hcJ-tj-YpA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qrt-cR-MA3" firstAttribute="top" secondItem="WbY-uF-JBL" secondAttribute="bottom" constant="8" id="Jdi-07-w4s"/>
+                            <constraint firstItem="qrt-cR-MA3" firstAttribute="leading" secondItem="7mW-fO-IsZ" secondAttribute="leadingMargin" id="nvz-Iw-B34"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonOutlet" destination="qrt-cR-MA3" id="1WF-Oy-9WO"/>
+                        <segue destination="New-Dd-CdF" kind="modal" identifier="toHomeView" id="YoN-8x-AvZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fFZ-im-RHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1092" y="499"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="bqd-tl-NlQ">
             <objects>
@@ -742,6 +782,7 @@
                         <outlet property="dismissView" destination="H0K-lS-hnM" id="ccq-bH-Iwz"/>
                         <segue destination="P8M-nb-PmN" kind="modal" identifier="goToQuizView" id="jOD-PV-neS"/>
                         <segue destination="b3n-kJ-KA1" kind="modal" identifier="toGameView" id="S4I-a9-n4V"/>
+                        <segue destination="vk1-pX-BGz" kind="modal" identifier="toDrawView" id="ryU-lF-J9a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nv-E4-zjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -752,4 +793,7 @@
     <resources>
         <image name="InnerClassic" width="1385" height="2344"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="YoN-8x-AvZ"/>
+    </inferredMetricsTieBreakers>
 </document>

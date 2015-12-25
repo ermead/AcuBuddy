@@ -18,6 +18,9 @@
 		D76F38781C2C5F0200B0963C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D76F38771C2C5F0200B0963C /* GameScene.sks */; };
 		D76F387A1C2C641E00B0963C /* SurfGameSpriteKitScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D76F38791C2C641E00B0963C /* SurfGameSpriteKitScene.sks */; };
 		D76F387C1C2C658E00B0963C /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76F387B1C2C658E00B0963C /* SpriteKit.framework */; };
+		D76F38841C2C6CAB00B0963C /* BNRDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = D76F387F1C2C6CAB00B0963C /* BNRDrawView.m */; };
+		D76F38851C2C6CAB00B0963C /* BNRDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D76F38811C2C6CAB00B0963C /* BNRDrawViewController.m */; };
+		D76F38861C2C6CAB00B0963C /* BNRLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D76F38831C2C6CAB00B0963C /* BNRLine.m */; };
 		D7CEA7011C234C620009A3B7 /* TableViewDataSourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CEA7001C234C620009A3B7 /* TableViewDataSourceController.swift */; };
 		D7CEA7031C234E9E0009A3B7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */; };
 		D7CEA7051C2366E00009A3B7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CEA7041C2366E00009A3B7 /* DetailViewController.swift */; };
@@ -60,6 +63,13 @@
 		D76F38771C2C5F0200B0963C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		D76F38791C2C641E00B0963C /* SurfGameSpriteKitScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SurfGameSpriteKitScene.sks; sourceTree = "<group>"; };
 		D76F387B1C2C658E00B0963C /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		D76F387E1C2C6CAB00B0963C /* BNRDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDrawView.h; sourceTree = "<group>"; };
+		D76F387F1C2C6CAB00B0963C /* BNRDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDrawView.m; sourceTree = "<group>"; };
+		D76F38801C2C6CAB00B0963C /* BNRDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDrawViewController.h; sourceTree = "<group>"; };
+		D76F38811C2C6CAB00B0963C /* BNRDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDrawViewController.m; sourceTree = "<group>"; };
+		D76F38821C2C6CAB00B0963C /* BNRLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRLine.h; sourceTree = "<group>"; };
+		D76F38831C2C6CAB00B0963C /* BNRLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRLine.m; sourceTree = "<group>"; };
+		D76F38871C2C6D7E00B0963C /* HeaderBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HeaderBridge.h; path = AcuBuddy/HeaderBridge.h; sourceTree = SOURCE_ROOT; };
 		D7CEA7001C234C620009A3B7 /* TableViewDataSourceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceController.swift; sourceTree = "<group>"; };
 		D7CEA7021C234E9E0009A3B7 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D7CEA7041C2366E00009A3B7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +158,19 @@
 			name = Game;
 			sourceTree = "<group>";
 		};
+		D76F387D1C2C6CAB00B0963C /* Draw */ = {
+			isa = PBXGroup;
+			children = (
+				D76F387E1C2C6CAB00B0963C /* BNRDrawView.h */,
+				D76F387F1C2C6CAB00B0963C /* BNRDrawView.m */,
+				D76F38801C2C6CAB00B0963C /* BNRDrawViewController.h */,
+				D76F38811C2C6CAB00B0963C /* BNRDrawViewController.m */,
+				D76F38821C2C6CAB00B0963C /* BNRLine.h */,
+				D76F38831C2C6CAB00B0963C /* BNRLine.m */,
+			);
+			path = Draw;
+			sourceTree = "<group>";
+		};
 		D7D5DCE31C27528C005BA837 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +196,8 @@
 		D7D5DCE51C275671005BA837 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D76F38871C2C6D7E00B0963C /* HeaderBridge.h */,
+				D76F387D1C2C6CAB00B0963C /* Draw */,
 				D71850DB1C2239CC00184931 /* IntroViewController.swift */,
 				D7D6E0551C224B5C00400374 /* HomePageViewController.swift */,
 				D7D5DCEA1C29D5E2005BA837 /* HPVC_PopOutContainerViewController.swift */,
@@ -286,6 +311,7 @@
 				D7D6E0531C22443A00400374 /* Colors.swift in Sources */,
 				D7D5DCDE1C273702005BA837 /* ScrollAndZoomViewController.swift in Sources */,
 				D7D5DCD21C26753B005BA837 /* Point.swift in Sources */,
+				D76F38861C2C6CAB00B0963C /* BNRLine.m in Sources */,
 				D7D6E0561C224B5C00400374 /* HomePageViewController.swift in Sources */,
 				D7D5DCCE1C2666C9005BA837 /* DVC_ContainerViewController.swift in Sources */,
 				D7D6E04F1C2243AB00400374 /* ArcLayer.swift in Sources */,
@@ -293,6 +319,7 @@
 				D7D5DCE91C284A98005BA837 /* HPVC_ContainerTableViewController.swift in Sources */,
 				D7D5DCDC1C2736B6005BA837 /* PopAnimator.swift in Sources */,
 				D71850DC1C2239CC00184931 /* IntroViewController.swift in Sources */,
+				D76F38841C2C6CAB00B0963C /* BNRDrawView.m in Sources */,
 				D7D6E04B1C22438B00400374 /* TriangleLayer.swift in Sources */,
 				D7D5DCEB1C29D5E2005BA837 /* HPVC_PopOutContainerViewController.swift in Sources */,
 				D76F384F1C2A52D800B0963C /* EM_QuizViewController.swift in Sources */,
@@ -301,6 +328,7 @@
 				D7D5DCE71C2840C8005BA837 /* EM_MapViewController.swift in Sources */,
 				D71850DA1C2239CC00184931 /* AppDelegate.swift in Sources */,
 				D7D5DCE01C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift in Sources */,
+				D76F38851C2C6CAB00B0963C /* BNRDrawViewController.m in Sources */,
 				D7CEA7031C234E9E0009A3B7 /* CustomTableViewCell.swift in Sources */,
 				D7D6E04D1C22439F00400374 /* RectangleLayer.swift in Sources */,
 				D7D6E0491C22438000400374 /* OvalLayer.swift in Sources */,
@@ -421,6 +449,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysite.AcuBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ericmead/Documents/from desktop/All of My Apps/DevMtn Lessons/AcuBuddy/AcuBuddy/HeaderBridge.h";
 			};
 			name = Debug;
 		};
@@ -432,6 +461,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysite.AcuBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ericmead/Documents/from desktop/All of My Apps/DevMtn Lessons/AcuBuddy/AcuBuddy/HeaderBridge.h";
 			};
 			name = Release;
 		};

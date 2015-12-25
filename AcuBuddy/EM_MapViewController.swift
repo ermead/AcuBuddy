@@ -80,9 +80,11 @@ class EM_MapViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
         let thisItem = ArrayOfLocalThings[indexPath.row]
-        cell.textLabel?.text = thisItem[1] as? String
-        let itemUrlAsString: String = String(thisItem[2])
-        cell.detailTextLabel!.text = itemUrlAsString
+        //cell.textLabel?.text = thisItem[1] as? String
+        //let itemUrlAsString: String = String(thisItem[2])
+        //cell.detailTextLabel!.text = itemUrlAsString
+        
+        cell.textLabel?.text = "Fix line 85 MapView"
         
         return cell
     }
