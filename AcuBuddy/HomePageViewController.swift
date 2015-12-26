@@ -97,6 +97,18 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     var allButtons: [UIButton] = []
     
+    //Supplemental Buttons
+    var showingSupplementalButtons: Bool = true
+    let button_red_s = UIButton()
+    let button_yellow_s = UIButton()
+    let button_grey_s = UIButton()
+    let button_blue_s = UIButton()
+    let button_green_s = UIButton()
+    let button_red_s3 = UIButton()
+    let button_red_s4 = UIButton()
+    
+    var allSupplementalButtons: [UIButton] = []
+    
     let bottomTabBarButton = UIButton()
     let tabBarButtonLeft = UIButton()
     let tabBarButtonRight = UIButton()
@@ -222,6 +234,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         button_grey.alpha = 0
         button_blue.alpha = 0
         button_green.alpha = 0
+        
+        setUpSupplementalButtons()
       
     }
     
@@ -264,6 +278,123 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     //MARK: Begin functions to be cleaned up:
     
     //MARK Orbit Animation
+    
+    func setUpSupplementalButtons(){
+        
+        //MARK: Supplemental Buttons
+        button_red_s.center = CGPoint(x: self.view.bounds.width / 2, y: -view.bounds.height)
+        button_yellow_s.center = CGPoint(x: self.view.bounds.width * 2, y: -view.bounds.height)
+        button_grey_s.center = CGPoint(x: self.view.bounds.width * 2, y: view.bounds.height * 2)
+        button_blue_s.center = CGPoint(x: -view.bounds.width, y: view.bounds.height * 2)
+        button_green_s.center = CGPoint(x: -view.bounds.width, y: -view.bounds.height)
+        button_red_s.backgroundColor = Colors.red
+        button_yellow_s.backgroundColor = Colors.yellow
+        button_grey_s.backgroundColor = Colors.grey
+        button_blue_s.backgroundColor = Colors.blue
+        button_green_s.backgroundColor = Colors.green
+        button_red_s.alpha = 0
+        button_yellow_s.alpha = 0
+        button_grey_s.alpha = 0
+        button_blue_s.alpha = 0
+        button_green_s.alpha = 0
+        
+        button_red_s3.center = CGPoint(x: self.view.bounds.width / 2, y: -view.bounds.height)
+        button_red_s4.center = CGPoint(x: self.view.bounds.width / 2, y: -view.bounds.height)
+        button_red_s3.backgroundColor = Colors.red
+        button_red_s4.backgroundColor = Colors.red
+        button_red_s3.alpha = 0
+        button_red_s4.alpha = 0
+        
+        //MARK: end supplementalButtons
+        
+        
+    }
+    
+    func bringInSupplementalButtons(){
+        
+    self.allSupplementalButtons = [self.button_blue_s, self.button_green_s, self.button_grey_s, self.button_red_s, self.button_yellow_s]
+        
+        
+    let buttons = self.allSupplementalButtons
+    let titleExample = ["Blue", "Green", "Grey", "Red", "Yellow"]
+    let titles = ["BL", "GB", "LI", "SI", "ST"]
+    let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
+    
+        self.setButtonTitles(otherTitles)
+        
+        func adjustBlues(){
+            
+            UIView.animateWithDuration(1.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: { () -> Void in
+                
+                self.button_blue.frame.origin.y = self.button_yellow.frame.origin.y + self.button_yellow.frame.size.height
+                
+                }, completion: {
+                    make
+            })            
+        }
+        
+        func makeUnderneath(){
+            
+            UIView.animateWithDuration(2, delay: 0.5, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .CurveEaseInOut, animations: { () -> Void in
+                
+                self.button_red_s.frame.origin = self.button_red.frame.origin
+                self.button_red_s.frame.origin.y = self.button_red.frame.origin.y + self.button_red.frame.size.height + 2
+                
+                self.button_yellow_s.frame.origin = self.button_yellow.frame.origin
+                self.button_yellow_s.frame.origin.y = self.button_yellow.frame.origin.y + self.button_red.frame.size.height + 2
+                
+                self.button_green_s.frame.origin = self.button_green.frame.origin
+                self.button_green_s.frame.origin.y = self.button_green.frame.origin.y + self.button_red.frame.size.height + 2
+                
+                self.button_blue_s.frame.origin = self.button_blue.frame.origin
+                self.button_blue_s.frame.origin.y = self.button_blue.frame.origin.y + self.button_red.frame.size.height + 2
+                
+                self.button_grey_s.frame.origin = self.button_grey.frame.origin
+                self.button_grey_s.frame.origin.y = self.button_grey.frame.origin.y + self.button_red.frame.size.height + 2
+                
+                }, completion: { _ in
+            
+                    adjustBlues()
+            } )
+            
+        }
+      
+        var i = -1
+        for button in buttons {
+            i++
+            button.setTitle(titles[i], forState: .Normal)
+            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            button.frame.size = CGSize(width: self.buttonOriginalWidth!, height: self.buttonOriginalHeight!)
+            button.layer.borderColor = UIColor.blackColor().CGColor
+            button.layer.borderWidth = 1
+            button.layer.cornerRadius = 15
+            self.view.addSubview(button)
+            self.view.bringSubviewToFront(button)
+            
+            self.bringButtonsToCenter()
+            
+            UIView.animateWithDuration(2, delay: 1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .CurveEaseOut, animations: { () -> Void in
+                
+                button.center = self.view.center
+                button.alpha = 1
+                
+                }, completion: { _ in
+                    delay(seconds: 2, completion: { () -> () in
+                        self.moveButtonsLikeCross()
+                        makeUnderneath()
+                        
+                    })
+                    
+                   
+            })
+         
+            
+        }
+        
+        
+        
+        
+    }
     
     func orbit(){
         
@@ -2451,7 +2582,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     }
 
     
-    
+    //MARK: ButtonTapped Handler
     func buttonTappedHandler(title: String){
         //Buttons for HamburgerPopUp
         
@@ -2557,7 +2688,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             nc.postNotificationName(presentTableNotification, object: self, userInfo: ["key" : title])
             
             tableView.reloadData()
+            
             presentTableView()
+            
+            bringInSupplementalButtons()
             
             for button in self.allButtons {
                   UIView.animateWithDuration(0.5, animations: { () -> Void in
