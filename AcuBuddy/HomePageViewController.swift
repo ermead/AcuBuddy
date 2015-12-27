@@ -358,8 +358,20 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     }
     
     func bringInSupplementalButtons(){
-         self.allSupplementalButtons = [self.button_blue_s, self.button_green_s, self.button_grey_s, self.button_red_s, self.button_yellow_s, self.button_red_s3, self.button_red_s4]
+        
+        setUpDismissButton(dismissViewButtonView)
+        dismissViewButtonView.frame = CGRect(x: 30, y: 50, width: 30, height: 30)
+        self.view.addSubview(dismissViewButtonView)
+        
+        self.allSupplementalButtons = [self.button_blue_s, self.button_green_s, self.button_grey_s, self.button_red_s, self.button_yellow_s, self.button_red_s3, self.button_red_s4]
+    
         let sup = self.allSupplementalButtons
+        
+        for button in sup {
+            
+            button.alpha = 0
+        }
+        
         let all = self.allButtons + sup
         let buttonHeight = self.view.frame.size.height / 10
         let multiplier = CGFloat(1.2)
@@ -368,6 +380,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         func spread(){
             
             UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
+               
+                
                 
                 self.button_red.frame.origin.x -= self.buttonOriginalWidth! / 2 + extraWidth + 2
                 self.button_red_s.frame.origin.x += self.buttonOriginalWidth! / 2 + 2
@@ -411,10 +425,17 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
                 self.button_red_s3.frame.origin.y = yOffset
                 self.button_red_s4.frame.origin.y = yOffset
-            
+                
                 yOffset += buttonHeight * multiplier + 5
                 
-                }, completion: nil )
+                }, completion: {_ in
+                    UIView.animateWithDuration(0.7, animations: { () -> Void in
+                        
+                       self.button_red_s3.alpha = 1
+                        
+                    })
+                    
+            } )
             UIView.animateWithDuration(1, delay: 0.4, options: [], animations: { () -> Void in
                 self.button_grey.frame.origin.y = yOffset
                 self.button_grey_s.frame.origin.y = yOffset
@@ -426,14 +447,27 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 self.button_yellow_s.frame.origin.y = yOffset
         
                 yOffset += buttonHeight * multiplier + 5
-                }, completion: nil )
-            UIView.animateWithDuration(1, delay: 0.8, options: [], animations: { () -> Void in
+                }, completion: {_ in
+                    
+                    for button in sup {
+                        
+                        button.alpha = 1
+                    }
+                    
+                    for button in self.allButtons{
+                        self.view.bringSubviewToFront(button)
+                    }
+                    
+                    self.view.bringSubviewToFront(self.button_red_s3)
+
+            } )
+            UIView.animateWithDuration(1, delay: 0.4, options: [], animations: { () -> Void in
                 self.button_green.frame.origin.y = yOffset
                 self.button_green_s.frame.origin.y = yOffset
               
                 yOffset += buttonHeight * multiplier + 5
                 }, completion: nil )
-            UIView.animateWithDuration(1, delay: 1, options: [], animations: { () -> Void in
+            UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
                 self.button_blue.frame.origin.y = yOffset
                 self.button_blue_s.frame.origin.y = yOffset
               
@@ -2211,6 +2245,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
             restoreToPastValues()
             self.status.hidden = true
+            sendSupplementaryButtonsAway()
     }
     
     func setUpActionButton(){
