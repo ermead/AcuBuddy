@@ -325,7 +325,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
     }
     
-    @IBAction func favoritesOrAllChoiceDismissed(sender: UIButton) {
+    @IBAction func favoritesOrAllChoiceDismissed(sender: AnyObject) {
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             
@@ -454,7 +454,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
             UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
                
-                
+                for button in all {
+                    
+                    button.layer.cornerRadius = 10
+                }
                 
                 self.button_red.frame.origin.x -= self.buttonOriginalWidth! / 2 + extraWidth + 2
                 self.button_red_s.frame.origin.x += self.buttonOriginalWidth! / 2 + 2
@@ -484,7 +487,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 
                 
                 }, completion: { _ in
-                    self.view.bringSubviewToFront(self.button_blue_s)
+                    
 //                    self.undoButton.frame.size = CGSize(width: self.undoButton.frame.size.width * 2, height: self.undoButton.frame.size.height * 2)
 //                    self.view.bringSubviewToFront(self.undoButton)
             
@@ -526,7 +529,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                         
                         button.alpha = 1
                     }
-                    
+                    self.view.bringSubviewToFront(self.button_blue_s)
                     for button in self.allButtons{
                         self.view.bringSubviewToFront(button)
                     }
@@ -2843,7 +2846,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         containerTable.hidden = true
         
         if title == "Favorite Points" {
-            
+            favoritesOrAllChoiceDismissed(self)
             kDataSet = title
             //sendButtonsAway()
             //sendSupplementaryButtonsAway()
@@ -2854,7 +2857,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         }
         
         if title == "Favorite Herbs" {
-            
+            favoritesOrAllChoiceDismissed(self)
             kDataSet = title
             //sendButtonsAway()
             //sendSupplementaryButtonsAway()
@@ -2865,7 +2868,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         }
         
         if title ==  "All Herbs" {
-           
+            favoritesOrAllChoiceDismissed(self)
             kDataSet = title
             //sendButtonsAway()
             //sendSupplementaryButtonsAway()
@@ -2878,6 +2881,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         
         if title ==  "All Points" {
+            favoritesOrAllChoiceDismissed(self)
             
             let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
             let titles = ["BL", "GB", "LI", "SI", "ST", "PC", "SJ"]
