@@ -30,6 +30,9 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     let nc = NSNotificationCenter.defaultCenter()
     
     let favoritesOrAllChoice = UIView()
+    let dismiss = UIButton()
+    let topButton = UIButton()
+    let middleButton = UIButton()
     
     let layer1 = CAGradientLayer()
     
@@ -100,7 +103,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     var allButtons: [UIButton] = []
     
     //Supplemental Buttons
-    var showingSupplementalButtons: Bool = true
+    var showingSupplementalButtons: Bool = false
     let button_red_s = UIButton()
     let button_yellow_s = UIButton()
     let button_grey_s = UIButton()
@@ -281,7 +284,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     func setUpfavoritesOrAllChoice() {
         
-        self.favoritesOrAllChoice.frame = CGRect(x: 30, y: self.view.frame.size.height / 2 - 50, width: self.view.frame.size.width - 60, height: self.view.frame.size.height / 3)
+        self.favoritesOrAllChoice.frame = CGRect(x: 45, y: self.view.frame.size.height / 2 - 50, width: self.view.frame.size.width - 90, height: self.view.frame.size.height / 3)
         self.favoritesOrAllChoice.backgroundColor = Colors.blue
         self.favoritesOrAllChoice.layer.cornerRadius = 15
         self.favoritesOrAllChoice.layer.borderColor = UIColor.blackColor().CGColor
@@ -289,9 +292,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         self.favoritesOrAllChoice.layer.shadowOffset = CGSize(width: 5, height: 15)
         self.favoritesOrAllChoice.layer.shadowOpacity = 0.8
         self.view.addSubview(favoritesOrAllChoice)
-        let dismiss = UIButton()
-        let topButton = UIButton()
-        let middleButton = UIButton()
+     
         dismiss.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         dismiss.setTitle("X", forState: .Normal)
         dismiss.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -423,6 +424,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     func bringInSupplementalButtons(supTitles: [String], mainTitles: [String]){
         
+        showingSupplementalButtons = true
+        
         var otherTitles = ["HT", "SP", "LU", "KI", "LR"]
         
         var titles = ["BL", "GB", "LI", "SI", "ST", "PC", "SJ"]
@@ -481,7 +484,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 
                 
                 }, completion: { _ in
-                    
+                    self.view.bringSubviewToFront(self.button_blue_s)
 //                    self.undoButton.frame.size = CGSize(width: self.undoButton.frame.size.width * 2, height: self.undoButton.frame.size.height * 2)
 //                    self.view.bringSubviewToFront(self.undoButton)
             
@@ -961,8 +964,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         self.bottomTabBarButton.alpha = 1
         self.bottomTabBarButton.userInteractionEnabled = true
         self.undoButton.hidden = false
-        self.setButtonsLikeStar()
+        //self.setButtonsLikeStar()
+        self.moveButtonsToEdges()
         self.sendSupplementaryButtonsAway()
+        showingSupplementalButtons = false
        
     }
     
@@ -2281,7 +2286,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     @IBAction func dismissButtonTapped(sender: AnyObject){
         let superView = sender.superview
-        self.bringInButtons()
+        //self.bringInButtons()
         //self.bottomTabBarButton.hidden = false
         //self.tabBar.hidden = false
         print("dismiss tapped")
@@ -2529,6 +2534,15 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     }
     
     @IBAction func bottomTabBarButtonTapped(){
+        //sendButtonsAway()
+        //self.sendSupplementaryButtonsAway()
+        //self.moveButtonsToEdges()
+        
+        if showingSupplementalButtons == true {
+            
+            
+            
+        }
         
         if tabBar.hidden == true {
             tabBar.hidden = false
@@ -2542,36 +2556,38 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 self.view.bringSubviewToFront(self.bottomTabBarButton)
                 self.bottomTabBarButton.setTitle("▼", forState: .Normal)
                 
-                var leftStack: [UIButton] = []
-                
-                for button in self.allButtons {
-                    if button.frame.origin.x == 0{
-                        leftStack.append(button)
-                    }
-                    
-                    if leftStack.count == 5 {
-                        self.moveButtonsToLeftEdge()
-                        return
-                    }
-                    
-                }
-                
-                
-                let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
-                let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
-                
-                for button in twoBottomButtons{
-                    if button.frame.size.width > self.buttonOriginalWidth {
-                        if self.label.text == "Remedies" {
-                            self.expandAsStackRemedies()
-                        } else {
-                            self.expandAsStack()
-                        }
-                    } else {button.frame.origin.y -= (self.view.frame.size.height/8)}
-                }
- 
+//                var leftStack: [UIButton] = []
+//                
+//                for button in self.allButtons {
+//                    if button.frame.origin.x == 0{
+//                        leftStack.append(button)
+//                    }
+//                    
+//                    if leftStack.count == 5 {
+//                        self.moveButtonsToLeftEdge()
+//                        return
+//                    }
+//                    
+//                }
+//                
+//                
+//                let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
+//                let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
+//                
+//                for button in twoBottomButtons{
+//                    if button.frame.size.width > self.buttonOriginalWidth {
+//                        if self.label.text == "Remedies" {
+//                            self.expandAsStackRemedies()
+//                        } else {
+//                            self.expandAsStack()
+//                        }
+//                    } else {button.frame.origin.y -= (self.view.frame.size.height/8)}
+//                }
+// 
             
                 }, completion: { _ in
+                    self.view.bringSubviewToFront(self.tabBar)
+                    self.view.bringSubviewToFront(self.bottomTabBarButton)
                    //self.makeButtonsTransparent()
             })
             
@@ -2584,55 +2600,55 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 self.bottomTabBarButton.frame.origin.y += (self.tabBar.frame.size.height - 15)
                 self.bottomTabBarButton.setTitle("▲", forState: .Normal)
                 
-                var leftStack: [UIButton] = []
-                
-                for button in self.allButtons {
-                    if button.frame.origin.x == 0{
-                        leftStack.append(button)
-                    }
-                    
-                    if leftStack.count == 5 {
-                        self.moveButtonsToLeftEdge()
-                        self.tabBar.hidden = true
-                        return
-                    }
-
-                }
-                
-                let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
-                
-                let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
-
-                for button in twoBottomButtons {
-                    
-                    if button.frame.size.width > self.buttonOriginalWidth {
-                        
-                        continue
-                        
-                    } else {
-                    
-                        button.frame.origin.y += (self.view.frame.size.height/8)
-                    }
-                    
-                    }
-                
-                
-                for button in self.allButtons {
-    
-                    if button.frame.origin.y + button.frame.size.height > self.view.bounds.height {
-                        button.frame.origin.y = self.view.bounds.height - button.frame.size.height
-                    }
-                    
-                    if button.frame.size.width > self.buttonOriginalWidth {
-                        
-                        if self.label.text == "Remedies" {
-                            self.expandAsStackRemedies()
-                        } else {
-                            self.expandAsStack()
-                        }
-                    }
-                }
-                
+//                var leftStack: [UIButton] = []
+//                
+//                for button in self.allButtons {
+//                    if button.frame.origin.x == 0{
+//                        leftStack.append(button)
+//                    }
+//                    
+//                    if leftStack.count == 5 {
+//                        self.moveButtonsToLeftEdge()
+//                        self.tabBar.hidden = true
+//                        return
+//                    }
+//
+//                }
+//                
+//                let buttonYpositions = [self.button_red,self.button_yellow, self.button_green, self.button_grey, self.button_blue].sort({$0.frame.origin.y > $1.frame.origin.y})
+//                
+//                let twoBottomButtons = [buttonYpositions[0], buttonYpositions[1]]
+//
+//                for button in twoBottomButtons {
+//                    
+//                    if button.frame.size.width > self.buttonOriginalWidth {
+//                        
+//                        continue
+//                        
+//                    } else {
+//                    
+//                        button.frame.origin.y += (self.view.frame.size.height/8)
+//                    }
+//                    
+//                    }
+//                
+//                
+//                for button in self.allButtons {
+//    
+//                    if button.frame.origin.y + button.frame.size.height > self.view.bounds.height {
+//                        button.frame.origin.y = self.view.bounds.height - button.frame.size.height
+//                    }
+//                    
+//                    if button.frame.size.width > self.buttonOriginalWidth {
+//                        
+//                        if self.label.text == "Remedies" {
+//                            self.expandAsStackRemedies()
+//                        } else {
+//                            self.expandAsStack()
+//                        }
+//                    }
+//                }
+//                
                 
                 }, completion: { _ in
                     self.tabBar.hidden = true
@@ -2728,6 +2744,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         kIsHerbs = false
         kDataSet = "Acupuncture"
         self.favoritesOrAllChoice.hidden = false
+        topButton.setTitle("Favorite Points", forState: .Normal)
+        middleButton.setTitle("All Points", forState: .Normal)
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             
             self.favoritesOrAllChoice.alpha = 1
@@ -2739,6 +2757,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         //tableView.reloadData()
         //presentTableView()
         sendButtonsAway()
+        sendSupplementaryButtonsAway()
     }
     
     @IBAction func rightTabBarButtonTapped() {
@@ -2748,6 +2767,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         kIsHerbs = true
         kDataSet = "Herbs"
         self.favoritesOrAllChoice.hidden = false
+        topButton.setTitle("Favorite Herbs", forState: .Normal)
+        middleButton.setTitle("All Herbs", forState: .Normal)
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             
             self.favoritesOrAllChoice.alpha = 1
@@ -2759,6 +2780,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         //tableView.reloadData()
         //presentTableView()
         sendButtonsAway()
+        sendSupplementaryButtonsAway()
     }
     
    
@@ -2820,7 +2842,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         containerTable.hidden = true
         
-        if title == "Favorites" {
+        if title == "Favorite Points" {
             
             kDataSet = title
             //sendButtonsAway()
@@ -2831,14 +2853,37 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
         }
         
+        if title == "Favorite Herbs" {
+            
+            kDataSet = title
+            //sendButtonsAway()
+            //sendSupplementaryButtonsAway()
+            tableView.reloadData()
+            self.view.bringSubviewToFront(tableView)
+            presentTableView()
+            
+        }
         
-        if title ==  "Everything else..." {
-            if kDataSet == "Acupuncture" {
-                let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
-                let titles = ["BL", "GB", "LI", "SI", "ST", "PC", "SJ"]
-                bringInSupplementalButtons(titles, mainTitles: otherTitles)
-                return
-            }
+        if title ==  "All Herbs" {
+           
+            kDataSet = title
+            //sendButtonsAway()
+            //sendSupplementaryButtonsAway()
+            tableView.reloadData()
+            self.view.bringSubviewToFront(tableView)
+            presentTableView()
+            
+        }
+        
+        
+        
+        if title ==  "All Points" {
+            
+            let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
+            let titles = ["BL", "GB", "LI", "SI", "ST", "PC", "SJ"]
+            bringInSupplementalButtons(titles, mainTitles: otherTitles)
+            
+            
             kDataSet = title
             //sendButtonsAway()
             //sendSupplementaryButtonsAway()

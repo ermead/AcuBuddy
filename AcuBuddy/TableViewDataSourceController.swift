@@ -14,27 +14,33 @@ var kIsFirstPage: Bool?
 
 class EM_TableViewDataController: NSObject, UITableViewDataSource {
     
+        lazy var herbs = EM_HerbsController.sharedInstance.herbs
+        lazy var points = EM_PointsController.sharedInstance.points
+        let microsystems = ["Ear", "Eye", "Scalp", "Tongue", "Face", "Hand", "Abdomen", "Foot"]
+        let diets = ["Anti-inflammatory & Cooling", "Warming & Strengthening"]
+        let moxaInfoCategories = ["moxa charts", "moxa recipes"]
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! EM_CustomTableViewCell
         
         // Keys: "Microsystems", "Acupuncture", "Diet", "Herbs", "Moxa"
-        if kIsFirstPage == true {
-            
-            if indexPath.row == 0 {
-                cell.textLabel?.text = "Favorites"
-            } else if indexPath.row == 1 {
-                cell.textLabel?.text = "All"
-            }
-            
-            return cell
-        }
+        
+//        if kIsFirstPage == true {
+//            
+//            if indexPath.row == 0 {
+//                cell.textLabel?.text = "Favorites"
+//            } else if indexPath.row == 1 {
+//                cell.textLabel?.text = "All"
+//            }
+//            
+//            return cell
+//        }
         
         if kIsHerbs == true {
             //it is a herb
             
-            let herbs = EM_HerbsController.sharedInstance.herbs
+           
             
             let herb = herbs[indexPath.row]
             let name = herb.name
@@ -43,24 +49,35 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             
         } else if kDataSet == "Acupuncture" {
             // it is a point
-            let points = EM_PointsController.sharedInstance.points
+           
         
             let point = points[indexPath.row]
             let channel = point.channel
             let number = point.number
         
             cell.textLabel?.text = channel! + number!
+            
         } else if kDataSet == "Microsystems" {
             
-            cell.textLabel?.text = "Microsystems"
+            
+            let microsystem = microsystems[indexPath.row]
+            
+            cell.textLabel?.text = microsystem
             
         } else if kDataSet == "Diet" {
             
-            cell.textLabel?.text = "Diet"
+           
+            let diet = diets[indexPath.row]
+            
+            cell.textLabel?.text = diet
             
         } else if kDataSet == "Moxa" {
             
-             cell.textLabel?.text = "Moxa"
+            
+            
+            let info = moxaInfoCategories[indexPath.row]
+            
+            cell.textLabel?.text = info
             
         } else {
             
@@ -75,30 +92,32 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         
         var count: Int?
         
-        if kIsFirstPage == true {
-           
-            return 2
-        }
+//        if kIsFirstPage == true {
+//           
+//            return 2
+//        }
         
         if kIsHerbs == true {
             
-            count = EM_HerbsController.sharedInstance.herbs.count
+            count = herbs.count
+            //count = EM_HerbsController.sharedInstance.herbs.count
             
         } else if kDataSet == "Acupuncture" {
             
-            count = EM_PointsController.sharedInstance.points.count
+            count = points.count
+            //count = EM_PointsController.sharedInstance.points.count
             
         } else if kDataSet == "Microsystems" {
             
-            count = 8
+            count = microsystems.count
             
         } else if kDataSet == "Diet" {
             
-            count = 8
+            count = diets.count
             
         } else if kDataSet == "Moxa" {
             
-            count = 8
+            count = moxaInfoCategories.count
             
         } else {
             
@@ -110,6 +129,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+       
         let points = EM_PointsController.sharedInstance.points
         let point = points[indexPath.row]
          kEntry = point
