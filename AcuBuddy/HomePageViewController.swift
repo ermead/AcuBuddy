@@ -29,6 +29,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     let nc = NSNotificationCenter.defaultCenter()
     
+    let favoritesOrAllChoice = UIView()
+    
     let layer1 = CAGradientLayer()
     
     var didPlayIntro: Bool = false
@@ -189,7 +191,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         setUpPopOutContainer()
         
-        
+        setUpfavoritesOrAllChoice()
       
         //TODO: Nest these functions
         
@@ -277,11 +279,72 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     //TODO: Clean Up functions
     //MARK: Begin functions to be cleaned up:
     
+    func setUpfavoritesOrAllChoice() {
+        
+        self.favoritesOrAllChoice.frame = CGRect(x: 30, y: self.view.frame.size.height / 2 - 50, width: self.view.frame.size.width - 60, height: self.view.frame.size.height / 3)
+        self.favoritesOrAllChoice.backgroundColor = Colors.blue
+        self.favoritesOrAllChoice.layer.cornerRadius = 15
+        self.favoritesOrAllChoice.layer.borderColor = UIColor.blackColor().CGColor
+        self.favoritesOrAllChoice.layer.borderWidth = 0
+        self.favoritesOrAllChoice.layer.shadowOffset = CGSize(width: 5, height: 15)
+        self.favoritesOrAllChoice.layer.shadowOpacity = 0.8
+        self.view.addSubview(favoritesOrAllChoice)
+        let dismiss = UIButton()
+        let topButton = UIButton()
+        let middleButton = UIButton()
+        dismiss.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        dismiss.setTitle("X", forState: .Normal)
+        dismiss.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        dismiss.backgroundColor = UIColor.whiteColor()
+        dismiss.layer.borderColor = UIColor.blackColor().CGColor
+        dismiss.layer.borderWidth = 1
+        dismiss.addTarget(self, action: "favoritesOrAllChoiceDismissed:", forControlEvents: .TouchUpInside)
+        favoritesOrAllChoice.addSubview(dismiss)
+        
+        topButton.frame = CGRect(x: 10, y: 10, width: favoritesOrAllChoice.frame.size.width - 20, height: favoritesOrAllChoice.frame.size.height/3)
+        middleButton.frame = CGRect(x: 10, y: 10 + topButton.frame.size.height + 10, width: favoritesOrAllChoice.frame.size.width - 20, height: favoritesOrAllChoice.frame.size.height/3)
+        topButton.backgroundColor = UIColor.lightGrayColor()
+        middleButton.backgroundColor = UIColor.lightGrayColor()
+        topButton.layer.cornerRadius = 3
+        topButton.layer.borderColor = UIColor.blackColor().CGColor
+        topButton.layer.borderWidth = 1
+        middleButton.layer.cornerRadius = 3
+        middleButton.layer.borderColor = UIColor.blackColor().CGColor
+        middleButton.layer.borderWidth = 1
+        
+        topButton.setTitle("Favorites", forState: .Normal)
+        middleButton.setTitle("Everything else...", forState: .Normal)
+        topButton.addTarget(self, action: "supplementalButtonTapped:", forControlEvents: .TouchUpInside)
+        middleButton.addTarget(self, action: "supplementalButtonTapped:", forControlEvents: .TouchUpInside)
+        
+        self.favoritesOrAllChoice.addSubview(topButton)
+        self.favoritesOrAllChoice.addSubview(middleButton)
+        favoritesOrAllChoice.bringSubviewToFront(dismiss)
+        self.favoritesOrAllChoice.hidden = true
+        
+    }
+    
+    @IBAction func favoritesOrAllChoiceDismissed(sender: UIButton) {
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            
+                self.favoritesOrAllChoice.alpha = 0
+            
+            }, completion: { _ in
+        
+                self.favoritesOrAllChoice.hidden = true
+        })
+        
+        
+        
+    }
+
+    //MARK: Supplemental Buttons
     
     
     func setUpSupplementalButtons(){
         
-        //MARK: Supplemental Buttons
+        
         button_red_s.center = CGPoint(x: self.view.bounds.width / 2, y: -view.bounds.height)
         button_yellow_s.center = CGPoint(x: self.view.bounds.width * 2, y: -view.bounds.height)
         button_grey_s.center = CGPoint(x: self.view.bounds.width * 2, y: view.bounds.height * 2)
@@ -357,20 +420,27 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
     }
     
-    func bringInSupplementalButtons(){
+    
+    func bringInSupplementalButtons(supTitles: [String], mainTitles: [String]){
         
-        setUpDismissButton(dismissViewButtonView)
-        dismissViewButtonView.frame = CGRect(x: 30, y: 50, width: 30, height: 30)
-        self.view.addSubview(dismissViewButtonView)
+        var otherTitles = ["HT", "SP", "LU", "KI", "LR"]
+        
+        var titles = ["BL", "GB", "LI", "SI", "ST", "PC", "SJ"]
+        titles = supTitles
+        otherTitles = mainTitles
         
         self.allSupplementalButtons = [self.button_blue_s, self.button_green_s, self.button_grey_s, self.button_red_s, self.button_yellow_s, self.button_red_s3, self.button_red_s4]
     
         let sup = self.allSupplementalButtons
         
+        var i = -1
         for button in sup {
-            
+            i++
+            button.setTitle(titles[i], forState: .Normal)
             button.alpha = 0
         }
+        
+        self.button_red_s3.alpha = 1
         
         let all = self.allButtons + sup
         let buttonHeight = self.view.frame.size.height / 10
@@ -410,7 +480,12 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 self.button_blue_s.frame.size.width += extraWidth
                 
                 
-                }, completion: nil)
+                }, completion: { _ in
+                    
+//                    self.undoButton.frame.size = CGSize(width: self.undoButton.frame.size.width * 2, height: self.undoButton.frame.size.height * 2)
+//                    self.view.bringSubviewToFront(self.undoButton)
+            
+            })
        
         }
         
@@ -429,12 +504,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 yOffset += buttonHeight * multiplier + 5
                 
                 }, completion: {_ in
-                    UIView.animateWithDuration(0.7, animations: { () -> Void in
-                        
-                       self.button_red_s3.alpha = 1
-                        
-                    })
-                    
+                  
             } )
             UIView.animateWithDuration(1, delay: 0.4, options: [], animations: { () -> Void in
                 self.button_grey.frame.origin.y = yOffset
@@ -483,6 +553,12 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 button.center = self.view.center
 
                 }, completion: { _ in
+                    
+//                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+//                        
+//                        self.button_red_s3.alpha = 1
+//                        
+//                    })
                    
             } )
         
@@ -490,7 +566,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
       
         stack()
-        let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
+        
         self.setButtonTitles(otherTitles)
         
        delay(seconds: 1.5) { () -> () in
@@ -499,6 +575,13 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         }
        
         
+        
+    }
+    
+    @IBAction func supplementalButtonTapped(sender: UIButton){
+        
+        print(sender.titleLabel?.text)
+        buttonTappedHandler((sender.titleLabel?.text)!)
         
     }
     
@@ -973,13 +1056,6 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             }
             
         }
-        
-    }
-    
-    @IBAction func supplementalButtonTapped(sender: UIButton){
-        
-        print(sender.titleLabel?.text)
-        buttonTappedHandler((sender.titleLabel?.text)!)
         
     }
     
@@ -2304,7 +2380,9 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     }
     
     @IBAction func hamburgerButtonTapped(){
-    
+
+        self.sendSupplementaryButtonsAway()
+        
         if popUpFromHamburger.hidden == true {
             popUpFromHamburger.hidden = false
             
@@ -2646,11 +2724,20 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     @IBAction func leftTabBarButtonTapped() {
         print("left tab")
         showMessages(0, arrayOfMessages: array3)
-        
+
         kIsHerbs = false
         kDataSet = "Acupuncture"
-        tableView.reloadData()
-        presentTableView()
+        self.favoritesOrAllChoice.hidden = false
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            
+            self.favoritesOrAllChoice.alpha = 1
+            
+            }, completion: { _ in
+                
+                
+        })
+        //tableView.reloadData()
+        //presentTableView()
         sendButtonsAway()
     }
     
@@ -2660,8 +2747,17 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         kIsHerbs = true
         kDataSet = "Herbs"
-        tableView.reloadData()
-        presentTableView()
+        self.favoritesOrAllChoice.hidden = false
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            
+            self.favoritesOrAllChoice.alpha = 1
+            
+            }, completion: { _ in
+                
+                
+        })
+        //tableView.reloadData()
+        //presentTableView()
         sendButtonsAway()
     }
     
@@ -2675,6 +2771,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
               print("segue to detail")
                 
                 let index = tableView.indexPathForSelectedRow?.row
+             
                 
                 if kIsHerbs == true {
                     let herbs = EM_HerbsController.sharedInstance.herbs
@@ -2722,6 +2819,34 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         //Buttons for HamburgerPopUp
         
         containerTable.hidden = true
+        
+        if title == "Favorites" {
+            
+            kDataSet = title
+            //sendButtonsAway()
+            //sendSupplementaryButtonsAway()
+            tableView.reloadData()
+            self.view.bringSubviewToFront(tableView)
+            presentTableView()
+            
+        }
+        
+        
+        if title ==  "Everything else..." {
+            if kDataSet == "Acupuncture" {
+                let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
+                let titles = ["BL", "GB", "LI", "SI", "ST", "PC", "SJ"]
+                bringInSupplementalButtons(titles, mainTitles: otherTitles)
+                return
+            }
+            kDataSet = title
+            //sendButtonsAway()
+            //sendSupplementaryButtonsAway()
+            tableView.reloadData()
+            self.view.bringSubviewToFront(tableView)
+            //presentTableView()
+            
+        }
         
         let array = ["LU", "LI", "ST", "SP", "HT", "SI", "BL", "KI", "PC","SJ", "GB", "LR"]
         
@@ -2838,8 +2963,11 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             tableView.reloadData()
             
             //presentTableView()
-           
-            self.bringInSupplementalButtons()
+            
+            let titles = ["BL", "GB", "LI", "SI", "ST", "PC", "SJ"]
+            let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
+
+            self.bringInSupplementalButtons(titles, mainTitles: otherTitles)
            
           
             
@@ -2855,6 +2983,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             nc.postNotificationName(presentTableNotification, object: self, userInfo: ["key" : title])
             
             tableView.reloadData()
+          
             //presentTableView()
             
             //bringButtonsToCenter()

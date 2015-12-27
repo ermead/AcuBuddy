@@ -10,18 +10,26 @@ import UIKit
 
 var kIsHerbs: Bool?
 var kDataSet: String?
+var kIsFirstPage: Bool?
 
 class EM_TableViewDataController: NSObject, UITableViewDataSource {
     
 
-    
-    
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! EM_CustomTableViewCell
         
         // Keys: "Microsystems", "Acupuncture", "Diet", "Herbs", "Moxa"
+        if kIsFirstPage == true {
+            
+            if indexPath.row == 0 {
+                cell.textLabel?.text = "Favorites"
+            } else if indexPath.row == 1 {
+                cell.textLabel?.text = "All"
+            }
+            
+            return cell
+        }
         
         if kIsHerbs == true {
             //it is a herb
@@ -67,6 +75,11 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         
         var count: Int?
         
+        if kIsFirstPage == true {
+           
+            return 2
+        }
+        
         if kIsHerbs == true {
             
             count = EM_HerbsController.sharedInstance.herbs.count
@@ -99,10 +112,12 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let points = EM_PointsController.sharedInstance.points
         let point = points[indexPath.row]
+         kEntry = point
         
         print("cell hit")
+       
         
-        kEntry = point
+       
         
     }
     

@@ -98,7 +98,7 @@
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <connections>
-                                            <segue destination="x6z-Dn-Zm0" kind="modal" identifier="toDetailView" id="L2m-a0-mUM"/>
+                                            <segue destination="x6z-Dn-Zm0" kind="modal" identifier="toDetailView" id="9hC-iN-u4U"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
