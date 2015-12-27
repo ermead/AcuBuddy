@@ -298,6 +298,26 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         button_blue_s.alpha = 0
         button_green_s.alpha = 0
         
+        self.allSupplementalButtons = [self.button_blue_s, self.button_green_s, self.button_grey_s, self.button_red_s, self.button_yellow_s]
+        let titles = ["BL", "GB", "LI", "SI", "ST"]
+        
+        var i = -1
+        for button in self.allSupplementalButtons {
+            i++
+            button.setTitle(titles[i], forState: .Normal)
+            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            button.frame.size = CGSize(width: self.buttonOriginalWidth!, height: self.buttonOriginalHeight!)
+            button.layer.borderColor = UIColor.blackColor().CGColor
+            button.layer.borderWidth = 1
+            button.layer.cornerRadius = 15
+            button.alpha = 0
+            self.view.addSubview(button)
+            self.view.bringSubviewToFront(button)
+            self.view.addSubview(button)
+            
+            
+        }
+        
         button_red_s3.center = CGPoint(x: self.view.bounds.width / 2, y: -view.bounds.height)
         button_red_s4.center = CGPoint(x: self.view.bounds.width / 2, y: -view.bounds.height)
         button_red_s3.backgroundColor = Colors.red
@@ -307,8 +327,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         button_red_s3.setTitleColor(UIColor.blackColor(), forState: .Normal)
         button_red_s4.setTitleColor(UIColor.blackColor(), forState: .Normal)
         
-        self.button_red_s3.alpha = 0
-        self.button_red_s4.alpha = 0
+   
         self.button_red_s3.setTitle("PC", forState: .Normal)
         self.button_red_s4.setTitle("SJ", forState: .Normal)
         self.button_red_s3.frame.size = CGSize(width: self.buttonOriginalWidth!, height: self.buttonOriginalHeight!)
@@ -325,6 +344,13 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         self.view.addSubview(self.button_red_s3)
         self.view.addSubview(self.button_red_s4)
         
+        self.button_red_s3.addTarget(self, action: "supplementalButtonTapped:", forControlEvents: .TouchUpInside)
+        self.button_red_s4.addTarget(self, action: "supplementalButtonTapped:", forControlEvents: .TouchUpInside)
+        button_red_s.addTarget(self, action: "supplementalButtonTapped:", forControlEvents: .TouchUpInside)
+        button_yellow_s.addTarget(self, action: "supplementalButtonTapped:", forControlEvents: .TouchUpInside)
+        button_grey_s.addTarget(self, action: "supplementalButtonTapped:", forControlEvents: .TouchUpInside)
+        button_blue_s.addTarget(self, action: "supplementalButtonTapped:", forControlEvents: .TouchUpInside)
+        button_green_s.addTarget(self, action: "supplementalButtonTapped:", forControlEvents: .TouchUpInside)
         
         //MARK: end supplementalButtons
         
@@ -332,117 +358,114 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     }
     
     func bringInSupplementalButtons(){
-        
-        func setUpReds(){
+         self.allSupplementalButtons = [self.button_blue_s, self.button_green_s, self.button_grey_s, self.button_red_s, self.button_yellow_s, self.button_red_s3, self.button_red_s4]
+        let sup = self.allSupplementalButtons
+        let all = self.allButtons + sup
+        let buttonHeight = self.view.frame.size.height / 10
+        let multiplier = CGFloat(1.2)
+        var yOffset = CGFloat(100)
+        let extraWidth = CGFloat(70)
+        func spread(){
             
-            let height = self.buttonOriginalHeight! / 2
-            
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
-                self.button_red.frame.size.height = height
-                self.button_red_s.frame.size.height = height
+            UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
                 
-                }, completion: { _ in
-            
-                    self.button_red_s3.frame = self.button_red.frame
-                    self.button_red_s4.frame = self.button_red_s.frame
-                    self.button_red_s3.alpha = 0
-                    self.button_red_s4.alpha = 0
-                    
-                    UIView.animateWithDuration(0.5, delay: 0.5, options: [], animations: { () -> Void in
-                        self.button_red_s3.frame.origin.y = self.button_red.frame.origin.y + self.button_red.frame.size.height + 1
-                        self.button_red_s4.frame.origin.y = self.button_red.frame.origin.y + self.button_red.frame.size.height + 1
-                        self.button_red_s3.alpha = 1
-                        self.button_red_s4.alpha = 1
-            
-                        
-                        }, completion: nil )
-            
-            })
-           
-          
-            
-            
-        }
-        
-        func moveToSide(){
-            
-            UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseInOut], animations: { () -> Void in
+                self.button_red.frame.origin.x -= self.buttonOriginalWidth! / 2 + extraWidth + 2
+                self.button_red_s.frame.origin.x += self.buttonOriginalWidth! / 2 + 2
+                self.button_red_s3.frame.origin.x -= self.buttonOriginalWidth! / 2 + extraWidth + 2
+                self.button_red_s4.frame.origin.x += self.buttonOriginalWidth! / 2 + 2
+                self.button_grey.frame.origin.x -= self.buttonOriginalWidth! / 2 + extraWidth + 2
+                self.button_grey_s.frame.origin.x += self.buttonOriginalWidth! / 2 + 2
+                self.button_yellow.frame.origin.x -= self.buttonOriginalWidth! / 2 + extraWidth + 2
+                self.button_yellow_s.frame.origin.x += self.buttonOriginalWidth! / 2 + 2
+                self.button_green.frame.origin.x -= self.buttonOriginalWidth! / 2 + extraWidth + 2
+                self.button_green_s.frame.origin.x += self.buttonOriginalWidth! / 2 + 2
+                self.button_blue.frame.origin.x -= self.buttonOriginalWidth! / 2 + extraWidth + 2
+                self.button_blue_s.frame.origin.x += self.buttonOriginalWidth! / 2 + 2
                 
-                self.button_red_s.alpha = 1
-                self.button_green_s.alpha = 1
-                self.button_blue_s.alpha = 1
-                self.button_yellow_s.alpha = 1
-                self.button_grey_s.alpha = 1
-                
-                self.button_red_s.frame.origin.x = self.button_red.frame.origin.x + self.button_red.frame.size.width + 2
-                self.button_green_s.frame.origin.x = self.button_green.frame.origin.x + self.button_red.frame.size.width + 2
-                self.button_blue_s.frame.origin.x = self.button_blue.frame.origin.x + self.button_red.frame.size.width + 2
-                self.button_yellow_s.frame.origin.x = self.button_yellow.frame.origin.x + self.button_red.frame.size.width + 2
-                self.button_grey_s.frame.origin.x = self.button_grey.frame.origin.x + self.button_red.frame.size.width + 2
+                self.button_red.frame.size.width += extraWidth
+                self.button_red_s.frame.size.width += extraWidth
+                self.button_red_s3.frame.size.width += extraWidth
+                self.button_red_s4.frame.size.width += extraWidth
+                self.button_grey.frame.size.width += extraWidth
+                self.button_grey_s.frame.size.width += extraWidth
+                self.button_yellow.frame.size.width += extraWidth
+                self.button_yellow_s.frame.size.width += extraWidth
+                self.button_green.frame.size.width += extraWidth
+                self.button_green_s.frame.size.width += extraWidth
+                self.button_blue.frame.size.width += extraWidth
+                self.button_blue_s.frame.size.width += extraWidth
                 
                 
-                }, completion: { _ in
-            
-                   setUpReds()
-            
-            } )
-            
-        
-        }
-        
-        self.allSupplementalButtons = [self.button_blue_s, self.button_green_s, self.button_grey_s, self.button_red_s, self.button_yellow_s]
-        let titles = ["BL", "GB", "LI", "SI", "ST"]
+                }, completion: nil)
        
-        var i = -1
-        for button in self.allSupplementalButtons {
-            i++
-            button.setTitle(titles[i], forState: .Normal)
-            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            button.frame.size = CGSize(width: self.buttonOriginalWidth!, height: self.buttonOriginalHeight!)
-            button.layer.borderColor = UIColor.blackColor().CGColor
-            button.layer.borderWidth = 1
-            button.layer.cornerRadius = 15
-            self.view.addSubview(button)
-            self.view.bringSubviewToFront(button)
-            self.view.addSubview(button)
+        }
+        
+        func stack(){
+            UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
+                self.button_red.frame.origin.y = yOffset
+                self.button_red_s.frame.origin.y = yOffset
             
+                yOffset += buttonHeight * multiplier + 5
+                
+                }, completion: nil )
+            UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
+                self.button_red_s3.frame.origin.y = yOffset
+                self.button_red_s4.frame.origin.y = yOffset
+            
+                yOffset += buttonHeight * multiplier + 5
+                
+                }, completion: nil )
+            UIView.animateWithDuration(1, delay: 0.4, options: [], animations: { () -> Void in
+                self.button_grey.frame.origin.y = yOffset
+                self.button_grey_s.frame.origin.y = yOffset
+               
+                yOffset += buttonHeight * multiplier + 5
+                }, completion: nil )
+            UIView.animateWithDuration(1, delay: 0.6, options: [], animations: { () -> Void in
+                self.button_yellow.frame.origin.y = yOffset
+                self.button_yellow_s.frame.origin.y = yOffset
+        
+                yOffset += buttonHeight * multiplier + 5
+                }, completion: nil )
+            UIView.animateWithDuration(1, delay: 0.8, options: [], animations: { () -> Void in
+                self.button_green.frame.origin.y = yOffset
+                self.button_green_s.frame.origin.y = yOffset
+              
+                yOffset += buttonHeight * multiplier + 5
+                }, completion: nil )
+            UIView.animateWithDuration(1, delay: 1, options: [], animations: { () -> Void in
+                self.button_blue.frame.origin.y = yOffset
+                self.button_blue_s.frame.origin.y = yOffset
+              
+                yOffset += buttonHeight * multiplier + 5
+                }, completion: nil )
             
         }
         
-        for button in self.allButtons {
-            UIView.animateWithDuration(1, animations: { () -> Void in
-                
-                button.frame.size.width = button.frame.size.width / 2
+        for button in all{
+            UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
+                button.frame.size = CGSize(width: self.buttonOriginalWidth!, height: self.buttonOriginalHeight!)
+                button.frame.size.height = buttonHeight * multiplier
+                button.center = self.view.center
 
-                
                 }, completion: { _ in
-                    
-                    let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
-                    self.setButtonTitles(otherTitles)
-                    
-                    for button in self.allSupplementalButtons {
-                        
-                        button.alpha = 0
-                        
-                    }
-                    
-                    self.button_red_s.frame = self.button_red.frame
-                    self.button_yellow_s.frame = self.button_yellow.frame
-                    self.button_green_s.frame = self.button_green.frame
-                    self.button_blue_s.frame = self.button_blue.frame
-                    self.button_grey_s.frame = self.button_grey.frame
-                    
-                    self.button_red_s.frame.origin.x += self.view.frame.size.width
-                    self.button_yellow_s.frame.origin.x += self.view.frame.size.width
-                    self.button_green_s.frame.origin.x += self.view.frame.size.width
-                    self.button_blue_s.frame.origin.x += self.view.frame.size.width
-                    self.button_grey_s.frame.origin.x += self.view.frame.size.width
-                    
-                    
-                    moveToSide()
-                
-            })
+                   
+            } )
+        
         }
+        
+      
+        stack()
+        let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
+        self.setButtonTitles(otherTitles)
+        
+       delay(seconds: 1.5) { () -> () in
+        
+            spread()
+        }
+       
+        
+        
     }
     
     //MARK Orbit Animation
@@ -822,6 +845,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         self.bottomTabBarButton.userInteractionEnabled = true
         self.undoButton.hidden = false
         self.setButtonsLikeStar()
+        self.sendSupplementaryButtonsAway()
        
     }
     
@@ -915,6 +939,13 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             }
             
         }
+        
+    }
+    
+    @IBAction func supplementalButtonTapped(sender: UIButton){
+        
+        print(sender.titleLabel?.text)
+        buttonTappedHandler((sender.titleLabel?.text)!)
         
     }
     
@@ -2657,6 +2688,21 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         containerTable.hidden = true
         
+        let array = ["LU", "LI", "ST", "SP", "HT", "SI", "BL", "KI", "PC","SJ", "GB", "LR"]
+        
+        if array.contains(title) {
+            
+            kDataSet = title
+            //sendButtonsAway()
+            //sendSupplementaryButtonsAway()
+            tableView.reloadData()
+            self.view.bringSubviewToFront(tableView)
+            presentTableView()
+            
+        
+        }
+        
+        
         if title == "Remedies" {
             
             let titles = self.remedies
@@ -2757,11 +2803,9 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             tableView.reloadData()
             
             //presentTableView()
-            //bringButtonsToCenter()
-            self.expandAsStack()
-            delay(seconds: 1.2, completion: { () -> () in
-                  self.bringInSupplementalButtons()
-            })
+           
+            self.bringInSupplementalButtons()
+           
           
             
         }
