@@ -2,29 +2,25 @@
 //  Image.swift
 //  AcuBuddy
 //
-//  Created by Eric Mead on 12/20/15.
+//  Created by Eric Mead on 12/27/15.
 //  Copyright © 2015 Eric Mead. All rights reserved.
 //
 
 import Foundation
-import UIKit
+
 
 var kImageViewToPresent: UIImageView?
 
-class Image {
-    
+
+class Image: NSObject {
     
     var image: UIImage?
     
-    
-    convenience init(image: UIImage?){
+    convenience init(image: UIImage){
         
         self.init()
-        
         self.image = image
+    
     }
-    
-    
-    
     
 }

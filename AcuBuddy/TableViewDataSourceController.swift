@@ -43,7 +43,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
            
             
             let herb = herbs[indexPath.row]
-            let name = herb.name
+            let name = herb.pinyin
             
             cell.textLabel?.text = name
             

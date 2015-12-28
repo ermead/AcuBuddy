@@ -14,11 +14,9 @@ class EM_HerbsController {
     
     var herbs: [Herb] {
         
-        let guiZhi = Herb(name: "Gui Zhi")
+    
         
-        let array = [guiZhi]
-        
-        return array
+        return []
     }
     
 }
