@@ -489,7 +489,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 }, completion: { _ in
                     
 //                    self.undoButton.frame.size = CGSize(width: self.undoButton.frame.size.width * 2, height: self.undoButton.frame.size.height * 2)
-//                    self.view.bringSubviewToFront(self.undoButton)
+                    self.view.bringSubviewToFront(self.bottomTabBarButton)
+                    
             
             })
        
@@ -1149,6 +1150,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         view.addSubview(button_green)
         view.addSubview(button_grey)
         view.addSubview(button_blue)
+        
+        button_blue.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         
     }
     
@@ -3032,8 +3035,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             nc.postNotificationName(presentTableNotification, object: self, userInfo: ["key" : title])
             
             tableView.reloadData()
-          
-            //presentTableView()
+            presentTableView()
+            sendButtonsAway()
             
             //bringButtonsToCenter()
             //bringInSupplementalButtons()
