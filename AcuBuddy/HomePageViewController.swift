@@ -159,17 +159,17 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         
         addCALayers()
         
+        nc.addObserver(self, selector: "beginMotionStuff", name: "Begin Motion", object: nil)
         nc.addObserver(self, selector: "handlePresentTableViewNotifications:", name: presentTableNotification, object: nil)
         nc.addObserver(self, selector: "handleDismissNotification", name: dismissNotification, object: nil)
         nc.addObserver(self, selector: "handlePopoutDismissedNotification", name: popOutDismissed, object: nil)
         
+        blueSquare.hidden = true
         blueSquare.center = self.view.center
         blueSquare.frame.size = CGSize(width: 15, height: 15)
+        blueSquare.layer.cornerRadius = 7.5
         blueSquare.backgroundColor = Colors.blue
         self.view.addSubview(blueSquare)
-        
-        monitorMotion()
-        animateBlueIntoRed()
         
         //set up the UI
         self.containerImage.alpha = 1
@@ -287,6 +287,25 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     //TODO: Clean Up functions
     //MARK: Begin functions to be cleaned up:
+    
+    func beginMotionStuff(){
+        if blueSquare.hidden == true {
+            blueSquare.hidden = false
+            monitorMotion()
+            animateBlueIntoRed()
+            for button in allButtons {
+                
+                button.layer.shadowOpacity = 0.15
+            }
+        } else {
+            blueSquare.hidden = true
+            motionManager.stopDeviceMotionUpdates()
+            for button in allButtons {
+            
+                button.layer.shadowOpacity = 0
+            }
+        }
+    }
     
     
     func deleteCoreData() {
@@ -1059,6 +1078,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     func animateBlueIntoRed(){
         
+        if blueSquare.hidden == false {
+        
         UIView.animateWithDuration(5.0, animations: { () -> Void in
             if self.blueSquare.backgroundColor == UIColor.blueColor() {
                 self.blueSquare.backgroundColor = UIColor.redColor()
@@ -1071,7 +1092,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 self.animateBlueIntoRed()
         } )
         
-        
+        }
     }
     
     //MARK: Buttons:

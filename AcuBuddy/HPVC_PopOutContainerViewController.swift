@@ -48,7 +48,7 @@ class EM_PopOutContainerViewController: UIViewController, UITableViewDelegate, U
 
     //MARK: Table View Button Names: 
     
-    let buttonNames: [String] = ["Quiz", "Games", "Calligraphy"]
+    let buttonNames: [String] = ["Quiz", "Games", "Calligraphy", "Toggle Motion"]
     
     //MARK: Table Views
     
@@ -92,8 +92,13 @@ class EM_PopOutContainerViewController: UIViewController, UITableViewDelegate, U
             performSegueWithIdentifier("toGameView", sender: self)
             
             
+        } else if buttonName == "Toggle Motion" {
+    
+            nc.postNotificationName("Begin Motion", object: self)
+            self.dismissButtonTapped(self)
+    
         } else {
-            
+    
             print("haven't set up selection yet")
             
         }
