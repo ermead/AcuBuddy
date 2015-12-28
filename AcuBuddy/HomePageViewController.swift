@@ -993,7 +993,9 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         self.bottomTabBarButton.userInteractionEnabled = true
         self.undoButton.hidden = false
         //self.setButtonsLikeStar()
-        self.moveButtonsToEdges()
+        delay(seconds: 3) { () -> () in
+            self.setButtonsLikeStarSmall()
+        }
         self.sendSupplementaryButtonsAway()
         showingSupplementalButtons = false
        
@@ -1353,13 +1355,15 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         let titles = ["Fire", "Earth", "Metal", "Water", "Wood"]
         setButtonTitles(titles)
         
+        let speed = 2.0
+        
         let w: CGFloat = self.view.bounds.width / 16
         let h: CGFloat = self.view.bounds.height / 16
         
-        UIView.animateWithDuration(1, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: { () -> Void in
+        UIView.animateWithDuration(speed, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: { () -> Void in
             
             self.button_red.frame.size = CGSize(width: w * 2, height: w * 2)
-            self.button_red.center = CGPoint(x: w * 4, y: h * 1.5)
+            self.button_red.center = CGPoint(x: w * 8, y: h * 1.7)
             self.button_red.layer.cornerRadius = 15
             self.button_red.alpha = 1
             }, completion: {_ in
@@ -1370,10 +1374,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         })
         
         
-        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: {
+        UIView.animateWithDuration(speed, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: [.CurveEaseOut], animations: {
             
             self.button_yellow.frame.size = CGSize(width: w * 2, height: w * 2)
-            self.button_yellow.center = CGPoint(x: w * 7, y: h * 3.5)
+            self.button_yellow.center = CGPoint(x: w * 11, y: h * 3.5)
             self.button_yellow.layer.cornerRadius = 15
             self.button_yellow.alpha = 1
             
@@ -1384,11 +1388,11 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 
         })
         
-        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
+        UIView.animateWithDuration(speed, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
             options: [.CurveEaseOut], animations: {
                 
                 self.button_green.frame.size = CGSize(width: w * 2, height: w * 2)
-                self.button_green.center = CGPoint(x: w * 1, y: h * 3.5)
+                self.button_green.center = CGPoint(x: w * 5, y: h * 3.5)
                 self.button_green.layer.cornerRadius = 15
                 self.button_green.alpha = 1
             }, completion: {_ in
@@ -1398,11 +1402,11 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 
         })
         
-        UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
+        UIView.animateWithDuration(speed, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
             options: [.CurveEaseOut], animations: {
                 
                 self.button_grey.frame.size = CGSize(width: w * 2, height: w * 2)
-                self.button_grey.center = CGPoint(x: w * 7, y: h * 7)
+                self.button_grey.center = CGPoint(x: w * 11, y: h * 6)
                 self.button_grey.layer.cornerRadius = 15
                 self.button_grey.alpha = 1
             }, completion: {_ in
@@ -1412,11 +1416,11 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 
         })
         
-        UIView.animateWithDuration(1, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
+        UIView.animateWithDuration(speed, delay: 0.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 1,
             options: [.CurveEaseOut], animations: {
                 
                 self.button_blue.frame.size = CGSize(width: w * 2, height: w * 2)
-                self.button_blue.center = CGPoint(x: w * 1, y: h * 7)
+                self.button_blue.center = CGPoint(x: w * 5, y: h * 6)
                 self.button_blue.layer.cornerRadius = 15
                 self.button_blue.alpha = 1
                 
@@ -2772,7 +2776,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         showMessages(0, arrayOfMessages: array3)
 
         kIsHerbs = false
-        kDataSet = "Acupuncture"
+        kDataSet = "All Points"
+        tableView.reloadData()
         self.favoritesOrAllChoice.hidden = false
         topButton.setTitle("Favorite Points", forState: .Normal)
         middleButton.setTitle("All Points", forState: .Normal)
@@ -2795,7 +2800,8 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         showMessages(0, arrayOfMessages: array4)
         
         kIsHerbs = true
-        kDataSet = "Herbs"
+        kDataSet = "All Herbs"
+        tableView.reloadData()
         self.favoritesOrAllChoice.hidden = false
         topButton.setTitle("Favorite Herbs", forState: .Normal)
         middleButton.setTitle("All Herbs", forState: .Normal)
@@ -2824,23 +2830,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                 
                 let index = tableView.indexPathForSelectedRow?.row
              
+                let array = kArray
+                kEntry = kArray[index!]
                 
-                if kIsHerbs == true {
-                    let herbs = EM_HerbsController.sharedController.herbs
-                    let herb = herbs[index!]
-                    kEntry = herb
-                    
-                } else {
-                
-                    let points = EM_PointsController.sharedController.points
-                    let point = points[index!]
-                    kEntry = point
-                    
-                }
-                
-               
-                
-        
+
             }
         }
     }

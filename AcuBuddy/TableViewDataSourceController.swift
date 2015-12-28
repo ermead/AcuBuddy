@@ -40,31 +40,44 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         
         if kDataSet == "All Herbs" {
             
-            var herbs: [AnyObject] = []
-            
-            herbs = EM_HerbsController.sharedController.herbs
-            let herb = herbs[indexPath.row] as! Herb
+            kArray = EM_HerbsController.sharedController.herbsByPinyin
+            let herb = kArray[indexPath.row] as! Herb
             
             cell.textLabel?.text = herb.pinyinName
            
          
             
-        }  else if kDataSet == "All Points" {
-            var points: [AnyObject] = []
+        } else if kDataSet == "Favorite Herbs" {
+
+            kArray = EM_HerbsController.sharedController.getHerbsByCategory("Release Wind-Heat Exterior")
+            let herb = kArray[indexPath.row] as! Herb
             
-            points = EM_PointsController.sharedController.points
-            let point = points[indexPath.row] 
+            cell.textLabel?.text = herb.pinyinName
+            
+            
+        } else if kDataSet == "Favorite Points" {
+            
+            kArray = EM_PointsController.sharedController.getPointsByChannel("LU")
+            let point = kArray[indexPath.row]
+            
+            cell.textLabel?.text = point.pinyinName
+            
+            
+        }  else if kDataSet == "All Points" {
+            
+            kArray = EM_PointsController.sharedController.pointsByPinyin
+            let point = kArray[indexPath.row]
             
             cell.textLabel?.text = point.pinyinName
             
         
         } else if kDataSet == "Acupuncture" {
-            // it is a point
-           
-//            let point = points[indexPath.row] as! Point
-//            let name = point.pinyinName
-//        
-//            cell.textLabel?.text = name
+            
+            
+            kArray = EM_PointsController.sharedController.pointsByPinyin
+            let point = kArray[indexPath.row]
+            
+            cell.textLabel?.text = point.pinyinName
             
         } else if kDataSet == "Microsystems" {
             
@@ -98,9 +111,12 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-        var herbs = EM_HerbsController.sharedController.herbs
-        var points = EM_PointsController.sharedController.points
+        
+        let favoriteHerbs = EM_HerbsController.sharedController.getHerbsByCategory("Release Wind-Heat Exterior")
+        let favoritePoints = EM_PointsController.sharedController.getPointsByChannel("LU")
+        let herbs = EM_HerbsController.sharedController.herbs
+        let points = EM_PointsController.sharedController.points
+        
         var count: Int?
         
 //        if kIsFirstPage == true {
@@ -108,12 +124,8 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
 //            return 2
 //        }
         
-        if kIsHerbs == true {
-            
-            count = herbs.count
-            //count = EM_HerbsController.sharedInstance.herbs.count
-            
-        } else if kDataSet == "All Herbs" {
+        
+        if kDataSet == "All Herbs" {
             
             count = herbs.count
            
@@ -123,6 +135,16 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             count = points.count
     
     
+        }  else if kDataSet == "Favorite Points" {
+    
+            count = favoritePoints.count
+    
+    
+        } else if kDataSet == "Favorite Herbs" {
+           
+            count = favoriteHerbs.count
+            
+            
         } else if kDataSet == "Acupuncture" {
             
             count = points.count
@@ -153,7 +175,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
        
         let points = EM_PointsController.sharedController.points
         let point = points[indexPath.row]
-         kEntry = point
+        kEntry = point
         
         print("cell hit")
        
