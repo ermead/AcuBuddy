@@ -32,6 +32,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fatalError("Error fetching data")
         }
         
+        let fetchRequestDefaultPoints = NSFetchRequest(entityName: "Point")
+        do {
+            let results = try Stack.sharedStack.managedObjectContext.executeFetchRequest(fetchRequestDefaultPoints)
+            if results.count == 0 {
+                
+                loadPointsDefaultData()
+            }
+        } catch {
+            fatalError("Error fetching data")
+        }
+        
        
         
         return true
@@ -43,6 +54,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         _ = EM_HerbsController.sharedController.defaultHerbs
         
+        
+    }
+    
+    func loadPointsDefaultData() {
+        
+        guard let _ = NSEntityDescription.entityForName("Point", inManagedObjectContext: Stack.sharedStack.managedObjectContext) else { fatalError("Could not find points entity description!")}
+        
+        _ = EM_PointsController.sharedController.defaultPoints
         
     }
     

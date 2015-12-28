@@ -14,10 +14,23 @@ import CoreData
 
 extension Point {
 
-    @NSManaged var reference: String?
-    @NSManaged var pinyin: String?
-    @NSManaged var english: String?
     @NSManaged var channel: String?
     @NSManaged var number: String?
+    @NSManaged var pinyinName: String?
+    @NSManaged var actions: String?
+    @NSManaged var channelAbrev: String?
+    @NSManaged var chineseCharacter: String?
+    @NSManaged var englishName: String?
+    @NSManaged var imageName: String?
+    @NSManaged var locationDescription: String?
+    @NSManaged var meeting: String?
+    @NSManaged var needling: String?
+    @NSManaged var neuroAnatomy: String?
+    @NSManaged var pointOnMeridian: String?
+    @NSManaged var specialCategories: String?
+    @NSManaged var triggerPointAssociations: String?
+    @NSManaged var uses: String?
+    @NSManaged var warning: String?
+    @NSManaged var images: NSSet?
 
 }

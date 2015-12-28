@@ -13,9 +13,12 @@
 		D71850E11C2239CC00184931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71850E01C2239CC00184931 /* Assets.xcassets */; };
 		D71850E41C2239CC00184931 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71850E21C2239CC00184931 /* LaunchScreen.storyboard */; };
 		D728A74A1C3105A000DB9F39 /* Herb+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A7491C3105A000DB9F39 /* Herb+CoreDataProperties.swift */; };
+		D728A74C1C3106FA00DB9F39 /* PointSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A74B1C3106FA00DB9F39 /* PointSets.swift */; };
+		D728A7501C3107EE00DB9F39 /* PointDictionaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A74F1C3107EE00DB9F39 /* PointDictionaries.swift */; };
+		D728A7521C31085000DB9F39 /* PointUses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A7511C31085000DB9F39 /* PointUses.swift */; };
+		D728A7561C3109DE00DB9F39 /* Point+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A7551C3109DE00DB9F39 /* Point+CoreDataProperties.swift */; };
 		D769346F1C30CB8200835E50 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769346E1C30CB8200835E50 /* Stack.swift */; };
 		D76934721C30CBA500835E50 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D76934701C30CBA500835E50 /* Model.xcdatamodeld */; };
-		D76934771C30CC3100835E50 /* Point+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76934731C30CC3100835E50 /* Point+CoreDataProperties.swift */; };
 		D76934781C30CC3100835E50 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76934741C30CC3100835E50 /* Point.swift */; };
 		D769347A1C30CC3100835E50 /* Herb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76934761C30CC3100835E50 /* Herb.swift */; };
 		D769347D1C30CE7400835E50 /* CDImage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769347B1C30CE7400835E50 /* CDImage+CoreDataProperties.swift */; };
@@ -70,9 +73,12 @@
 		D71850E31C2239CC00184931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D71850E51C2239CC00184931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D728A7491C3105A000DB9F39 /* Herb+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Herb+CoreDataProperties.swift"; path = "../Herb+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D728A74B1C3106FA00DB9F39 /* PointSets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointSets.swift; sourceTree = "<group>"; };
+		D728A74F1C3107EE00DB9F39 /* PointDictionaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointDictionaries.swift; sourceTree = "<group>"; };
+		D728A7511C31085000DB9F39 /* PointUses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointUses.swift; sourceTree = "<group>"; };
+		D728A7551C3109DE00DB9F39 /* Point+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Point+CoreDataProperties.swift"; path = "../Point+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D769346E1C30CB8200835E50 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = ../Stack.swift; sourceTree = "<group>"; };
 		D76934711C30CBA500835E50 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		D76934731C30CC3100835E50 /* Point+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Point+CoreDataProperties.swift"; path = "../Point+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D76934741C30CC3100835E50 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Point.swift; path = ../Point.swift; sourceTree = "<group>"; };
 		D76934761C30CC3100835E50 /* Herb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Herb.swift; path = ../Herb.swift; sourceTree = "<group>"; };
 		D769347B1C30CE7400835E50 /* CDImage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -176,6 +182,18 @@
 			path = AcuBuddy;
 			sourceTree = "<group>";
 		};
+		D728A7571C310F7700DB9F39 /* PointModel */ = {
+			isa = PBXGroup;
+			children = (
+				D728A7551C3109DE00DB9F39 /* Point+CoreDataProperties.swift */,
+				D76934741C30CC3100835E50 /* Point.swift */,
+				D728A74B1C3106FA00DB9F39 /* PointSets.swift */,
+				D728A7511C31085000DB9F39 /* PointUses.swift */,
+				D728A74F1C3107EE00DB9F39 /* PointDictionaries.swift */,
+			);
+			name = PointModel;
+			sourceTree = "<group>";
+		};
 		D76934911C30D96400835E50 /* HerbModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,8 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				D76934911C30D96400835E50 /* HerbModel */,
-				D76934731C30CC3100835E50 /* Point+CoreDataProperties.swift */,
-				D76934741C30CC3100835E50 /* Point.swift */,
+				D728A7571C310F7700DB9F39 /* PointModel */,
 				D7D5DCDF1C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift */,
 			);
 			name = Models;
@@ -377,6 +394,8 @@
 				D7D6E0561C224B5C00400374 /* HomePageViewController.swift in Sources */,
 				D7D5DCCE1C2666C9005BA837 /* DVC_ContainerViewController.swift in Sources */,
 				D728A74A1C3105A000DB9F39 /* Herb+CoreDataProperties.swift in Sources */,
+				D728A74C1C3106FA00DB9F39 /* PointSets.swift in Sources */,
+				D728A7561C3109DE00DB9F39 /* Point+CoreDataProperties.swift in Sources */,
 				D7D6E04F1C2243AB00400374 /* ArcLayer.swift in Sources */,
 				D7D5DCD61C2727AE005BA837 /* HerbsController.swift in Sources */,
 				D7D5DCE91C284A98005BA837 /* HPVC_ContainerTableViewController.swift in Sources */,
@@ -394,16 +413,17 @@
 				D76934901C30D92A00835E50 /* HerbUses.swift in Sources */,
 				D76F38761C2C5EF900B0963C /* GameViewController.swift in Sources */,
 				D7D5DCD81C273253005BA837 /* ImagesController.swift in Sources */,
-				D76934771C30CC3100835E50 /* Point+CoreDataProperties.swift in Sources */,
 				D7D5DCE71C2840C8005BA837 /* EM_MapViewController.swift in Sources */,
 				D71850DA1C2239CC00184931 /* AppDelegate.swift in Sources */,
 				D7D5DCE01C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift in Sources */,
 				D76F38851C2C6CAB00B0963C /* BNRDrawViewController.m in Sources */,
 				D769348E1C30D90500835E50 /* HerbGatheringInfo.swift in Sources */,
+				D728A7501C3107EE00DB9F39 /* PointDictionaries.swift in Sources */,
 				D7CEA7031C234E9E0009A3B7 /* CustomTableViewCell.swift in Sources */,
 				D7D6E04D1C22439F00400374 /* RectangleLayer.swift in Sources */,
 				D7D6E0491C22438000400374 /* OvalLayer.swift in Sources */,
 				D769346F1C30CB8200835E50 /* Stack.swift in Sources */,
+				D728A7521C31085000DB9F39 /* PointUses.swift in Sources */,
 				D7D5DCE21C274A06005BA837 /* HPVC_ContainerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

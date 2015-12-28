@@ -2832,7 +2832,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
                     
                 } else {
                 
-                    let points = EM_PointsController.sharedInstance.points
+                    let points = EM_PointsController.sharedController.points
                     let point = points[index!]
                     kEntry = point
                     
@@ -2912,7 +2912,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             
             let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
             let titles = ["BL", "GB", "LI", "SI", "ST", "PC", "SJ"]
-            bringInSupplementalButtons(titles, mainTitles: otherTitles)
+            //bringInSupplementalButtons(titles, mainTitles: otherTitles)
             
             
             kDataSet = title
@@ -2920,7 +2920,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             //sendSupplementaryButtonsAway()
             tableView.reloadData()
             self.view.bringSubviewToFront(tableView)
-            //presentTableView()
+            presentTableView()
             
         }
         
@@ -3037,14 +3037,13 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
             nc.postNotificationName(presentTableNotification, object: self, userInfo: ["key" : title])
             
             tableView.reloadData()
-            
-            //presentTableView()
+            presentTableView()
             
             let titles = ["BL", "GB", "LI", "SI", "ST", "PC", "SJ"]
             let otherTitles = ["HT", "SP", "LU", "KI", "LR"]
 
-            self.bringInSupplementalButtons(titles, mainTitles: otherTitles)
-           
+            //self.bringInSupplementalButtons(titles, mainTitles: otherTitles)
+            sendButtonsAway()
           
             
         }

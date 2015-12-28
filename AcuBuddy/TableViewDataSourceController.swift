@@ -16,7 +16,7 @@ var kIsFirstPage: Bool?
 class EM_TableViewDataController: NSObject, UITableViewDataSource {
     
     
-        var points = EM_PointsController.sharedInstance.points
+    
         let microsystems = ["Ear", "Eye", "Scalp", "Tongue", "Face", "Hand", "Abdomen", "Foot"]
         let diets = ["Anti-inflammatory & Cooling", "Warming & Strengthening"]
         let moxaInfoCategories = ["moxa charts", "moxa recipes"]
@@ -49,15 +49,22 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
            
          
             
+        }  else if kDataSet == "All Points" {
+            var points: [AnyObject] = []
+            
+            points = EM_PointsController.sharedController.points
+            let point = points[indexPath.row] 
+            
+            cell.textLabel?.text = point.pinyinName
+            
+        
         } else if kDataSet == "Acupuncture" {
             // it is a point
            
-        
-            let point = points[indexPath.row]
-            let channel = point.channel
-            let number = point.number
-        
-            cell.textLabel?.text = channel! + number!
+//            let point = points[indexPath.row] as! Point
+//            let name = point.pinyinName
+//        
+//            cell.textLabel?.text = name
             
         } else if kDataSet == "Microsystems" {
             
@@ -93,7 +100,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
         var herbs = EM_HerbsController.sharedController.herbs
-        
+        var points = EM_PointsController.sharedController.points
         var count: Int?
         
 //        if kIsFirstPage == true {
@@ -111,6 +118,11 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             count = herbs.count
            
             
+        }  else if kDataSet == "All Points" {
+    
+            count = points.count
+    
+    
         } else if kDataSet == "Acupuncture" {
             
             count = points.count
@@ -139,7 +151,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
        
-        let points = EM_PointsController.sharedInstance.points
+        let points = EM_PointsController.sharedController.points
         let point = points[indexPath.row]
          kEntry = point
         
