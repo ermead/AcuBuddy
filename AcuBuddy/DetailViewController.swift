@@ -89,7 +89,7 @@ class EM_DetailViewController: UIViewController, UIScrollViewDelegate, UICollect
         
         if let entry = entry as? Herb {
             
-            text1 = entry.pinyin!
+            text1 = entry.pinyinName!
             label1.textAlignment = NSTextAlignment.Center
         }
         

@@ -12,15 +12,19 @@
 		D71850DF1C2239CC00184931 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71850DD1C2239CC00184931 /* Main.storyboard */; };
 		D71850E11C2239CC00184931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71850E01C2239CC00184931 /* Assets.xcassets */; };
 		D71850E41C2239CC00184931 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71850E21C2239CC00184931 /* LaunchScreen.storyboard */; };
+		D728A74A1C3105A000DB9F39 /* Herb+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A7491C3105A000DB9F39 /* Herb+CoreDataProperties.swift */; };
 		D769346F1C30CB8200835E50 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769346E1C30CB8200835E50 /* Stack.swift */; };
 		D76934721C30CBA500835E50 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D76934701C30CBA500835E50 /* Model.xcdatamodeld */; };
 		D76934771C30CC3100835E50 /* Point+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76934731C30CC3100835E50 /* Point+CoreDataProperties.swift */; };
 		D76934781C30CC3100835E50 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76934741C30CC3100835E50 /* Point.swift */; };
-		D76934791C30CC3100835E50 /* Herb+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76934751C30CC3100835E50 /* Herb+CoreDataProperties.swift */; };
 		D769347A1C30CC3100835E50 /* Herb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76934761C30CC3100835E50 /* Herb.swift */; };
 		D769347D1C30CE7400835E50 /* CDImage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769347B1C30CE7400835E50 /* CDImage+CoreDataProperties.swift */; };
 		D769347E1C30CE7400835E50 /* CDImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769347C1C30CE7400835E50 /* CDImage.swift */; };
 		D76934801C30CFF000835E50 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769347F1C30CFF000835E50 /* Image.swift */; };
+		D769348A1C30D86900835E50 /* HerbSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76934891C30D86900835E50 /* HerbSets.swift */; };
+		D769348C1C30D8C200835E50 /* HerbUsesMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769348B1C30D8C200835E50 /* HerbUsesMore.swift */; };
+		D769348E1C30D90500835E50 /* HerbGatheringInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769348D1C30D90500835E50 /* HerbGatheringInfo.swift */; };
+		D76934901C30D92A00835E50 /* HerbUses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769348F1C30D92A00835E50 /* HerbUses.swift */; };
 		D76F384F1C2A52D800B0963C /* EM_QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F384E1C2A52D800B0963C /* EM_QuizViewController.swift */; };
 		D76F38741C2C5EF100B0963C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F38731C2C5EF100B0963C /* GameScene.swift */; };
 		D76F38761C2C5EF900B0963C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F38751C2C5EF900B0963C /* GameViewController.swift */; };
@@ -65,15 +69,19 @@
 		D71850E01C2239CC00184931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D71850E31C2239CC00184931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D71850E51C2239CC00184931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D728A7491C3105A000DB9F39 /* Herb+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Herb+CoreDataProperties.swift"; path = "../Herb+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D769346E1C30CB8200835E50 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = ../Stack.swift; sourceTree = "<group>"; };
 		D76934711C30CBA500835E50 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D76934731C30CC3100835E50 /* Point+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Point+CoreDataProperties.swift"; path = "../Point+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D76934741C30CC3100835E50 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Point.swift; path = ../Point.swift; sourceTree = "<group>"; };
-		D76934751C30CC3100835E50 /* Herb+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Herb+CoreDataProperties.swift"; path = "../Herb+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D76934761C30CC3100835E50 /* Herb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Herb.swift; path = ../Herb.swift; sourceTree = "<group>"; };
 		D769347B1C30CE7400835E50 /* CDImage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D769347C1C30CE7400835E50 /* CDImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDImage.swift; sourceTree = "<group>"; };
 		D769347F1C30CFF000835E50 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		D76934891C30D86900835E50 /* HerbSets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerbSets.swift; sourceTree = "<group>"; };
+		D769348B1C30D8C200835E50 /* HerbUsesMore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerbUsesMore.swift; sourceTree = "<group>"; };
+		D769348D1C30D90500835E50 /* HerbGatheringInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerbGatheringInfo.swift; sourceTree = "<group>"; };
+		D769348F1C30D92A00835E50 /* HerbUses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerbUses.swift; sourceTree = "<group>"; };
 		D76F384E1C2A52D800B0963C /* EM_QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EM_QuizViewController.swift; sourceTree = "<group>"; };
 		D76F38731C2C5EF100B0963C /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D76F38751C2C5EF900B0963C /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +176,19 @@
 			path = AcuBuddy;
 			sourceTree = "<group>";
 		};
+		D76934911C30D96400835E50 /* HerbModel */ = {
+			isa = PBXGroup;
+			children = (
+				D728A7491C3105A000DB9F39 /* Herb+CoreDataProperties.swift */,
+				D76934761C30CC3100835E50 /* Herb.swift */,
+				D76934891C30D86900835E50 /* HerbSets.swift */,
+				D769348F1C30D92A00835E50 /* HerbUses.swift */,
+				D769348D1C30D90500835E50 /* HerbGatheringInfo.swift */,
+				D769348B1C30D8C200835E50 /* HerbUsesMore.swift */,
+			);
+			name = HerbModel;
+			sourceTree = "<group>";
+		};
 		D76F38721C2C5E9700B0963C /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,10 +235,9 @@
 		D7D5DCE31C27528C005BA837 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D76934911C30D96400835E50 /* HerbModel */,
 				D76934731C30CC3100835E50 /* Point+CoreDataProperties.swift */,
 				D76934741C30CC3100835E50 /* Point.swift */,
-				D76934751C30CC3100835E50 /* Herb+CoreDataProperties.swift */,
-				D76934761C30CC3100835E50 /* Herb.swift */,
 				D7D5DCDF1C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift */,
 			);
 			name = Models;
@@ -351,10 +371,12 @@
 				D76934721C30CBA500835E50 /* Model.xcdatamodeld in Sources */,
 				D76F38891C2CC0CB00B0963C /* EM_CalligraphyViewController.swift in Sources */,
 				D7D5DCDE1C273702005BA837 /* ScrollAndZoomViewController.swift in Sources */,
+				D769348A1C30D86900835E50 /* HerbSets.swift in Sources */,
 				D769347A1C30CC3100835E50 /* Herb.swift in Sources */,
 				D76F38861C2C6CAB00B0963C /* BNRLine.m in Sources */,
 				D7D6E0561C224B5C00400374 /* HomePageViewController.swift in Sources */,
 				D7D5DCCE1C2666C9005BA837 /* DVC_ContainerViewController.swift in Sources */,
+				D728A74A1C3105A000DB9F39 /* Herb+CoreDataProperties.swift in Sources */,
 				D7D6E04F1C2243AB00400374 /* ArcLayer.swift in Sources */,
 				D7D5DCD61C2727AE005BA837 /* HerbsController.swift in Sources */,
 				D7D5DCE91C284A98005BA837 /* HPVC_ContainerTableViewController.swift in Sources */,
@@ -366,8 +388,10 @@
 				D7D6E04B1C22438B00400374 /* TriangleLayer.swift in Sources */,
 				D76F388B1C2CC1C000B0963C /* EM_CalligraphyView.swift in Sources */,
 				D7D5DCEB1C29D5E2005BA837 /* HPVC_PopOutContainerViewController.swift in Sources */,
+				D769348C1C30D8C200835E50 /* HerbUsesMore.swift in Sources */,
 				D769347D1C30CE7400835E50 /* CDImage+CoreDataProperties.swift in Sources */,
 				D76F384F1C2A52D800B0963C /* EM_QuizViewController.swift in Sources */,
+				D76934901C30D92A00835E50 /* HerbUses.swift in Sources */,
 				D76F38761C2C5EF900B0963C /* GameViewController.swift in Sources */,
 				D7D5DCD81C273253005BA837 /* ImagesController.swift in Sources */,
 				D76934771C30CC3100835E50 /* Point+CoreDataProperties.swift in Sources */,
@@ -375,7 +399,7 @@
 				D71850DA1C2239CC00184931 /* AppDelegate.swift in Sources */,
 				D7D5DCE01C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift in Sources */,
 				D76F38851C2C6CAB00B0963C /* BNRDrawViewController.m in Sources */,
-				D76934791C30CC3100835E50 /* Herb+CoreDataProperties.swift in Sources */,
+				D769348E1C30D90500835E50 /* HerbGatheringInfo.swift in Sources */,
 				D7CEA7031C234E9E0009A3B7 /* CustomTableViewCell.swift in Sources */,
 				D7D6E04D1C22439F00400374 /* RectangleLayer.swift in Sources */,
 				D7D6E0491C22438000400374 /* OvalLayer.swift in Sources */,

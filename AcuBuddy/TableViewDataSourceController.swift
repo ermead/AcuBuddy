@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 var kIsHerbs: Bool?
 var kDataSet: String?
@@ -14,8 +15,8 @@ var kIsFirstPage: Bool?
 
 class EM_TableViewDataController: NSObject, UITableViewDataSource {
     
-        lazy var herbs = EM_HerbsController.sharedInstance.herbs
-        lazy var points = EM_PointsController.sharedInstance.points
+    
+        var points = EM_PointsController.sharedInstance.points
         let microsystems = ["Ear", "Eye", "Scalp", "Tongue", "Face", "Hand", "Abdomen", "Foot"]
         let diets = ["Anti-inflammatory & Cooling", "Warming & Strengthening"]
         let moxaInfoCategories = ["moxa charts", "moxa recipes"]
@@ -37,15 +38,16 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
 //            return cell
 //        }
         
-        if kIsHerbs == true {
-            //it is a herb
+        if kDataSet == "All Herbs" {
             
+            var herbs: [AnyObject] = []
+            
+            herbs = EM_HerbsController.sharedController.herbs
+            let herb = herbs[indexPath.row] as! Herb
+            
+            cell.textLabel?.text = herb.pinyinName
            
-            
-            let herb = herbs[indexPath.row]
-            let name = herb.pinyin
-            
-            cell.textLabel?.text = name
+         
             
         } else if kDataSet == "Acupuncture" {
             // it is a point
@@ -89,6 +91,8 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
+        var herbs = EM_HerbsController.sharedController.herbs
         
         var count: Int?
         
@@ -101,6 +105,11 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             
             count = herbs.count
             //count = EM_HerbsController.sharedInstance.herbs.count
+            
+        } else if kDataSet == "All Herbs" {
+            
+            count = herbs.count
+           
             
         } else if kDataSet == "Acupuncture" {
             

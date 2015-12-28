@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import SafariServices
 import CoreMotion
+import CoreData
 
 
 
@@ -145,11 +146,16 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     @IBOutlet weak var popOutContainer: UIView!
     let shadow = UIView()
 
+    var herbArray: [Herb] = []
     
     // MARK: view controller methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //deleteCoreData()
+        
+       
         
         addCALayers()
         
@@ -281,6 +287,24 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     //TODO: Clean Up functions
     //MARK: Begin functions to be cleaned up:
+    
+    
+    func deleteCoreData() {
+        
+        let classObjectsToBeDeleted = ["Herb", "Point", "CDImage"]
+        
+        for thing in classObjectsToBeDeleted {
+            let fetchRequest = NSFetchRequest(entityName: thing)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            
+            do { try Stack.sharedStack.managedObjectContext.executeRequest(deleteRequest)
+            } catch _ as NSError {
+                print("error deleting batch")
+                return
+            }
+        }
+    }
+
     
     func setUpfavoritesOrAllChoice() {
         
@@ -2802,7 +2826,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
              
                 
                 if kIsHerbs == true {
-                    let herbs = EM_HerbsController.sharedInstance.herbs
+                    let herbs = EM_HerbsController.sharedController.herbs
                     let herb = herbs[index!]
                     kEntry = herb
                     
