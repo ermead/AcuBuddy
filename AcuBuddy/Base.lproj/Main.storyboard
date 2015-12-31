@@ -101,6 +101,38 @@
                                             <segue destination="x6z-Dn-Zm0" kind="modal" identifier="toDetailView" id="9hC-iN-u4U"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="61" id="cQt-W3-jFj" customClass="EM_HeaderTableViewCell" customModule="AcuBuddy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="89" width="328" height="61"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cQt-W3-jFj" id="XLM-0J-8NG">
+                                            <rect key="frame" x="0.0" y="0.0" width="295" height="60.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxG-z9-3rO">
+                                                    <rect key="frame" x="19" y="20" width="276" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvr-zT-UTE">
+                                                    <rect key="frame" x="8" y="0.0" width="316" height="60"/>
+                                                    <connections>
+                                                        <action selector="selectedHeader:" destination="cQt-W3-jFj" eventType="touchUpInside" id="Mvf-bh-dAz"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="qxG-z9-3rO" firstAttribute="centerY" secondItem="cQt-W3-jFj" secondAttribute="centerY" id="54X-pw-swS"/>
+                                            <constraint firstAttribute="trailing" secondItem="qxG-z9-3rO" secondAttribute="trailing" constant="33" id="sa7-4x-NGz"/>
+                                            <constraint firstItem="qxG-z9-3rO" firstAttribute="leading" secondItem="cQt-W3-jFj" secondAttribute="leading" constant="19" id="xN0-Lc-Re6"/>
+                                        </constraints>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                        <connections>
+                                            <outlet property="buttonOutlet" destination="Xvr-zT-UTE" id="1xY-YV-EIT"/>
+                                            <outlet property="headerLabel" destination="qxG-z9-3rO" id="x7Z-QN-s9C"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="zJr-Em-E4g" id="ayQ-nh-0Oa"/>

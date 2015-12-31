@@ -26,7 +26,87 @@ func delay(seconds seconds: Double, completion:()->()) {
 
 let presentTableNotification = "present table with info"
 
-class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate {
+
+class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate, HeaderTableViewCellDelegate {
+    
+    
+    //MARK: Header View Selected
+    func didSelectUserHeaderTableViewCell(Selected: Bool, UserHeader: EM_HeaderTableViewCell) {
+        
+        
+        print("\(UserHeader.headerLabel!.text) selected")
+        var selectedSection: Int?
+        if kDataSet == "All Herbs" {
+            selectedSection = (ahc.indexOf(UserHeader.reference!))!
+        }
+        else if kDataSet == "All Points" {
+            selectedSection = (apc.indexOf(UserHeader.reference!))!
+        } else {
+            selectedSection = 0
+        }
+        
+        if selectedSections.contains(selectedSection!){
+            
+            selectedSections.removeAtIndex(selectedSections.indexOf(selectedSection!)!)
+            
+                        let offset = tableView.contentOffset
+            
+                        tableView.reloadData()
+            
+                        self.tableView.setContentOffset(offset, animated: false)
+            
+        } else {
+            selectedSections.append(selectedSection!)
+            
+                       tableView.reloadData()
+            
+                        let indexPath = NSIndexPath(forItem: 0, inSection: selectedSection!)
+                        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+        }
+        
+        
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerCell = tableView.dequeueReusableCellWithIdentifier("headerCell") as! EM_HeaderTableViewCell
+        
+        headerCell.delegate = self
+        
+        //Use this string for the label text
+        var string: String = "no data yet"
+        if kDataSet == "All Herbs" {
+            string = ahc[section]
+        }
+        if kDataSet == "All Points" {
+            string = apc[section]
+        }
+        
+        headerCell.headerLabel.text = string
+        headerCell.headerLabel.textColor = UIColor.blackColor()
+        headerCell.headerLabel.font = UIFont(name: ".SFUIText-Medium", size: 18)!
+        headerCell.reference = string
+        headerCell.backgroundColor = UIColor.blueColor()
+        
+        return headerCell
+        
+    }
+    
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 0))
+        footerView.backgroundColor = UIColor.whiteColor()
+        return footerView
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+
     
     let nc = NSNotificationCenter.defaultCenter()
     
@@ -148,14 +228,56 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
 
     var herbArray: [Herb] = []
     
+    var selectedsections: [Int] = []
+    
+    
+//    //MARK: Header Delegate methods
+//    
+//    //MARK: Header View Selected
+//    func didSelectUserHeaderTableViewCell(Selected: Bool, UserHeader: EM_HeaderTableViewCell) {
+//        
+//        print("\(UserHeader.headerLabel!.text) selected")
+//        var selectedSection: Int?
+//        
+//        if kDataSet == "All Herbs" {
+//            selectedSection = (ahc.indexOf(UserHeader.reference!))!
+//        }
+//        else if kDataSet == "All Points" {
+//            selectedSection = (apc.indexOf(UserHeader.reference!))!
+//        } else {
+//            selectedSection = 0
+//        }
+//        
+//        if selectedSections.contains(selectedSection!){
+//            
+//            selectedSections.removeAtIndex(selectedSections.indexOf(selectedSection!)!)
+//            
+//            let offset = pointsTableViewOutlet.contentOffset
+//            
+//            pointsTableViewOutlet.reloadData()
+//            
+//            self.pointsTableViewOutlet.setContentOffset(offset, animated: false)
+//            
+//        } else {
+//            selectedSections.append(selectedSection!)
+//            
+//            pointsTableViewOutlet.reloadData()
+//            
+//            let indexPath = NSIndexPath(forItem: 0, inSection: selectedSection!)
+//            pointsTableViewOutlet.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+//        }
+//        
+//        
+//    }
+//    
+    
+    
     // MARK: view controller methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //deleteCoreData()
-        
-       
         
         addCALayers()
         

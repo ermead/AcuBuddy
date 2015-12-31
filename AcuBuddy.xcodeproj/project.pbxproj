@@ -17,6 +17,7 @@
 		D728A7501C3107EE00DB9F39 /* PointDictionaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A74F1C3107EE00DB9F39 /* PointDictionaries.swift */; };
 		D728A7521C31085000DB9F39 /* PointUses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A7511C31085000DB9F39 /* PointUses.swift */; };
 		D728A7561C3109DE00DB9F39 /* Point+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A7551C3109DE00DB9F39 /* Point+CoreDataProperties.swift */; };
+		D728A75A1C35908B00DB9F39 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728A7591C35908B00DB9F39 /* HeaderViewCell.swift */; };
 		D769346F1C30CB8200835E50 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D769346E1C30CB8200835E50 /* Stack.swift */; };
 		D76934721C30CBA500835E50 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D76934701C30CBA500835E50 /* Model.xcdatamodeld */; };
 		D76934781C30CC3100835E50 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76934741C30CC3100835E50 /* Point.swift */; };
@@ -77,13 +78,14 @@
 		D728A74F1C3107EE00DB9F39 /* PointDictionaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointDictionaries.swift; sourceTree = "<group>"; };
 		D728A7511C31085000DB9F39 /* PointUses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointUses.swift; sourceTree = "<group>"; };
 		D728A7551C3109DE00DB9F39 /* Point+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Point+CoreDataProperties.swift"; path = "../Point+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D728A7591C35908B00DB9F39 /* HeaderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		D769346E1C30CB8200835E50 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = ../Stack.swift; sourceTree = "<group>"; };
 		D76934711C30CBA500835E50 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D76934741C30CC3100835E50 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Point.swift; path = ../Point.swift; sourceTree = "<group>"; };
 		D76934761C30CC3100835E50 /* Herb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Herb.swift; path = ../Herb.swift; sourceTree = "<group>"; };
-		D769347B1C30CE7400835E50 /* CDImage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		D769347C1C30CE7400835E50 /* CDImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDImage.swift; sourceTree = "<group>"; };
-		D769347F1C30CFF000835E50 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		D769347B1C30CE7400835E50 /* CDImage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDImage+CoreDataProperties.swift"; path = "../CDImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D769347C1C30CE7400835E50 /* CDImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CDImage.swift; path = ../CDImage.swift; sourceTree = "<group>"; };
+		D769347F1C30CFF000835E50 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = ../Image.swift; sourceTree = "<group>"; };
 		D76934891C30D86900835E50 /* HerbSets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerbSets.swift; sourceTree = "<group>"; };
 		D769348B1C30D8C200835E50 /* HerbUsesMore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerbUsesMore.swift; sourceTree = "<group>"; };
 		D769348D1C30D90500835E50 /* HerbGatheringInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerbGatheringInfo.swift; sourceTree = "<group>"; };
@@ -143,10 +145,6 @@
 		D71850CD1C2239CC00184931 = {
 			isa = PBXGroup;
 			children = (
-				D769347B1C30CE7400835E50 /* CDImage+CoreDataProperties.swift */,
-				D769347C1C30CE7400835E50 /* CDImage.swift */,
-				D769347F1C30CFF000835E50 /* Image.swift */,
-				D76934701C30CBA500835E50 /* Model.xcdatamodeld */,
 				D71850D81C2239CC00184931 /* AcuBuddy */,
 				D71850D71C2239CC00184931 /* Products */,
 			);
@@ -192,6 +190,16 @@
 				D728A74F1C3107EE00DB9F39 /* PointDictionaries.swift */,
 			);
 			name = PointModel;
+			sourceTree = "<group>";
+		};
+		D728A7581C358A6900DB9F39 /* ImageModel */ = {
+			isa = PBXGroup;
+			children = (
+				D769347B1C30CE7400835E50 /* CDImage+CoreDataProperties.swift */,
+				D769347C1C30CE7400835E50 /* CDImage.swift */,
+				D769347F1C30CFF000835E50 /* Image.swift */,
+			);
+			name = ImageModel;
 			sourceTree = "<group>";
 		};
 		D76934911C30D96400835E50 /* HerbModel */ = {
@@ -253,8 +261,10 @@
 		D7D5DCE31C27528C005BA837 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D76934701C30CBA500835E50 /* Model.xcdatamodeld */,
 				D76934911C30D96400835E50 /* HerbModel */,
 				D728A7571C310F7700DB9F39 /* PointModel */,
+				D728A7581C358A6900DB9F39 /* ImageModel */,
 				D7D5DCDF1C273757005BA837 /* ScrollAndZoomLocationCoordinates.swift */,
 			);
 			name = Models;
@@ -264,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				D7CEA7001C234C620009A3B7 /* TableViewDataSourceController.swift */,
+				D728A7591C35908B00DB9F39 /* HeaderViewCell.swift */,
 				D7EB05C01C2623C500FDDA91 /* PointsController.swift */,
 				D7D5DCD51C2727AE005BA837 /* HerbsController.swift */,
 				D7D5DCD71C273253005BA837 /* ImagesController.swift */,
@@ -399,6 +410,7 @@
 				D7D6E04F1C2243AB00400374 /* ArcLayer.swift in Sources */,
 				D7D5DCD61C2727AE005BA837 /* HerbsController.swift in Sources */,
 				D7D5DCE91C284A98005BA837 /* HPVC_ContainerTableViewController.swift in Sources */,
+				D728A75A1C35908B00DB9F39 /* HeaderViewCell.swift in Sources */,
 				D7D5DCDC1C2736B6005BA837 /* PopAnimator.swift in Sources */,
 				D769347E1C30CE7400835E50 /* CDImage.swift in Sources */,
 				D76934801C30CFF000835E50 /* Image.swift in Sources */,
@@ -587,7 +599,8 @@
 				D76934711C30CBA500835E50 /* Model.xcdatamodel */,
 			);
 			currentVersion = D76934711C30CBA500835E50 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			name = Model.xcdatamodeld;
+			path = ../Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
