@@ -34,11 +34,17 @@ var ahc: [String] = [
     "Warm the Interior"
 ]
 
+// All Herb Arrays:
+var aha: [[Herb]] = []
+
 var apc: [String] = [
     "LU", "LI", "ST", "SP", "HT", "SI", "BL", "KI", "PC", "SJ", "GB", "LR", "REN", "DU"
 ]
 
-var selectedSections: [Int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+//All Point Arrays
+var apa: [[Point]] = []
+
+var selectedSections: [Int] = [-1]
 
 class EM_TableViewDataController: NSObject, UITableViewDataSource {
 
@@ -69,8 +75,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
     var herbsArray17: [Herb] = []
     var herbsArray18: [Herb] = []
     var herbsArray19: [Herb] = []
-    // All Herb Arrays:
-    var aha: [[Herb]] = []
+   
     
     //Array of point categories (channels)
    
@@ -90,8 +95,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
     var pointsArray12: [Point] = []
     var pointsArray13: [Point] = []
     var pointsArray14: [Point] = []
-    //All Point Arrays
-    var apa: [[Point]] = []
+   
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -138,13 +142,15 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         
         var herbsArray: [Herb] = []
         var pointsArray: [Point] = []
+        
       
         if kDataSet == "All Herbs" {
           
             kArray = aha[indexPath.section]
             let herb = kArray[indexPath.row] as! Herb
             
-            cell.textLabel?.text = herb.pinyinName
+            cell.textLabel?.text = "\(herb.pinyinName!)     \(herb.chineseCharacter!)"
+            cell.detailTextLabel?.text = "\(herb.englishName!)      \(herb.botanicalName!)"
           
         } else if kDataSet == "Favorite Herbs" {
             
@@ -159,9 +165,10 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             
             
             kArray = EM_PointsController.sharedController.getPointsByChannel("LU")
-            let point = kArray[indexPath.row]
+            let point = kArray[indexPath.row] as! Point
             
-            cell.textLabel?.text = point.pinyinName
+            cell.textLabel?.text = "\(point.pointOnMeridian!)    \(point.chineseCharacter!.stringByReplacingOccurrencesOfString("(?)", withString: ""))       \(point.englishName!)"
+            cell.detailTextLabel?.text = "                \(point.pinyinName!.capitalizedString.stringByReplacingOccurrencesOfString("(?)", withString: ""))"
             
             
         }  else if kDataSet == "All Points" {
@@ -169,9 +176,10 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             setupPointData()
             
             kArray = apa[indexPath.section]
-            let point = kArray[indexPath.row]
+            let point = kArray[indexPath.row] as! Point
             
-            cell.textLabel?.text = point.pinyinName
+            cell.textLabel?.text = "\(point.pointOnMeridian!)    \(point.chineseCharacter!.stringByReplacingOccurrencesOfString("(?)", withString: ""))       \(point.englishName!)"
+            cell.detailTextLabel?.text = "                \(point.pinyinName!.capitalizedString.stringByReplacingOccurrencesOfString("(?)", withString: ""))"
             
             
         } else if kDataSet == "Acupuncture" {
@@ -229,12 +237,12 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
             
             if kDataSet == "All Herbs" {
                 
-                count = self.aha[section].count
+                count = aha[section].count
                 
                 
             }  else if kDataSet == "All Points" {
                 
-                count = self.apa[section].count
+                count = apa[section].count
                 
                 
             }  else if kDataSet == "Favorite Points" {
@@ -315,7 +323,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         */
         
         //all herb arrays:
-        self.aha = [herbsArray1, herbsArray2,herbsArray3,herbsArray4,herbsArray5,herbsArray6,herbsArray7,herbsArray8,herbsArray9,herbsArray10,herbsArray11,herbsArray12,herbsArray13,herbsArray14,herbsArray15,herbsArray16,herbsArray17,herbsArray18,herbsArray19]
+       aha = [herbsArray1, herbsArray2,herbsArray3,herbsArray4,herbsArray5,herbsArray6,herbsArray7,herbsArray8,herbsArray9,herbsArray10,herbsArray11,herbsArray12,herbsArray13,herbsArray14,herbsArray15,herbsArray16,herbsArray17,herbsArray18,herbsArray19]
         
         
     }
@@ -339,7 +347,7 @@ class EM_TableViewDataController: NSObject, UITableViewDataSource {
         self.pointsArray13 = EM_PointsController.sharedController.getPointsByChannel(apc[12]).sort { $0.pointOnMeridian!.localizedStandardCompare($1.pointOnMeridian!) == NSComparisonResult.OrderedAscending }
         self.pointsArray14 = EM_PointsController.sharedController.getPointsByChannel(apc[13]).sort { $0.pointOnMeridian!.localizedStandardCompare($1.pointOnMeridian!) == NSComparisonResult.OrderedAscending }
         //all point arrays:
-        self.apa = [pointsArray1, pointsArray2, pointsArray3, pointsArray4, pointsArray5, pointsArray6, pointsArray7, pointsArray8, pointsArray9, pointsArray10, pointsArray11, pointsArray12, pointsArray13, pointsArray14 ]
+        apa = [pointsArray1, pointsArray2, pointsArray3, pointsArray4, pointsArray5, pointsArray6, pointsArray7, pointsArray8, pointsArray9, pointsArray10, pointsArray11, pointsArray12, pointsArray13, pointsArray14 ]
         
     }
     

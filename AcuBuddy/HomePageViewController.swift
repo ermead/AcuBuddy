@@ -32,7 +32,7 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
     
     //MARK: Header View Selected
     func didSelectUserHeaderTableViewCell(Selected: Bool, UserHeader: EM_HeaderTableViewCell) {
-        
+        //let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
         
         print("\(UserHeader.headerLabel!.text) selected")
         var selectedSection: Int?
@@ -83,10 +83,10 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
         }
         
         headerCell.headerLabel.text = string
-        headerCell.headerLabel.textColor = UIColor.blackColor()
+        headerCell.headerLabel.textColor = UIColor.whiteColor()
         headerCell.headerLabel.font = UIFont(name: ".SFUIText-Medium", size: 18)!
         headerCell.reference = string
-        headerCell.backgroundColor = UIColor.blueColor()
+        headerCell.backgroundColor = Colors.blue
         
         return headerCell
         
@@ -2972,10 +2972,22 @@ class EM_HomePageViewController: UIViewController, UITableViewDelegate, UINaviga
               print("segue to detail")
                 
                 let index = tableView.indexPathForSelectedRow?.row
-             
-                let array = kArray
-                kEntry = kArray[index!]
+                let section = tableView.indexPathForSelectedRow?.section
                 
+                if kDataSet == "All Herbs" {
+                    kArray = aha[section!]
+                    let herb = kArray[index!] as! Herb
+            
+                    kEntry = herb
+             
+                } else if kDataSet == "All Points" {
+                    kArray = apa[section!]
+                    let point = kArray[index!] as! Point
+                    
+                    kEntry = point
+                    
+                    
+                }
 
             }
         }
